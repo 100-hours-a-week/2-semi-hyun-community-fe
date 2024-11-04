@@ -1,0 +1,114 @@
+/*컨테이너 스타일*/
+.container{
+    /*width: 1920px;*/
+    /*height: 1080px;*/
+    width : 100vw; /* 화면 너비의 100% */
+    height : 100vh;
+    background : #F4F5F7;
+}
+
+.header{
+    position : absolute;
+    width: 100vw;
+    height: 10vh;
+    left : 0px;
+    top : 2px;
+    background-attachment: fixed;
+    background : #F4F5F7;
+    border: 1px solid #000000;
+}
+
+.box-style{
+    box-sizing : border-box;
+    width: 355px;
+    height: 33px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 중앙 정렬 */
+    padding: 0 10px; /* 좌우 패딩 추가 */
+}
+
+/* 입력란 */
+
+/* 수정 */
+.input-group {
+    display: block;
+    align-items: center;
+    margin-bottom: 10px; /* 레이블과 입력 필드 사이 간격 */
+}
+
+.input-group label {
+    margin-right: 10px; /* 레이블과 입력 필드 간격 */
+}
+
+.input-group input {
+    flex: 1;
+    box-sizing: border-box;
+    height: 33px;
+    padding: 0 10px;
+    background: #FFFFFF;
+    /* border: 1px solid #000000; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+.button-container{
+    display:flex;
+    flex-direction: column; /* 세로 방향으로 나열 */
+    align-items: center; /* 중앙 정렬 */
+    margin-top: 20px; /* 버튼과 입력 필드 사이 간격 */
+}
+/* .email-box input {
+    margin-top: 100px; /* 입력 상자와 레이블 사이의 간격 */
+
+    .email-box{
+        position : absolute;
+        left: 50%;
+        top: 500%;
+        transform: translate(-50%, -50%);
+    }
+    .pw-box{
+        position : absolute;
+        left: 50%;
+        top: 700%;
+        transform: translate(-50%, -50%);
+    }
+/* 버튼 스타일 */
+.button{
+    padding: 1px 1px;
+    background-color: #ACA0EB;
+    color : #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* background-color: 요소의 배경 색상 설정 */
+
+/* 기본 폰트 스타일 */
+.font-default{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 48px;
+    color: #000000;
+}
+
+.font-button{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 48px;
+    color: #FFFFFF;
+}
+
+.font-highlight {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    color: #6C6C6C;
+}
