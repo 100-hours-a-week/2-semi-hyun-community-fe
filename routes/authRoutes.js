@@ -11,9 +11,8 @@ router.get('/login', authController.getLogin);
 
 //회원가입 페이지 라우트
 router.get('/SignUp', authController.getSignUp);
-//회원가입 처리 라우트
-router.get('/SignUp', authController.postSignUp);
-
+//회원가입 처리 라우트 (POST)
+router.post('/SignUp', authController.postSignUp);
 //
 
 //라우터 객체를 모듈로 내보내기
