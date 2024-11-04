@@ -1,12 +1,17 @@
 [
   {
-    "name": "fgd",
-    "email": "8135zxcvbn@gmail.com",
-    "password": "f"
+    "name": "test",
+    "email": "8135zxcv@naver.com",
+    "password": "test"
   },
   {
-    "name": "a",
-    "email": "8135zxcv@naver.com",
-    "password": "s"
+    "name": "wef",
+    "email": "d@naver.com",
+    "password": "sdf"
+  },
+  {
+    "name": "sfs",
+    "email": "20211417@sungshin.ac.kr",
+    "password": "dfs"
   }
 ]

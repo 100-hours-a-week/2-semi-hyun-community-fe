@@ -4,11 +4,11 @@
     <meta charset = "UTF-8">
     <title>회원가입</title>
     <link rel = "stylesheet" href = "../CSS/community.css"> 
-    <script src="../JS/Login/SignUpfetch.js"></script>
     <body>
     <div class="container">
         <div class = "header">
             <h1>회원가입</h1>
+        <script src="../JS/Login/SignUpfetch.js"></script>
         <form id="signupForm" action="/SignUp" method="POST" class="input-group button-container">
 
             <label for="profile">프로필 사진</label>
@@ -26,12 +26,14 @@
             <label for="name" class="font-default">닉네임</label>
             <input type="name" id="name" name="name" placeholder="닉네임을 입력하세요" required>
 
-            <button type="submit" class="font-button button" onclick="registerUser()">회원가입</button>
+            <button type="button" id= "signupButton" class="font-button button" onclick="registerUser()">회원가입</button>
+             <!-- <button type="submit" class="font-button button">회원가입</button> -->
         
         </form> 
         <div class = "button-container">
             <a href="/signIn">로그인하러 가기</a>
         </div>
+
         
         <!-- <div class=".font-highlight">
             <a href="/signUp">회원가입</a> -->
