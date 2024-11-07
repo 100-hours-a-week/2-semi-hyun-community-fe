@@ -1,0 +1,117 @@
+/*컨테이너 스타일*/
+.container{
+    height : 100vh; /* 화면 높이의 100% */
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    justify-content: center; /* 세로 가운데 정렬 */
+    align-items: center; /* 가로 가운데 정렬 */
+    background : #F4F5F7;
+}
+
+/* 헤더 스타일 */
+.header{
+    position : absolute;
+    width: 100vw;
+    height: 10vh;
+    left : 0px;
+    top : 2px;
+    /* background-attachment: fixed; */
+    background : #F4F5F7;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+}
+
+
+/* 입력란 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width */
+    max-width: 300px; /*Maximum width */
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    /* width: 100%; */
+    /*align-items: center;*/ /* 중앙 정렬 */
+}
+
+.input-group label {
+    margin-right: 10px; /* 레이블과 입력 필드 간격 */
+    align-items: flex-start;
+}
+
+.input-group input {
+    width: 100%;
+    height: 33px;
+    padding: 0 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    /*margin-top: 20px;*/ /* 버튼과 입력 필드 사이 간격 */
+    margin-bottom: 10px; /* 버튼과 입력 필드 사이 간격 */
+}
+
+
+/* 버튼 스타일 */
+.button{
+    display : flex;
+    justify-content: center;
+    width: 50%;
+    /* padding: 0 10px; */
+    /* padding: 1px 1px; */
+    background-color: #ACA0EB;
+    color : #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 기본 폰트 스타일 */
+.font-default{
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 48px;
+    color: #000000;
+}
+
+.font-button{
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 48px;
+    color: #FFFFFF;
+}
+
+.font-highlight {
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    color: #6C6C6C;
+}
+
+/* 기본 박스 스타일 */
+/*
+.box-style{
+    box-sizing : border-box;
+    width: 355px;
+    height: 33px;
+    display: flex;
+    align-items: center; /* 중앙 정렬 */
+    /* padding: 0 10px; 좌우 패딩 추가 */
+    /* background: #FFFFFF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+} */
+
+/* 버튼 컨테이너 */
+/* .button-container{
+    display:flex;
+    flex-direction: column; /* 세로 방향으로 나열 
+    align-items: center; /* 중앙 정렬 
+    margin-top: 20px; /* 버튼과 입력 필드 사이 간격 
+    margin-bottom: 20px; /* 버튼과 입력 필드 사이 간격
+} */

@@ -3,38 +3,31 @@
 <head>
     <meta charset = "UTF-8">
     <title>Community</title>
-    <link rel = "stylesheet" href = "../CSS/community.css"> 
+    <link rel = "stylesheet" href = "../CSS/community.css">
+    <link rel = "stylesheet" href = "../CSS/default.css"> 
     <body>
-    <!--container tag : 컨텐츠나 레이아웃에 영향을 주지 않는 태그 ->
-    다른 요소를 그룹으로 묶어 관리하기 용이-->
     <div class="container">
         <div class = "header">
             <h1>Community</h1>
-        
-        <!-- <label for = "email" class="font-default">이메일</label>
-        <div class="box-style email-box">
-        <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
         </div>
-        <label for = "email">비밀번호</label>
-        <div class="box-style pw-box">
-            <input type="email" id="email" name="email" placeholder="비밀번호를 입력하세요">
-        </div> -->
+        <form action="/login" method="POST">
+
         <div class="input-group">
             <label for="email" class="font-default">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
         </div>
-        
         <div class="input-group">
             <label for="password" class="font-default">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
         </div>
-        <div class=".font-highlight">
-            <a href="/SignIn">로그인</a>
-        <div class=".font-highlight">
-            <a href="/SignUp">회원가입</a>
+        <button type="button" id= "signinButton" class="font-button button" onclick="registerUser()">로그인</button>
+        </form>
 
-        <div class=".font-highlight">
-            <a href="/dashboard">게시판</a>
+        <a href="/SignUp">회원가입</a>
+        <a href="/dashboard">게시판</a>
+            
     </div>
+
+    <script src="../JS/Login/SignUpfetch.js"></script>
     </body>
 </head>

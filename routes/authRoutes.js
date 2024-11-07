@@ -8,12 +8,13 @@ const authController = require('../controllers/authController');
 
 //로그인 페이지를 클라이언트에 전송
 router.get('/login', authController.getLogin);
+//로그인 처리 (POST)
+router.post('/login', authController.postLogin);
 
 //회원가입 페이지 라우트
 router.get('/SignUp', authController.getSignUp);
 //회원가입 처리 라우트 (POST)
 router.post('/SignUp', authController.postSignUp);
-//
 
 //라우터 객체를 모듈로 내보내기
 //NOTE: 다른 파일에서 라우터를 쉽게 가져와 사용할 수 있다. + 재사용성

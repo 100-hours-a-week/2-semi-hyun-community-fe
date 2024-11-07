@@ -1,3 +1,5 @@
+
+//회원가입 POST 함수
 async function registerUser(){
     const data = {
         name: document.getElementById('name').value,
@@ -40,6 +42,16 @@ async function registerUser(){
     // .catch((error) => {
     //     console.error('Error:', error); // 오류 발생 시 오류 메시지 출력
     // });
+}
+
+async function loginUser(){
+    const response = await fetch('/login',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)  //요청 본문
+    })
 
 }
 
