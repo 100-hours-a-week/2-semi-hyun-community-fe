@@ -1,0 +1,51 @@
+/* 1. root
+   2. body
+   3, header (상단바)
+   4. a
+   5. button (보라색)*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: #F4F5F7; */
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background-color: #F4F5F7;
+}
+
+.header{
+    display:flex;
+    /* justify-content: space-between;  */
+    align-items: center;
+    justify-content: center;
+    padding:20px;
+    background-color: #F4F5F7;
+    border-bottom: 1px solid #ddd;
+
+    /* text-align: center; */
+}
+
+a {
+    text-decoration: none;
+    color: #6C6C6C;
+}
+
+.create-button{
+    padding: 10px 20px;
+    background-color: #ACA0EB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* float :right; */
+    /* align-self: flex-end; */
+}
+
+.create-button:hover{
+    background-color: #8E7EDF;
+}
+

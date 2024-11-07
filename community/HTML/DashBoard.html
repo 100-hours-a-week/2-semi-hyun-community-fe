@@ -3,20 +3,38 @@
 <head>
     <meta charset = "UTF-8">
     <title>게시판</title>
-    <link rel = "stylesheet" href = "../CSS/community.css"> 
+    <!-- <link rel = "stylesheet" href = "../CSS/community.css">  -->
+    <link rel = "stylesheet" href = "../CSS/dashboard.css"> 
+    <link rel = "stylesheet" href = "../CSS/default.css"> 
     <body>
-    <!--container tag : 컨텐츠나 레이아웃에 영향을 주지 않는 태그 ->
-    다른 요소를 그룹으로 묶어 관리하기 용이-->
-    <div class="container">
-        <div class = "header">
-            <h1>Community</h1>
-        <div class=".font-highlight">
-        <div><p>게시글 목록</p></div>
-        <div id="posts">
-        </div>
-        <a href="/add-post">게시글 작성</a>
-    </div>
-    </div>
-    <!-- <script src = "addPost.js"></script> -->
+        <header class = "header">
+            <h1>아무 말 대잔치</h1>
+            <div class = "profile=icon">
+                <!--프로필 아이콘 -->
+            </div>
+        </header>
+
+        <main class="content">
+            <section class = "intro">
+                <p>안녕하세요,<br>아무말 대잔치 <span class="highlight">게시판</span> 입니다.</p>
+            </section>
+            <div class="post-header">
+                <button class="create-button">게시글 작성</button>
+            </div>
+            <article class="post-list">
+                <div class = "post-item">
+                    <h2>제목1</h2>
+                    <div class = "post-meta">
+                        <p>좋아요0 댓글0 조회수0</p>
+                        <p class="date">2021-01-01 00:00:00</p>
+                    </div>
+                </div>
+                    <div class="author-info">
+                        <img src="author-placeholder.png" alt="작성자" class="author-icon">
+                        <span>더미 작성자</span>
+                </div>
+            </article>
+        </main>
+
 </body>
 </head>

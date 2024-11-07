@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+    <meta charset = "UTF-8">
+    <title>게시판 조회</title>
+    <!-- <link rel = "stylesheet" href = "../CSS/community.css">  -->
+    <link rel = "stylesheet" href = "../CSS/viewPost.css"> 
+    <link rel = "stylesheet" href = "../CSS/default.css"> 
+    <body>
+        <header class = "header">
+            <h1>아무 말 대잔치</h1>
+            <div class = "profile=icon">
+                <!--프로필 아이콘 -->
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="posts">
+                <article class="post-items">
+                    <header class = "post-header">
+                        <h2>제목1</h2>
+                        <div class="author-meta">
+                            <div class="author-info">
+                                <img class="author-img" src="../image/" alt="작성자" >
+                                <span>더미 작성자</span>
+                            </div>
+                            <div class = "post-btn">
+                                <button class="edit-btn">수정</button>
+                                <button class="delete-btn">삭제</button>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="post-body">
+                        <img class="post-img" src="../image/example.png" alt="게시글 이미지" >
+                        <p>게시글 본문 내용</p>
+                    </div>
+                    <div class = "post-meta">
+                        <div class="like-btn">좋아요</div>
+                        <div class="comment-btn">댓글</div>
+                        <div class="view-btn">조회수</div>
+                        <p class="date">2021-01-01 00:00:00</p>
+                    </div>
+                    <footer class="post-footer">
+                        <button class="create-button">댓글등록</button>
+                    </footer>
+                </article>
+            </section>
+        </main>
+
+</body>
+</head>
