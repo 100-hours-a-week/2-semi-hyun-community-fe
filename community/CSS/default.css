@@ -2,7 +2,8 @@
    2. body
    3, header (상단바)
    4. a
-   5. button (보라색)*/
+   5. button (보라색)
+   6. 프로필 사진 + 닉네임*/
 * {
     margin: 0;
     padding: 0;
@@ -37,7 +38,7 @@ a {
     background-color: #ACA0EB;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -48,4 +49,35 @@ a {
 .create-button:hover{
     background-color: #8E7EDF;
 }
+
+
+/* 프로필 사진 + 닉네임*/
+
+.account-info{
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 10px; */
+}
+
+.account-name{
+    /* font-weight: bold; */
+    margin-left: 10px;
+}
+
+.account-img {
+    width: 30px; /* 원하는 크기로 설정 */
+    height: 30px; /* 원하는 크기로 설정 */
+    border-radius: 50%; /* 동그라미 모양으로 만들기 */
+    background-color: #ccc; /* 대체 배경색 설정 */
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    object-fit: cover; /* 이미지가 잘리지 않도록 설정 */
+}
+
+.account-img[alt="작성자"] {
+    background-color: #ccc; /* 이미지가 없을 때 배경색 설정 */
+    font-size: 0.8em;
+    color: white;
+    text-align: center;
+}
+
 
