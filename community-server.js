@@ -8,6 +8,8 @@ const dashboardRoutes = require('./routes/dashboardRoutes');
 const app = express();
 const port = 8080;
 
+// form-data 파싱
+app.use(express.urlencoded({ extended: true })); 
 //json 파싱 미들웨어
 app.use(express.json());
 

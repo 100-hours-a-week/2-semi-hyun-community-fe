@@ -3,7 +3,7 @@
    3, header (상단바)
    4. a
    5. button (보라색)
-   6. 프로필 사진 + 닉네임*/
+   6. 에러 메시지*/
 * {
     margin: 0;
     padding: 0;
@@ -17,10 +17,11 @@ body {
 }
 
 .header{
+    position: relative;
     display:flex;
-    /* justify-content: space-between;  */
     align-items: center;
     justify-content: center;
+    /* justify-content: space-between;  */
     padding:20px;
     background-color: #F4F5F7;
     border-bottom: 1px solid #ddd;
@@ -28,9 +29,17 @@ body {
     /* text-align: center; */
 }
 
+/* 절대 위치에 고정 */
+.header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 a {
     text-decoration: none;
     color: #6C6C6C;
+    font-size: 0.8em;
 }
 
 .create-button{
@@ -50,34 +59,10 @@ a {
     background-color: #8E7EDF;
 }
 
-
-/* 프로필 사진 + 닉네임*/
-
-.account-info{
-    display: flex;
-    align-items: center;
-    /* margin-bottom: 10px; */
-}
-
-.account-name{
-    /* font-weight: bold; */
-    margin-left: 10px;
-}
-
-.account-img {
-    width: 30px; /* 원하는 크기로 설정 */
-    height: 30px; /* 원하는 크기로 설정 */
-    border-radius: 50%; /* 동그라미 모양으로 만들기 */
-    background-color: #ccc; /* 대체 배경색 설정 */
-    display: inline-block; /* 인라인 블록 요소로 설정 */
-    object-fit: cover; /* 이미지가 잘리지 않도록 설정 */
-}
-
-.account-img[alt="작성자"] {
-    background-color: #ccc; /* 이미지가 없을 때 배경색 설정 */
+.error-message{
+    display: none;
+    color: red;
     font-size: 0.8em;
-    color: white;
-    text-align: center;
 }
 
 

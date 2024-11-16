@@ -3,12 +3,14 @@
 <head>
     <meta charset = "UTF-8">
     <title>Community</title>
-    <link rel = "stylesheet" href = "../CSS/login.css">
     <link rel = "stylesheet" href = "../CSS/default.css"> 
-    <body>
+    <link rel = "stylesheet" href = "../CSS/login.css">
+    
+</head>
+<body>
     <div class="container">
         <div class = "header">
-            <h1>Community</h1>
+            <h1>아무말 대잔치</h1>
         </div>
         <form action="/login" method="POST">
 
@@ -19,7 +21,11 @@
         <div class="input-group">
             <label for="password" class="font-default">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+            <div id="error-message" class="error-message" class="error-message">
+                비밀번호가 일치하지 않습니다.
+            </div>
         </div>
+
         <button type="button" id= "signinButton" class="font-button button" onclick="registerUser()">로그인</button>
         </form>
 
@@ -30,4 +36,3 @@
 
     <script src="../JS/Login/SignUpfetch.js"></script>
     </body>
-</head>
