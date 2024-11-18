@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const filePath = path.join(__dirname,'../../data/data.json'); //../에서 .../로
+const filePath = path.join(__dirname,'../../data/login.json'); //../에서 .../로
 
 
 const readUser = () => {

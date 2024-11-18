@@ -24,7 +24,7 @@
 
 
 /* 입력란 */
-form {
+.form-group {
     display: flex;
     flex-direction: column;
     align-items: center;

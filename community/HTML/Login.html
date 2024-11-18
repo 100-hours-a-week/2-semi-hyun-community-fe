@@ -3,8 +3,8 @@
 <head>
     <meta charset = "UTF-8">
     <title>Community</title>
-    <link rel = "stylesheet" href = "../CSS/default.css"> 
-    <link rel = "stylesheet" href = "../CSS/login.css">
+    <link rel = "stylesheet" href = "/CSS/default.css"> 
+    <link rel = "stylesheet" href = "/CSS/login.css">
     
 </head>
 <body>
@@ -12,27 +12,30 @@
         <div class = "header">
             <h1>아무말 대잔치</h1>
         </div>
-        <form action="/login" method="POST">
+        <!-- <form action="/api/v1/auth/login" method="POST"> -->
+        <div class="form-group">
 
         <div class="input-group">
             <label for="email" class="font-default">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
+            <div id="error-message-email" class="error-message" class="error-message">
+            </div>
         </div>
         <div class="input-group">
             <label for="password" class="font-default">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
-            <div id="error-message" class="error-message" class="error-message">
-                비밀번호가 일치하지 않습니다.
+            <div id="error-message-pw" class="error-message" class="error-message">
             </div>
         </div>
 
-        <button type="button" id= "signinButton" class="font-button button" onclick="registerUser()">로그인</button>
-        </form>
+        <button type="button" id= "loginButton" class="font-button button">로그인</button>
+        </div>    
+        <!-- </form> -->
 
-        <a href="/SignUp">회원가입</a>
-        <a href="/dashboard">게시판</a>
+        <a href="/api/v1/auth/signup">회원가입</a>
+        <a href="/api/v1/auth/dashboard">게시판</a>
             
     </div>
 
-    <script src="../JS/Login/SignUpfetch.js"></script>
+    <script src="/JS/Login/Loginfetch.js"></script>
     </body>

@@ -13,5 +13,15 @@
     "name": "sfs",
     "email": "20211417@sungshin.ac.kr",
     "password": "dfs"
+  },
+  {
+    "name": "a",
+    "email": "a@naver.com",
+    "password": "a"
+  },
+  {
+    "name": "b",
+    "email": "b@naver.com",
+    "password": "b"
   }
 ]

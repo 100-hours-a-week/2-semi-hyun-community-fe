@@ -1,19 +1,68 @@
-const fs = require('fs');
 const path = require('path');
 const SignUp = require('../community/JS/Login/SignUp');
+const { v4: uuidv4 } = require('uuid');
 
 
 exports.getLogin = (req, res) => {
     res.sendFile(path.join(__dirname, '../community/HTML', 'Login.html'));
 }
 
+
 exports.getSignUp = (req, res) => {
     res.sendFile(path.join(__dirname, '../community/HTML', 'SignUp.html'));
 }
 
-exports.getSignIn = (req, res) => {
-    res.sendFile(path.join(__dirname, '../community/HTML', 'SignIn.html'));
-}
+// 로그인 처리
+exports.postLogin = async (req, res) => {
+    const { email, password } = req.body;
+
+    // 데이터 유효성 검사
+    // 1. 비밀번호 또는 이메일이 입력되지 않은 경우
+    if (!email || !password) {
+        return res.status(400).json({
+            message : '비밀번호를 입력해주세요.'
+        });
+    }
+
+    try {
+        const users = await SignUp.readUser(); // 비동기 작업 -> 목록 읽기 (프로미스가 해결될때까지 기다림)
+        const user = users.find((user) => user.email === email); //없으면 undefined
+
+        //if undefined = false
+        if (!user) { 
+            return res.status(401).json({
+                message:'이메일이 존재하지 않습니다.'
+            });
+        }
+
+        // 비밀번호 다시 입력
+        if (user.password !== password) { 
+            return res.status(401).json({
+                message:'비밀번호를 다시 입력해주세요.'
+            });
+        }
+
+        // 로그인 성공 -> 세션에 사용자 정보 저장
+        //req.session.user = user;
+        //(+) user_id uuid 생성
+        const user_id = uuidv4();
+        res.status(200).json({
+            message: 'login successful',
+            data:{
+                user_id : user_id,
+                user : user
+            }
+        });
+    } catch (error) {
+        console.error('로그인 처리 중 오류 발생:', error);
+        res.status(500).json({
+            status: 'error',
+            message: '로그인 중 오류가 발생했습니다.',
+            data: null,
+        });
+    }
+};
+
 
 //회원가입 처리
 exports.postSignUp = async (req, res) => {
@@ -21,9 +70,11 @@ exports.postSignUp = async (req, res) => {
     const { name, email, password } = req.body; //입력한 정보 가져옴
     const userData = { name, email, password };
 
+    console.log('회원가입 요청:', userData); // 로그 추가
+
     //데이터 유효성 검사
     if (!name || !email || !password) { 
-        return res.status(400).send('모든 필드를 입력해야 합니다.');
+        return res.status(400).json({message:"invalid_format"});
     }
 
     try {
@@ -59,37 +110,3 @@ exports.postSignUp = async (req, res) => {
     }
 };
 
-// 로그인 처리
-exports.postLogin = async (req, res) => {
-    const { email, password } = req.body;
-
-    // 데이터 유효성 검사
-    if (!email || !password) {
-        return res.status(400).send('모든 필드를 입력해야 합니다.');
-    }
-
-    try {
-        const users = await SignUp.readUser(); // 비동기 작업 -> 목록 읽기 (프로미스가 해결될때까지 기다림)
-        const user = users.find((user) => user.email === email && user.password === password); //없으면 undefined
-
-        //if undefined = false
-        if (!user) { 
-            return res.status(401).send('이메일 또는 비밀번호가 잘못되었습니다.');
-        }
-
-        // 로그인 성공 -> 세션에 사용자 정보 저장
-        //req.session.user = user;
-        res.status(200).json({
-            status: 'success',
-            message: '로그인 성공',
-            data: user
-        });
-    } catch (error) {
-        console.error('로그인 처리 중 오류 발생:', error);
-        res.status(500).json({
-            status: 'error',
-            message: '로그인 중 오류가 발생했습니다.',
-            data: null,
-        });
-    }
-};

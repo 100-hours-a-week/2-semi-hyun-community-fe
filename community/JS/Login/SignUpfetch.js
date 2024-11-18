@@ -1,15 +1,19 @@
 
 //회원가입 POST 함수
 async function registerUser(){
+    const name =document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
     const data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
+        name: name,
+        email: email,
+        password: password,
     };
 
     console.log('회원가입 요청 데이터:', data); // 요청 데이터 로그 추가
     
-    const response = await fetch('/SignUp',{
+    const response = await fetch('/api/v1/auth/signup',{
         method: 'POST',
         headers: {
             //서버에 json 형식 데이터 전달
@@ -22,7 +26,7 @@ async function registerUser(){
 
     if(response.status === 201){
         alert('회원가입 완료. 로그인 화면으로 이동합니다.');
-        window.location.href = '/login'; // 로그인 페이지로 이동
+        window.location.href = '/api/v1/auth/login'; // 로그인 페이지로 이동
         //setTimeout(() => {res.redirect('/login')}, 1000);
     }
     else if(response.status === 400){
@@ -64,6 +68,4 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
 // 버튼 클릭 이벤트 처리
 // button 태그의 type 속성. id가 signupButton인 요소를 찾아 클릭 이벤트를 추가
 // addEventLister() : 특정 이벤트가 발생할때 호출할 함수 지정 -> click 이벤트 발생 시 registerUser() 호출
-document.getElementById('signupButton').addEventListener('click', function() {
-    registerUser();
-});
+document.getElementById('signupButton').addEventListener('click', () => {registerUser();});
