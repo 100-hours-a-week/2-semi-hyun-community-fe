@@ -1,7 +1,7 @@
 const path = require('path');
 const SignUp = require('../community/JS/Login/SignUp');
 const TimeStamp = require('../community/JS/Login/TimeStamp');
-const { v4: uuidv4 } = require('uuid');
+const { v4 } = require('uuid');
 
 
 exports.getLogin = (req, res) => {
@@ -42,30 +42,25 @@ exports.postLogin = async (req, res) => {
             });
         }
 
+        // --로그인 성공--
+        
         // 사용자 세션 데이터 생성
         const sessionData = {
-            user_id: v4(),
+            user_id : user.user_id,
             name: user.name,
             email: user.email
         };
 
         // 세션에 사용자 정보 저장
         req.session.user = sessionData;
-        console.log(req.session.session_id);
 
+        //FIXME : 사용자 json 데이터 업데이트 -> 지금은 시간만 업데이트 하면 되서 안함
         // 타임스탬프 생성
-        const timestamp = TimeStamp.getTime();
-        
-        // 사용자 데이터 업데이트
-        await SignUp.UpdateUser({
-            ...user,
-            user_id: sessionData.user_id,
-            created_at: timestamp,
-            updated_at: timestamp
-        });
+        // const updated_at = TimeStamp.getTime();
+
         res.status(200).json({
             message: '로그인을 성공했습니다.',
-            data: { name: user.name }
+            data: { name: user.name, user_id: user.user_id }
         });
 
     } catch (error) {
@@ -82,9 +77,7 @@ exports.postLogin = async (req, res) => {
 exports.postSignUp = async (req, res) => {
     console.log('postSignUp 함수 시작'); // 로그 추가
     const { name, email, password } = req.body; //입력한 정보 가져옴
-    const userData = { name, email, password };
-
-    console.log('회원가입 요청:', userData); // 로그 추가
+    let userData;
 
     //데이터 유효성 검사
     if (!name || !email || !password) { 
@@ -97,11 +90,21 @@ exports.postSignUp = async (req, res) => {
         
         //중복 이메일 검사
         if (users.find((user) => user.email === email)) {
-            return res.status(409).send('이미 가입된 이메일입니다.');
+            return res.status(409).json({message:"already_exist"});
         }
         
+        // --회원가입 성공--
+
+        userData = {
+            user_id: v4(),
+            name: name,
+            email: email,
+            password: password,
+            created_at: TimeStamp.getTime(),
+            updated_at : TimeStamp.getTime()
+        };
         users.push(userData); //새로운 사용자 추가
-        await SignUp.writeUser(users);
+        await SignUp.writeUser(users); //덮어쓰기
 
         //성공 응답 -> 회원가입 완료 후 로그인 화면으로 리디렉션
         console.log('회원가입 성공, 응답 전송');

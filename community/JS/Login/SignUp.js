@@ -36,8 +36,10 @@ async function UpdateUser(updateData){
     if(userIndex === -1){
         throw new Error('사용자를 찾을 수 없습니다.');
     }
-
+    //데이터 변경
     users[userIndex] = updateData;
+    //데이터 덮어씌우기 -> 근데 너무 비효율적이다
+    await writeUser(users);
 }
 
 
