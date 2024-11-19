@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require("multer"); //for form-data 파일 업로드 시 사용.
 const router = express.Router();
 const dashboardController = require('../controllers/dashboardController');
 
