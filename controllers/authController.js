@@ -1,5 +1,6 @@
 const path = require('path');
 const SignUp = require('../community/JS/Login/SignUp');
+const TimeStamp = require('../community/JS/Login/TimeStamp');
 const { v4: uuidv4 } = require('uuid');
 
 
@@ -19,9 +20,7 @@ exports.postLogin = async (req, res) => {
     // 데이터 유효성 검사
     // 1. 비밀번호 또는 이메일이 입력되지 않은 경우
     if (!email || !password) {
-        return res.status(400).json({
-            message : '비밀번호를 입력해주세요.'
-        });
+        return res.status(400).json({ message: '모든 필드를 입력해주세요.' });
     }
 
     try {
@@ -36,29 +35,44 @@ exports.postLogin = async (req, res) => {
         }
 
         // 비밀번호 다시 입력
+        // FIXME : 비밀번호 암호화 과정 + 비교 과정 필요
         if (user.password !== password) { 
             return res.status(401).json({
                 message:'비밀번호를 다시 입력해주세요.'
             });
         }
 
-        // 로그인 성공 -> 세션에 사용자 정보 저장
-        //req.session.user = user;
-        //(+) user_id uuid 생성
-        const user_id = uuidv4();
-        res.status(200).json({
-            message: 'login successful',
-            data:{
-                user_id : user_id,
-                user : user
-            }
+        // 사용자 세션 데이터 생성
+        const sessionData = {
+            user_id: v4(),
+            name: user.name,
+            email: user.email
+        };
+
+        // 세션에 사용자 정보 저장
+        req.session.user = sessionData;
+        console.log(req.session.session_id);
+
+        // 타임스탬프 생성
+        const timestamp = TimeStamp.getTime();
+        
+        // 사용자 데이터 업데이트
+        await SignUp.UpdateUser({
+            ...user,
+            user_id: sessionData.user_id,
+            created_at: timestamp,
+            updated_at: timestamp
         });
+        res.status(200).json({
+            message: '로그인을 성공했습니다.',
+            data: { name: user.name }
+        });
+
     } catch (error) {
         console.error('로그인 처리 중 오류 발생:', error);
-        res.status(500).json({
+        return res.status(500).json({
             status: 'error',
-            message: '로그인 중 오류가 발생했습니다.',
-            data: null,
+            message: '로그인 중 오류가 발생했습니다.'
         });
     }
 };

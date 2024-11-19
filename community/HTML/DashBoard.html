@@ -3,10 +3,12 @@
 <head>
     <meta charset = "UTF-8">
     <title>게시판</title>
-    <!-- <link rel = "stylesheet" href = "../CSS/community.css">  -->
     <link rel = "stylesheet" href = "/CSS/default_profile.css"> 
     <link rel = "stylesheet" href = "/CSS/default.css"> 
     <link rel = "stylesheet" href = "/CSS/dashboard.css"> 
+    <!-- <link rel = "stylesheet" href = "../CSS/default_profile.css"> 
+    <link rel = "stylesheet" href = "../CSS/default.css"> 
+    <link rel = "stylesheet" href = "../CSS/dashboard.css">  -->
 </head>
     <body>
         <header class = "header">
@@ -25,25 +27,16 @@
                 <p>안녕하세요,<br>아무말 대잔치 <span class="highlight">게시판</span> 입니다.</p>
             </section>
             <div class="post-header">
-                <button class="create-button">게시글 작성</button>
+                <button id= "writeButton" class="create-button" >게시글 작성</button>
             </div>
-            <ul id="post-list">
+
+            <div id="post-list">
+                <div class="post-empty">
+                    <p>게시글이 없습니다.</p>
+                </div>
                 <!-- 게시글 목록 -->
-                <article class="post-list">
-                    <div class = "post-item">
-                        <h2>제목1</h2>
-                        <div class = "post-meta">
-                            <p>좋아요0 댓글0 조회수0</p>
-                            <p class="date">2021-01-01 00:00:00</p>
-                        </div>
-                    </div>
-                        <div class="author-info">
-                            <img src="author-placeholder.png" alt="작성자" class="author-icon">
-                            <span>더미 작성자</span>
-                    </div>
-                </article>
-            </ul>
-
+            </div>
         </main>
-
+    <script src = "/JS/DashBoard/Dashboardfetch.js"></script>
+    <!-- <script src = "../JS/DashBoard/Dashboardfetch.js"></script> -->
 </body>

@@ -54,7 +54,7 @@ LoginButton.addEventListener('click', async ()=>{
             const data = await response.json();
             alert(data.message);
             //인증처리는?
-            // window.location.href = '/dashboard';
+            window.location.href = '/api/v1/posts';
         }
         else if(response.status === 400){
             emailErrorMessage.textContent = data.message;
