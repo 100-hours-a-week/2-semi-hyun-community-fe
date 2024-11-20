@@ -1,5 +1,5 @@
 const path = require('path');
-const SignUp = require('../community/JS/Login/SignUp');
+const SignUp = require('../community/JS/Login/SignUpJson');
 const TimeStamp = require('../community/JS/Login/TimeStamp');
 const { v4 } = require('uuid');
 
