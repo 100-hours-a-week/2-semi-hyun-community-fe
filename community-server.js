@@ -14,15 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 //json 파싱 미들웨어
 app.use(express.json());
 
-//(+)세션 미들웨어
-// app.use(session({
-//     secret: 'your_secret_key', // 비밀 키
-//     resave: false, // 세션을 항상 저장할 지 여부'
-//     saveUninitialized: true, // 초기화되지 않은 세션을 저장할 지 여부
-//     cookie: {secure:false} //https를 통해서만 쿠키를 전송할지 여부
-
-// }))
-
 //세션 미들웨어 설정
 app.use(session({
     secret: 'your_secret_key',   // 세션 암호화 키
