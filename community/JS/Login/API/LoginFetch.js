@@ -33,7 +33,7 @@ LoginButton.addEventListener('click', async ()=>{
 
             alert(localStorage.getItem('name')+"님 안녕하세요");
             
-            //인증처리는?
+            //인증처리는? -> 미들웨어로
             window.location.href = '/api/v1/posts';
         }
         else if(response.status === 400){

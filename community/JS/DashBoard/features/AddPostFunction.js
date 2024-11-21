@@ -8,6 +8,13 @@ titleInput.maxLength = 26; // HTML 속성으로 최대 길이 제한
 
 //버튼 색 변경
 //FIXME: 왜 또 동작이 안돼.
-if(titleInput.value.length > 0 && contextInput.value.length > 0){
-    document.querySelector('.create-button').style.backgroundColor = '#7F6AEE';
+function ChangeButtonColor(){
+    if(titleInput.value.length > 0 && contextInput.value.length > 0){
+        document.querySelector('.create-button').style.backgroundColor = '#7F6AEE';
+    }
 }
+
+//NOTE: DOM이 로드된 후 실행
+document.addEventListener('DOMContentLoaded', function() {
+    ChangeButtonColor();
+});

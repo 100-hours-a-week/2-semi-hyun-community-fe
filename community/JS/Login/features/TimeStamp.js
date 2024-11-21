@@ -1,5 +1,5 @@
 function getTime(){
-    const now = new Date();
+    const now = new Date().toISOString();
     return now;
 }
 

@@ -13,7 +13,7 @@ document.getElementById('writeButton').addEventListener('click',()=>{
     window.location.href = '/api/v1/posts/write';
 })
 
-//NOTE: DOM이 로드된 후 실행
-// document.addEventListener('DOMContentLoaded', function() {
-//     IsListEmpty();
-// });
+// NOTE: DOM이 로드된 후 실행
+document.addEventListener('DOMContentLoaded', function() {
+    IsListEmpty();
+});
