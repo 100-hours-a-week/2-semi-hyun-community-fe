@@ -13,9 +13,31 @@ exports.getWritePost = (req, res) => {
     res.sendFile(path.join(__dirname, '../community/HTML', 'AddPost.html'));
 }
 
-//게시글 조회
+//게시글 상세 조회
 exports.getPost = (req, res) => {
     res.sendFile(path.join(__dirname, '../community/HTML', 'ViewPost.html'));
+}
+
+//게시글 상세 조회 - 데이터 조회
+exports.getPostData = async (req,res) => {
+    let post_id = req.params.post_id;
+
+    try{
+        // NOTE: getPostById가 동기 함수여도 await는 정상 작동
+        // NOTE:await Promise.resolve(getPostById(post_id))와 동일하게 처리됨
+
+        const post = await PostService.getPostById(post_id); //id로 데이터 조회
+
+        if(!post){
+            res.status(400).json({message : 'invalid_post_id'})
+        }
+
+        res.status(200).json(post);
+
+    }catch(error){
+        res.status(500).json({message : 'internal_server_error'});
+        console.error('Error fetching post data:', error);
+    }
 }
 
 //게시글 수정
@@ -26,19 +48,24 @@ exports.getEditPost = (req, res) => {
 //게시글 추가
 //NOTE: 미들웨어+요청처리 -> 배열로 순서대로 처리
 exports.postAddPost = [upload.single('image'),(req,res) => {
-    const {title, content, user_id} = req.body;
+    const {title, content, name, user_id} = req.body;
+
+    if (!title || !content || !user_id) {
+        return res.status(400).json({ message: 'missing_required_fields' });
+    }
 
     try{
         const newPost = PostService.addPost({
             title,
             content,
+            name,
             user_id,
             imageFilename: req.file ? req.file.filename : ''
         });
 
         res.status(201).json({
             message: 'post created successfully',
-            data: newPost.post_id
+            post_id: newPost.post_id
         });
 
     }catch(error){
