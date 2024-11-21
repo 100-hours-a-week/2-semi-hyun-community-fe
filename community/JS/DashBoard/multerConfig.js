@@ -8,7 +8,9 @@ const storage = multer.diskStorage({
         cb(null, 'community/images'); //에러처리용,저장경로
     },
     filename: function (req,file,cb){
-        cb(null,Date.now()+'-'+file.originalname);
+        // 한글 파일명을 URL 인코딩하여 저장
+        const encodedFilename = encodeURIComponent(file.originalname);
+        cb(null, Date.now() + '-' + encodedFilename);
     }
     
 });
