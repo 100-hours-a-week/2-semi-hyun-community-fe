@@ -71,11 +71,11 @@ body {
     max-width: 600px; /* 최대 너비를 800px로 설정 */
     justify-content: center;
     flex-direction: column;
-    gap: 10px; 
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 10px;
     margin: 0 auto;
+    margin-bottom: 10px;
     clear: both
 }
 
@@ -111,8 +111,8 @@ body {
 }
 .author-info{
     display: flex;
-    padding-left: 10px;
-    padding-bottom: 10px;
+    /* padding-left: 10px; */
+    padding: 10px;
     align-items: center;
     background-color: white;
     border-radius: 10px;
