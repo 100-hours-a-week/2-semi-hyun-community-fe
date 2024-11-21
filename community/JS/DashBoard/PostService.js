@@ -24,6 +24,16 @@ const getAllPosts = () => {
     }
 };
 
+// 특정 게시글 조회
+const getPosts = (offset, limit) => {
+    const posts = getAllPosts();
+    //NOTE: 유효한 범위로 제한
+    const startIndex = Math.max(0, offset);
+    const endIndex = Math.min(posts.length, startIndex + limit);
+    
+    return posts.slice(startIndex, endIndex);
+}
+
 
 //게시글 추가
 //NOTE: {} : 객체 구조 분해 -> 매개변수 순서가 자유롭다. 기본값 설정이 쉽다.
@@ -70,5 +80,6 @@ const getPostById = (post_id) => {
 
 module.exports = {
     addPost,
-    getPostById
+    getPostById,
+    getPosts
 }

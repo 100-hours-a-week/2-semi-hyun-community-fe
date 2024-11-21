@@ -7,6 +7,10 @@ const authMiddleware = require('../community/JS/Middlewares/authMiddleware');
 //게시글 목록조회
 router.get('/', authMiddleware, dashboardController.getDashboard);
 
+//게시글 목록조회 - 데이터 조회
+router.get('/data', authMiddleware, dashboardController.getDashboardData);
+
+
 //게시글 작성
 router.get('/write',authMiddleware,dashboardController.getWritePost);
 

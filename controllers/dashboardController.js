@@ -3,9 +3,27 @@ const path = require('path'); //디렉토리 경로를 다루는 기본 모듈
 const upload = require('../community/JS/DashBoard/multerConfig');
 const PostService = require('../community/JS/DashBoard/PostService');
 
-//게시판 조회
+//게시글 목록 조회
 exports.getDashboard = (req, res) => {
     res.sendFile(path.join(__dirname, '../community/HTML', 'DashBoard.html'));
+}
+
+//게시글 목록 조회 - 데이터 조회
+exports.getDashboardData = async(req,res) => {
+    const {offset,limit} = req.query;
+    try{
+        const posts = await PostService.getPosts(offset,limit);
+
+        if(!posts){
+            res.status(400).json({'message': 'invalid_post'});
+        }
+
+        res.status(200).json(posts);
+
+    }catch(error){
+        res.status(500).json({message : 'internal_server_error'});
+        console.error('Error fetching dashboard data:', error);
+    }
 }
 
 //게시글 작성
