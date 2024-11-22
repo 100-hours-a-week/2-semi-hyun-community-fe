@@ -1,15 +1,13 @@
 //Note: js에서는 node.js의 path 모듈을 사용할 수 없다.
 const imagePath = '/images';
 
-document.addEventListener('DOMContentLoaded', async () => {
-    //Note: 쿼리 파라미터를 추출할때 사용
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const post_id = urlParams.get('post_id');
-
-    let pathParts = window.location.pathname.split('/');
-    const post_id = pathParts[pathParts.length -1];
-    console.log(post_id);
+// 게시글 데이터 로드
+const postDataLoad = async () => {
     try {
+        let pathParts = window.location.pathname.split('/');
+        const post_id = pathParts[pathParts.length -1];
+        console.log(post_id);
+
         // 게시글 데이터 가져오기
         const response = await fetch(`/api/v1/posts/${post_id}/data`);
         const post = await response.json();
@@ -21,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="error-container">
                         <h2>게시글을 찾을 수 없습니다</h2>
                         <p>요청하신 게시글이 존재하지 않거나 삭제되었을 수 있습니다.</p>
-                        <button onclick="location.href='api/v1/posts'">게시판으로 돌아가기</button>
+                        <button onclick="location.href='/api/v1/posts'">게시판으로 돌아가기</button>
                     </div>
                 `;
                 return;
@@ -75,4 +73,40 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error:', error);
         alert('게시글을 불러오는 중 오류가 발생했습니다.');
     }
-});
+};
+
+//게시글 삭제
+const postDelete = async()=> {
+    const DeleteButton = document.getElementById('post-delete-btn');
+    DeleteButton.addEventListener('click', async ()=> {
+        try {
+
+            let pathParts = window.location.pathname.split('/');
+            const post_id = pathParts[pathParts.length -1];
+            const response = await fetch(`/api/v1/posts/${post_id}`, {
+                method: 'DELETE',
+                credentials: 'include'
+            });
+    
+            if(!response.ok){
+                if(response.status === 404){
+                    throw new Error('Post not found');
+                }
+                throw new Error('Failed to delete post');
+            }
+    
+            if(response.status === 204){
+                alert('게시글이 삭제되었습니다.');
+                window.location.href = '/api/v1/posts';
+            }
+
+        }catch(error){
+            console.error('Error deleting post:', error); 
+        }
+    }
+);
+};
+
+// DOMContentLoaded 이벤트 리스너 추가
+document.addEventListener('DOMContentLoaded', postDataLoad);
+document.addEventListener('DOMContentLoaded', postDelete);
