@@ -1,5 +1,4 @@
 const multer = require('multer');
-const path = require('path');
 
 //multer 저장소설정
 const storage = multer.diskStorage({
@@ -33,5 +32,7 @@ const upload = multer({
     }
 });
 
+//NOTE : {upload}를 사용하면 객체 형태로 내보낸다.
+//NOTE : upload.single로 사용하려면 인스턴스로 내보내야한다.
 module.exports = upload;
 

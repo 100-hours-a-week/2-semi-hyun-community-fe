@@ -47,6 +47,8 @@ const addPost = ({ title, content, name, user_id, imageFilename = '' }) => {
 
     const posts = getAllPosts();
     
+    //NOTE: 이미지 경로 설정 제외. 정보보안이슈
+
     const newPost = {
         post_id: Date.now().toString(), //NOTE:현재시간을 밀리초 단위로 반환
         title,
@@ -81,6 +83,47 @@ const getPostById = (post_id) => {
 };
 
 //게시글 수정
+const patchPost = (post_id, updatedData) => {
+    const posts = getAllPosts();
+    const postIndex = posts.findIndex(post => post.post_id === post_id);
+    if(postIndex === -1){
+        return null
+    }
+
+    //바뀐 데이터로 수정
+    posts[postIndex] = {
+        ...posts[postIndex],     // 1. 기존 게시글의 모든 속성을 복사
+        title: updatedData.title,     // 2. 새로운 제목으로 덮어쓰기
+        content: updatedData.content, 
+        image: updatedData.image? updatedData.image : posts[postIndex].image, //update 이미지 없으면 기존이미지 유지
+        updated_date: new Date().toISOString()
+    };
+    savePosts(posts);
+    return true;
+}
+
+//이미지 삭제.
+const deleteImage = async(post_id) => {
+    //게시글 정보 가져오기
+    const posts = getAllPosts();
+    const post = posts.find(post => post.post_id === post_id);
+
+    if (!post || !post.image) {
+        return false;
+    }
+
+    const imagePath = path.join(rootDir,'images/',post.image);
+
+    try{
+        //이미지 삭제
+        //NOTE : unlink is using the callback-based API. not the promise-based API.
+        await fs.promises.unlink(imagePath);
+        return true;
+    }catch(error){
+        console.error('Error deleting image:', error);
+        return false;
+    }
+}
 
 //게시글 삭제
 const deletePost = (post_id) => {
@@ -103,5 +146,7 @@ module.exports = {
     addPost,
     getPostById,
     getPosts,
-    deletePost
+    deletePost,
+    deleteImage,
+    patchPost
 }

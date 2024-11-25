@@ -1,11 +1,13 @@
 //Note: js에서는 node.js의 path 모듈을 사용할 수 없다.
 const imagePath = '/images';
+const EditButton = document.getElementById('post-edit-btn');
+
+const pathParts = window.location.pathname.split('/');
+const post_id = pathParts[pathParts.length -1];
 
 // 게시글 데이터 로드
 const postDataLoad = async () => {
     try {
-        let pathParts = window.location.pathname.split('/');
-        const post_id = pathParts[pathParts.length -1];
         console.log(post_id);
 
         // 게시글 데이터 가져오기
@@ -80,9 +82,6 @@ const postDelete = async()=> {
     const DeleteButton = document.getElementById('post-delete-btn');
     DeleteButton.addEventListener('click', async ()=> {
         try {
-
-            let pathParts = window.location.pathname.split('/');
-            const post_id = pathParts[pathParts.length -1];
             const response = await fetch(`/api/v1/posts/${post_id}`, {
                 method: 'DELETE',
                 credentials: 'include'
@@ -107,6 +106,12 @@ const postDelete = async()=> {
 );
 };
 
+//수정 페이지로 이동
+const moveEditPage = () =>{
+    window.location.href = `/api/v1/posts/${post_id}/edit`;
+};
+
 // DOMContentLoaded 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', postDataLoad);
 document.addEventListener('DOMContentLoaded', postDelete);
+EditButton.addEventListener('click', moveEditPage);
