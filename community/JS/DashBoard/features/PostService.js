@@ -161,6 +161,9 @@ const addComment = async(post_id, comment) => {
         updated_date: new Date().toISOString()
     };
 
+    //댓글수 증가
+    posts[postIndex].comments_count += 1;
+
     posts[postIndex].comments.unshift(newComment); //배열 맨앞에 추가
     await savePosts(posts);
     return true;
