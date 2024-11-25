@@ -34,7 +34,7 @@
                 <section class = "context">
                     <p>내용</p>
                     <div class="context-input">
-                    <textarea id="context" placeholder="내용을 입력해주세요"></textarea>
+                    <textarea id="content" placeholder="내용을 입력해주세요"></textarea>
                     </div>
                 </section>
             
@@ -46,10 +46,12 @@
                     </div>
                 </section>
 
-                <button class="create-button">완료</button>
+                <button id="patch-button" class="create-button">완료</button>
         </article>
         </form>
     </main>
+    <script src="/JS/DashBoard/features/AddPostFunction.js"></script>
+    <script src="/JS/DashBoard/API/PatchPostFetch.js"></script>
 </body>
 
 
