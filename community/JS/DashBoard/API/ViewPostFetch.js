@@ -62,12 +62,12 @@ const postDataLoad = async () => {
                 <div class="account-info">
                     <img class="account-img" src="../image/" alt="작성자">
                     <span class="account-name">${localStorage.getItem('name')}</span>
-                    <span class="comment-date">${new Date(comment.created_date).toLocaleString()}</span>
+                    <span class="comment-date">${comment.created_date}</span>
                 </div>
-                <span class="comment-context">${comment.content}</span>
+                <span id="comment-content" class="comment-content">${comment.content}</span>
                 <div class="comment-btn">
-                    <button class="edit-btn">수정</button>
-                    <button class="delete-btn">삭제</button>
+                    <button id="comment-edit-btn" class="edit-btn">수정</button>
+                    <button id="comment-delete-btn" class="delete-btn">삭제</button>
                 </div>
             `;
             commentList.appendChild(commentItem); //ul 태그 안에 넣기

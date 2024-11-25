@@ -6,19 +6,19 @@ const createButton = document.querySelector('.create-button');
 titleInput.maxLength = 26; // HTML 속성으로 최대 길이 제한
 
 //버튼 색 변경
-function ChangeButtonColor(){
-    const hasTitle = titleInput.value.length > 0;
-    const hasContent = contextInput.value.length > 0;
+// function ChangeButtonColor(){
+//     const hasTitle = titleInput.value.length > 0;
+//     const hasContent = contextInput.value.length > 0;
     
-    if(hasTitle && hasContent){
-        createButton.style.backgroundColor = '#7F6AEE';
-    } else {
-        createButton.style.backgroundColor = '#ACA0EB';
-    }
-}
+//     if(hasTitle && hasContent){
+//         createButton.style.backgroundColor = '#7F6AEE';
+//     } else {
+//         createButton.style.backgroundColor = '#ACA0EB';
+//     }
+// }
 
-titleInput.addEventListener('input', ChangeButtonColor);
-contextInput.addEventListener('input', ChangeButtonColor);
+// titleInput.addEventListener('input', ChangeButtonColor);
+// contextInput.addEventListener('input', ChangeButtonColor);
 
 //NOTE : 사용자가 제목이나 내용을 입력할 때마다 버튼의 색상이 자동으로 업데이트되도록 하는 코드
 //NOTE : 다른 종류의 이벤트를 추가할때를 고려
