@@ -24,7 +24,22 @@ exports.addComment = async (req,res)=> {
     }
 };
 
-exports.editComment = (req,res)=> {};
+exports.editComment = async(req,res)=> {
+    const {post_id,comment_id} = req.params;
+    const {content} = req.body;
+
+    if(!content){
+        return res.status(400).json({message: '내용을 입력해주세요.'});
+    }
+    const post = await PostService.patchComment(post_id,comment_id,content);
+
+    if(!post){
+        return res.status(404).json({message: '게시글을 찾을 수 없습니다.'});
+    }
+
+    //수정 성공
+    return res.status(204).send();
+};
 
 exports.deleteComment = (req,res)=> {};
 

@@ -166,6 +166,32 @@ const addComment = async(post_id, comment) => {
     return true;
 }
 
+//댓글 수정
+const patchComment = async(post_id,comment_id,content) => {
+    const posts = getAllPosts();
+    const post = posts.find(post => post.post_id === post_id);
+    if(!post){
+        return null;
+    }
+    
+    const commentIndex = post.comments.findIndex(comment => comment.comment_id === comment_id);
+    if(commentIndex === -1){
+        return null;
+    }
+
+    //바뀐 데이터로 수정
+    post.comments[commentIndex] = {
+        ...post.comments[commentIndex],     // 기존 게시글 모든 속성을 복사
+        content: content,                   // 새로운 내용으로 덮어쓰기     
+        updated_date: new Date().toISOString()
+    };
+
+    await savePosts(posts);
+    return true;
+
+
+}
+
 
 module.exports = {
     addPost,
@@ -174,5 +200,6 @@ module.exports = {
     deletePost,
     deleteImage,
     patchPost,
-    addComment
+    addComment,
+    patchComment
 }

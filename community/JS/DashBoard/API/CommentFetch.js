@@ -101,8 +101,8 @@ const editComment = async() => {
             alert(result.message);
             return;
         }
-        if(response.status === 200){ //댓글 수정 성공
-            alert(result.message);
+        if(response.status === 204){ //댓글 수정 성공
+            alert('댓글이 수정되었습니다.');
             window.location.reload();
         }
     }catch(error){
