@@ -4,7 +4,7 @@
 //게시판 목록이 있을 경우 list-empty 비활성화
 function IsListEmpty(){
     const postEmpty = document.querySelector('.post-empty');
-    postEmpty.style.display = document.querySelector('#post-list article') ? 'none' : 'block';
+    postEmpty.style.display = document.querySelector('#post-container article') ? 'none' : 'block'; //post-container로 변경
 }
 
 
