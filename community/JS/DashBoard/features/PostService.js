@@ -140,6 +140,31 @@ const deletePost = (post_id) => {
     }
 }
 
+//댓글 작성
+const addComment = async(post_id, comment) => {
+    
+    const posts = getAllPosts();
+    //NOTE : 수정/삭제할 때는 findIndex 사용
+    const postIndex = posts.findIndex(post => post.post_id === post_id);
+    
+    if(postIndex === -1){
+        return null;
+    }
+
+    //댓글추가
+    const newComment = {
+        comment_id : Date.now().toString(),
+        user_id: comment.user_id,
+        post_id,
+        content: comment.content,
+        created_date: new Date().toISOString(),
+        updated_date: new Date().toISOString()
+    };
+
+    posts[postIndex].comments.unshift(newComment); //배열 맨앞에 추가
+    await savePosts(posts);
+    return true;
+}
 
 
 module.exports = {
@@ -148,5 +173,6 @@ module.exports = {
     getPosts,
     deletePost,
     deleteImage,
-    patchPost
+    patchPost,
+    addComment
 }

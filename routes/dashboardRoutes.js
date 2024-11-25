@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const dashboardController = require('../controllers/dashboardController');
 const dashboardControllerEdit = require('../controllers/dashboardControllerEdit');
+const commentController = require('../controllers/commentController');
 const authMiddleware = require('../community/JS/Middlewares/authMiddleware');
 
 
@@ -31,6 +32,15 @@ router.patch('/:post_id',authMiddleware,dashboardControllerEdit.patchEditPost);
 
 //게시글 삭제
 router.delete('/:post_id',authMiddleware,dashboardController.deletePost);
+
+//댓글 등록
+router.post('/:post_id/comments',authMiddleware,commentController.addComment);
+
+//댓글 수정
+router.patch('/:post_id/comments/:comment_id',authMiddleware,commentController.editComment);
+
+//댓글 삭제
+router.delete('/:post_id/comments/:comment_id',authMiddleware,commentController.deleteComment);
 
 //NOTE: 라우터 객체를 모듈로 내보내기 -> 주서버에 모두 작성하지 않아도됨
 module.exports = router;

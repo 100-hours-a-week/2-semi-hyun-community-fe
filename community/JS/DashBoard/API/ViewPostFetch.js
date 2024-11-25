@@ -4,6 +4,7 @@ const EditButton = document.getElementById('post-edit-btn');
 
 const pathParts = window.location.pathname.split('/');
 const post_id = pathParts[pathParts.length -1];
+window.post_id = post_id;
 
 // 게시글 데이터 로드
 const postDataLoad = async () => {
@@ -56,10 +57,11 @@ const postDataLoad = async () => {
         post.comments.forEach(comment => {
             const commentItem = document.createElement('li');
             commentItem.className = 'comment-item';
+            commentItem.setAttribute('data-comment-id', comment.comment_id);
             commentItem.innerHTML = `
                 <div class="account-info">
                     <img class="account-img" src="../image/" alt="작성자">
-                    <span class="account-name">${comment.user_id}</span>
+                    <span class="account-name">${localStorage.getItem('name')}</span>
                     <span class="comment-date">${new Date(comment.created_date).toLocaleString()}</span>
                 </div>
                 <span class="comment-context">${comment.content}</span>
