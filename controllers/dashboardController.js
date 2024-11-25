@@ -44,7 +44,6 @@ exports.getPostData = async (req,res) => {
     try{
         // NOTE: getPostById가 동기 함수여도 await는 정상 작동
         // NOTE:await Promise.resolve(getPostById(post_id))와 동일하게 처리됨
-
         const post = await PostService.getPostById(post_id); //id로 데이터 조회
 
         if(!post){
@@ -57,11 +56,6 @@ exports.getPostData = async (req,res) => {
         res.status(500).json({message : 'internal_server_error'});
         console.error('Error fetching post data:', error);
     }
-}
-
-//게시글 수정
-exports.getEditPost = (req, res) => {
-    res.sendFile(path.join(__dirname, '../community/HTML', 'EditPost.html'));
 }
 
 //게시글 추가
