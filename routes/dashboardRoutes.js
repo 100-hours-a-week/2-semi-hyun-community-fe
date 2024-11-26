@@ -42,5 +42,9 @@ router.patch('/:post_id/comments/:comment_id',authMiddleware,commentController.e
 //댓글 삭제
 router.delete('/:post_id/comments/:comment_id',authMiddleware,commentController.deleteComment);
 
+//좋아요 업데이트
+router.patch('/:post_id/like',authMiddleware,dashboardController.patchLike);
+
+
 //NOTE: 라우터 객체를 모듈로 내보내기 -> 주서버에 모두 작성하지 않아도됨
 module.exports = router;

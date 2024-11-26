@@ -100,9 +100,29 @@ exports.deletePost = async (req,res)=>{
     try{
         const result = await PostService.deletePost(post_id);
         if(!result) {
-            return res.status(400).json({message : 'invalid_post_id'});
+            return res.status(404).json({message : 'invalid_post_id'});
         }
 
+        return res.status(204).send();
+
+    }catch(error){
+        console.error('Error deleting post:', error);
+        return res.status(500).json({message : 'internal_server_error'});
+    }
+}
+
+//좋아요 업데이트
+exports.patchLike = async (req,res) => {
+    const {post_id} = req.params;
+    const {likes} = req.body;
+
+    try{
+        const post = PostService.patchLike(post_id,likes);
+
+        if(!post){
+            return res.status(404).send();
+        }
+    
         return res.status(204).send();
 
     }catch(error){

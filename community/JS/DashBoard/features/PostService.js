@@ -204,6 +204,7 @@ const patchComment = async(post_id,comment_id,content) => {
 
 }
 
+//댓글 삭제
 const deleteComment = async(post_id,comment_id) => {
     const posts = getAllPosts();
     const post = posts.find(post => post.post_id === post_id);
@@ -221,7 +222,21 @@ const deleteComment = async(post_id,comment_id) => {
     else {
         return false;
     }
+}
 
+//좋아요 업데이트
+const patchLike = (post_id, like) =>{
+
+    const posts = getAllPosts();
+    const postIndex = posts.findIndex(post=> post.post_id === post_id);
+
+    if(postIndex === -1){
+        return null;
+    }
+
+    posts[postIndex].likes = like;
+    savePosts(posts);
+    return true;
 
 }
 
@@ -235,5 +250,6 @@ module.exports = {
     patchPost,
     addComment,
     patchComment,
-    deleteComment
+    deleteComment,
+    patchLike
 }
