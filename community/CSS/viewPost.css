@@ -48,6 +48,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .likeNum-btn,
 .commentNum-btn,
 .view-btn {
@@ -59,6 +60,19 @@
 
     font-size: 0.9em;
     font-weight: bolder;
+}
+
+/* 좋아요 버튼 */
+
+.likeNum-btn{
+    cursor: pointer;
+}
+.likeNum-btn:hover{
+    background-color: #8F8F8F;
+}
+
+.likeNum-btn.active{
+    background-color: #BFBFBF;
 }
 
 /* 댓글 section -> 폭 조절 */
