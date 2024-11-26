@@ -5,6 +5,7 @@ const path = require('path');
 
 const authRoutes = require('./routes/authRoutes'); //폴더 경로
 const dashboardRoutes = require('./routes/dashboardRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 const port = 8080;
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname,'community')));
 //라우트 설정
 app.use('/api/v1/auth',authRoutes);
 app.use('/api/v1/posts',dashboardRoutes);
+app.use('/api/v1/users',userRoutes);
 
 
 app.listen(port, function () {
