@@ -38,8 +38,19 @@ exports.editComment = async(req,res)=> {
     }
 
     //수정 성공
-    return res.status(204).send();
+    return res.status(200).json({message: '댓글이 수정되었습니다.'});
 };
 
-exports.deleteComment = (req,res)=> {};
+exports.deleteComment = async (req,res)=> {
+    const {post_id,comment_id} = req.params;
+
+    const post = await PostService.deleteComment(post_id,comment_id);
+
+    if(!post){
+        return res.status(404).json({message: '댓글이 존재하지 않습니다.'});
+    }
+
+    //NOTE : fetch : json()을 사용하기 위해 204 대신 json 포함해서 전송
+    return res.status(200).json({message: '댓글이 삭제되었습니다.'});
+};
 

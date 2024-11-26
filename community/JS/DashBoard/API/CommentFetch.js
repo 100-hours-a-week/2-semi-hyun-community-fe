@@ -38,6 +38,7 @@ const addComment = async() => {
 
         if(response.status === 201){
             alert(result.message);
+
             window.location.reload();
         }
 
@@ -73,10 +74,10 @@ const viewEditComment = async(event) => {
             document.getElementById('comment-text').value = commentContent;
 
             //댓글 등록 -> 댓글 수정 버튼으로 변경
-            const editBtn = document.getElementById('comment-create-btn');
-            editBtn.textContent = '댓글 수정';
-            editBtn.removeEventListener('click', addComment);
-            editBtn.addEventListener('click', editComment);
+            //const editBtn = document.getElementById('comment-create-btn');
+            addCommentButton.textContent = '댓글 수정';
+            addCommentButton.removeEventListener('click', addComment);
+            addCommentButton.addEventListener('click', editComment);
         }else{
             alert('댓글을 찾을 수 없습니다');
         }
@@ -102,7 +103,7 @@ const editComment = async() => {
             return;
         }
         if(response.status === 204){ //댓글 수정 성공
-            alert('댓글이 수정되었습니다.');
+            alert(result.message);
             window.location.reload();
         }
     }catch(error){
@@ -111,12 +112,61 @@ const editComment = async() => {
 
 };
 
-const deleteComment = async() => {};
+const viewDeleteComment = async(event) => {
+
+    const target = event.target;  //사용자가 클릭한 실제 html 요소
+
+    // 클릭한 element가 수정 버튼인지 확인
+    if (target.classList.contains('delete-btn')) {
+        const commentItem = target.closest('.comment-item');
+        if(commentItem){
+            currentCommentId = commentItem.dataset.commentId;
+            console.log('삭제할 댓글 ID:', currentCommentId);
+
+            if(confirm('정말 삭제하시겠습니까?')){
+                deleteComment(); //함수 직접 호출 (이벤트 위임)
+                // deleteCommentButton.addEventListener('click', deleteComment);
+            }
+
+        }else{
+            alert('댓글을 찾을 수 없습니다');
+        }
+    };
+
+
+};
+
+const deleteComment = async() => {
+    try{
+        const response = await fetch(`/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
+            method: 'DELETE',
+            credentials: 'include'
+        });
+
+        const result = await response.json();
+
+        if(response.status === 404){
+            alert(result.message);
+            window.location.reload();
+        }
+
+        if(response.status === 200){
+            alert(result.message);
+            window.location.reload();
+        }
+
+        
+        
+    }catch(error){
+        console.error('댓글 삭제 중 오류 발생:',error);
+    }
+
+};
 
 addCommentButton.addEventListener('click', addComment);
-commentList.addEventListener('click', viewEditComment); //부모요소에 이벤트 추가
-editCommentButton.addEventListener('click', editComment);
-deleteCommentButton.addEventListener('click', deleteComment);
+commentList.addEventListener('click', viewEditComment); //부모요소에 이벤트 추가. 클릭한 요소 확인
+commentList.addEventListener('click',viewDeleteComment); //클릭한 요소 확인
+// deleteCommentButton.addEventListener('click', deleteComment);
 
 
 

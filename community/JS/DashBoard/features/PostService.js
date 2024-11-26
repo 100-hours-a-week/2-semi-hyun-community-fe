@@ -195,6 +195,27 @@ const patchComment = async(post_id,comment_id,content) => {
 
 }
 
+const deleteComment = async(post_id,comment_id) => {
+    const posts = getAllPosts();
+    const post = posts.find(post => post.post_id === post_id);
+
+    if(!post) return false;
+
+    const commentIndex = post.comments.findIndex(comment => comment.comment_id === comment_id);
+
+    if(commentIndex !== -1){
+        post.comments.splice(commentIndex,1);
+        post.comments_count -=1; //댓글 수 감소
+        savePosts(posts);
+        return true;
+    }
+    else {
+        return false;
+    }
+
+
+}
+
 
 module.exports = {
     addPost,
@@ -204,5 +225,6 @@ module.exports = {
     deleteImage,
     patchPost,
     addComment,
-    patchComment
+    patchComment,
+    deleteComment
 }
