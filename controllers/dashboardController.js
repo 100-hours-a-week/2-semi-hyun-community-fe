@@ -44,12 +44,17 @@ exports.getPostData = async (req,res) => {
     try{
         // NOTE: getPostById가 동기 함수여도 await는 정상 작동
         // NOTE:await Promise.resolve(getPostById(post_id))와 동일하게 처리됨
-        const post = await PostService.getPostById(post_id); //id로 데이터 조회
+        // getPostById: post 조회 + 조회수 증가
+        const post = await PostService.getPostById(post_id);
+        
 
         if(!post){
             return res.status(400).json({message : 'invalid_post_id'})
         }
 
+        // await PostService.updatePost(post_id, { view: post.view });
+        // await PostService.addView(post_id);
+        
         return res.status(200).json(post);
 
     }catch(error){

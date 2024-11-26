@@ -71,16 +71,25 @@ const addPost = ({ title, content, name, user_id, imageFilename = '' }) => {
 };
 
 
-// id로 게시글 조회
-const getPostById = (post_id) => {
+// id로 게시글 조회 + 조회수 증가
+const getPostById = (post_id, increaseView = true) => {
     const posts = getAllPosts();
-    const post = posts.find(post => post.post_id === post_id);
-    if(!post){
+    const postIndex = posts.findIndex(post => post.post_id === post_id);
+
+    if(postIndex === -1){
         return null;
     }
-    return post;
+
+    if(increaseView){
+        posts[postIndex].views +=1;
+        savePosts(posts);
+    }
+
+
+    return posts[postIndex];
 
 };
+
 
 //게시글 수정
 const patchPost = (post_id, updatedData) => {
