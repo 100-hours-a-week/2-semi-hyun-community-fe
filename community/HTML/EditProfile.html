@@ -19,21 +19,22 @@
         </div>
     </header>
 <main class="content">
-    <form id="editProfile" action="/editProfile" method="POST">
+    <div id="editProfile">
         <label for="profile">프로필 사진</label>
         <div class="profile-img-container">
-            <img id="profilePreview" class="profile-img" src="../image/default-profile.png" alt="프로필 사진">
+            <img id="profile-img-preview" class="profile-img" src="../image/default-profile.png">
+            <input type="file" id="profile-img" accept="image/png, image/jpeg" style="display: none;">
             <button class="change-button">변경</button>
         </div>
 
         <div class="form-row">
             <label for="email" class="font-default">이메일</label>
-            <span type="email" id="email" name="email">이메일</span>
+            <span id="email">이메일</span>
         </div>
 
         <div class="form-row">
             <label for="name" class="font-default">닉네임</label>
-            <input type="name" id="name" name="name" placeholder="닉네임을 입력하세요">
+            <input type="text" id="name" placeholder="닉네임을 입력하세요">
         </div>
 
         <button type="button" id= "editUserButton" class="create-button" onclick="">수정하기</button>
@@ -42,10 +43,11 @@
         <a href="/signIn">회원 탈퇴</a>
         </div>
 
-    </form>
+    </div>
 
     <button type="button" id= "editUserButtonToast" class="create-button" onclick="">수정완료</button>
 </main>
 
-<script src="/JS/Users/API/EditProfileFetch.js"></script>
+<script src="/JS/Users/API/getUserData.js"></script>
+<script src="/JS/Users/API/patchData.js"></script>
 </body>
