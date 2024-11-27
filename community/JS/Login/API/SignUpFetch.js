@@ -28,6 +28,7 @@ async function registerUser(){
         alert('회원가입 완료. 로그인 화면으로 이동합니다.');
         window.location.href = '/api/v1/auth/login'; // 로그인 페이지로 이동
         //setTimeout(() => {res.redirect('/login')}, 1000);
+        //응답 데이터 저장
     }
     else if(response.status === 400){
         alert('모든 필드를 입력해야 합니다.');

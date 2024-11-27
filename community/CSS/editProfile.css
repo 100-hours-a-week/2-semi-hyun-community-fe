@@ -8,7 +8,7 @@
 }
 
 /* 레이아웃 정렬 */
-form {
+#editProfile {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,12 +17,23 @@ form {
     margin-bottom: 10px;
 }
 
+label{
+    margin-bottom: 10px;
+    text-align: left;
+}
+
 .form-row {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     width: 100%;
     margin-bottom: 10px;
+}
+
+.form-row span{
+    /* margin-top: 10px; 버튼과 입력 필드 사이 간격 */
+    font-weight: bold;
+    
 }
 
 /* 입력란  */
@@ -32,7 +43,7 @@ form {
     padding: 0 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
-    /*margin-top: 20px;*/ /* 버튼과 입력 필드 사이 간격 */
+    margin-top: 10px; /* 버튼과 입력 필드 사이 간격 */
     margin-bottom: 10px; /* 버튼과 입력 필드 사이 간격 */
 }
 
@@ -79,7 +90,10 @@ form {
 }
 
 /* 수정하기 버튼 크키 */
-.create-button{
+#editUserButton{
     width: 100%;
-    max-width: 300px;
+}
+
+#editUserButtonToast{
+    display: none;
 }

@@ -10,9 +10,11 @@
     margin-left: 10px;
 }
 
+/* 프로필 사진 - mini */
 .account-img {
     width: 30px; /* 원하는 크기로 설정 */
     height: 30px; /* 원하는 크기로 설정 */
+    align-items: center;
     border-radius: 50%; /* 동그라미 모양으로 만들기 */
     background-color: #ccc; /* 대체 배경색 설정 */
     display: inline-block; /* 인라인 블록 요소로 설정 */

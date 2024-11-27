@@ -71,6 +71,10 @@
     color: #6C6C6C;
 }
 
+.create-button{
+    background-color : #ACA0EB;
+    /* background-color: #7F6AEE; */
+}
 
 /* .title{
     display:flex;

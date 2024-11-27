@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const filePath = path.join(__dirname,'../../data/login.json'); //../에서 .../로
+const rootDir = path.resolve(__dirname,'../','../','../');
+const filePath = path.join(rootDir,'data/login.json'); //../에서 .../로
 
 
 const readUser = () => {
@@ -11,7 +12,7 @@ const readUser = () => {
                 console.error('파일 읽기 오류:', err);
                 reject(err);
             } else {
-                console.log('파일 내용:', data);
+                // console.log('파일 내용:', data);
                 resolve(data ? JSON.parse(data) : []);
             }
         });
@@ -27,7 +28,24 @@ const writeUser = (users) => {
     });
 }
 
-module.exports = {readUser,writeUser};
+//json 업데이트
+async function UpdateUser(updateData){
+    console.log("업데이트 시작.");
+    const users = await readUser();
+    const userIndex = users.findIndex(user => user.email == updateData.email);
+
+    if(userIndex === -1){
+        throw new Error('사용자를 찾을 수 없습니다.');
+    }
+    //데이터 변경
+    users[userIndex] = updateData;
+    //데이터 덮어씌우기 -> 근데 너무 비효율적이다
+    await writeUser(users);
+}
+
+
+
+module.exports = {readUser,writeUser,UpdateUser};
 
 
 // function handleSubmit(event) {

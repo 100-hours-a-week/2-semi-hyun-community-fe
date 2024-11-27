@@ -3,7 +3,6 @@
 <head>
     <meta charset = "UTF-8">
     <title>게시판 조회</title>
-    <!-- <link rel = "stylesheet" href = "../CSS/community.css">  -->
     <link rel = "stylesheet" href = "/CSS/default.css"> 
     <link rel = "stylesheet" href = "/CSS/default_profile.css"> 
     <link rel = "stylesheet" href = "/CSS/viewPost.css"> 
@@ -26,8 +25,8 @@
                         <span class="account-name">더미 작성자</ㅊspan>
                     </div>
                     <div class = "post-btn">
-                        <button class="edit-btn">수정</button>
-                        <button class="delete-btn">삭제</button>
+                        <button id="post-edit-btn" class="edit-btn">수정</button>
+                        <button id="post-delete-btn" class="delete-btn">삭제</button>
                     </div>
                 </div>
             </section>
@@ -39,7 +38,7 @@
             </section>
             <div class = "btn-meta">
                 <!-- FIXME: 숫자 입력란 추가 -->
-                <div class="likeNum-btn">좋아요</div>
+                <button class="likeNum-btn">좋아요</button>
                 <div class="commentNum-btn">댓글</div>
                 <div class="view-btn">조회수</div>
             </div>
@@ -57,30 +56,36 @@
                           <div class="upload">
                             <!-- addition 넣는 이유 : space-between으로 btn을 오른쪽으로 이동 -->
                             <div class="addition"></div>
-                            <button type="button" class="create-button">
-                              <span class="text-upload">등록</span>
+                            <button type="button" id="comment-create-btn" class="create-button">
+                              <span class="text-upload">댓글 등록</span>
                             </button>
                           </div>
                     </fieldset>
                 </form>
             </div>
-            <ul class="comment-list">
+            <ul id="comment-list" class="comment-list">
                 <!-- 클릭시 버튼이 나오도록 -->
-                <li class="comment-item">
+                <li class="comment-item" data-comment-id="댓글 아이디">
                     <div class="account-info">
                         <img class="account-img" src="../image/" alt="작성자" >
                         <span class="account-name">더미 작성자</span>
                         <span class="comment-date">2021-01-01 00:00:00</span>
                     </div>
                     <!-- FIXME : form 형태로 변환 -->
-                    <span class="comment-context">댓글 내용</span> 
+                    <span id="comment-content" class="comment-content">댓글 내용</span> 
                     <div class = "comment-btn">
-                        <button class="edit-btn">수정</button>
-                        <button class="delete-btn">삭제</button>
+                        <button id="comment-edit-btn" class="edit-btn">수정</button>
+                        <button id="comment-delete-btn" class="delete-btn">삭제</button>
                     </div>
                 </li>
             </ul>
         </section>
     </main>
-
+    <!-- 게시글 조회 및 삭제 관련 js -->
+    <!-- <script type="module" src="/JS/DashBoard/features/urlUtils.js"></script> -->
+    <!-- <script src="/JS/DashBoard/API/DeletePostFetch.js"></script> -->
+    <script src="/JS/DashBoard/API/ViewPostFetch.js"></script>
+    <script src="/JS/DashBoard/API/CommentFetch.js"></script>
+    <script src="/JS/DashBoard/API/LikeFetch.js"></script>
+    
 </body>
