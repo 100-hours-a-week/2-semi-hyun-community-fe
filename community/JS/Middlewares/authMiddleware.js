@@ -1,17 +1,31 @@
-const authMiddleware = (req,res,next) => {
-    if(req.session.user && req.session.user){ //세션에 사용자 정보가 있는지
-        return next(); //인증 성공 후 다음 미들웨어로
+const authMiddleware = (req, res, next) => {
+
+    //세션 존재 여부확인
+    if (!req.session.user) {
+        return res.status(401).send(`
+            <script>
+                alert("required_authorization");
+                window.location.href = '/api/v1/auth/login';
+            </script>
+        `);
     }
 
-    //인증 실패
-    // return res.redirect('/api/v1/auth/login?message=required_authorization');
-    // res.status(401).redirect('required_authorization'); //연속해서 체이닝 불가
-    res.send(`
-        <script>
-            alert("required_authorization");
-            window.location.href = '/api/v1/auth/login';
-        </script>
-    `);
+    //req 객체에 사용자 정보 추가
+    req.user = req.session.user;
+
+    // 요청된 리소스의 사용자 ID와 현재 로그인한 사용자 ID 비교
+    // const requestedUserId = req.params.userId || req.body.userId;
+    
+    // if (requestedUserId && req.session.user.id !== requestedUserId) {
+    //     return res.status(403).send(`
+    //         <script>
+    //             alert("unauthorized_access");
+    //             window.location.href = '/';
+    //         </script>
+    //     `);
+    // }
+    // console.log('인증 성공');
+    next();
 }
 
 module.exports = authMiddleware;
