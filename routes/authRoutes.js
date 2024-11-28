@@ -17,7 +17,7 @@ router.get('/signUp',authController.getSignUp);
 router.post('/signUp',authController.postSignUp);
 
 //로그아웃 라우트
-// router.get('/logout', authController.getLogout);
+router.post('/logout', authController.postLogout);
 
 
 //라우터 객체를 모듈로 내보내기
