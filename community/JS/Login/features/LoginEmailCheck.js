@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const email = emailInput.value.trim();
         //유효하지 않을 경우 에러메시지 출력
         if (email && !validateEmail(email)) {
-            emailErrorMessage
             emailErrorMessage.textContent = '유효한 이메일 주소를 입력해주세요.';
             emailErrorMessage.style.display = 'block';
         } else {
