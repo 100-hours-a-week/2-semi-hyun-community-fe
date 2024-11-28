@@ -42,6 +42,33 @@ const getUserById = (user_id) => {
     return user;
 }
 
+//사진 삭제
+
+//회원 정보 수정
+const patchPost = (user_id,userdata) => {
+    const users = getAllUsers();
+    const userIndex = users.findIndex(user => user.user_id === user_id);
+
+    if(userIndex === -1){
+        return null
+    }
+
+    //데이터 수정 (스프레드 연산자 사용)
+    users[userIndex] ={
+        ...users[userIndex],
+        name: userdata.name,
+        image : userdata.image? userdata.image : users[userIndex].image,
+        updated_date: new Date().toISOString()
+    };
+
+    //수정된 데이터를 저장
+    saveUsers(users);
+
+    return true;
+}
+
+
 module.exports ={
-    getUserById
+    getUserById,
+    patchPost
 }
