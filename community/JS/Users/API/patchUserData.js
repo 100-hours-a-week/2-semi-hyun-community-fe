@@ -40,7 +40,7 @@ const patchData = async() => {
 }
 
 showSubmitButton.addEventListener('click',showBtn());
-submitButton.addEventListener('click',showBtn());
+submitButton.addEventListener('click',patchData());
 
 //사진변경
 document.querySelector('.change-button').addEventListener('click',()=>{
