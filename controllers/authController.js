@@ -99,8 +99,8 @@ exports.postSignUp = async (req, res) => {
             name: name,
             email: email,
             password: password,
-            created_at: TimeStamp.getTime(),
-            updated_at : TimeStamp.getTime()
+            created_date: TimeStamp.getTime(),
+            updated_date : TimeStamp.getTime()
         };
         users.push(userData); //새로운 사용자 추가
         await SignUp.writeUser(users); //덮어쓰기

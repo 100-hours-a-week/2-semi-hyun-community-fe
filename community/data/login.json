@@ -4,23 +4,23 @@
     "email": "a@naver.com",
     "password": "a",
     "user_id": "89d215c6-ae83-4da3-b61d-f578487f3bde",
-    "created_at": "2024-11-19T06:06:48.473Z",
-    "updated_at": "2024-11-19T06:06:48.473Z"
+    "created_date": "2024-11-19T06:06:48.473Z",
+    "updated_date": "2024-11-19T06:06:48.473Z"
   },
   {
     "user_id": "20986d23-9100-4e13-9b1b-32488a872ab3",
     "name": "c",
     "email": "c@naver.com",
     "password": "c",
-    "created_at": "2024-11-19T07:49:15.389Z",
-    "updated_at": "2024-11-19T07:49:15.389Z"
+    "created_date": "2024-11-19T07:49:15.389Z",
+    "updated_date": "2024-11-19T07:49:15.389Z"
   },
   {
     "user_id": "7432dfa9-a5b3-40fe-a464-013991e5cacf",
     "name": "D",
     "email": "d@naver.com",
     "password": "d",
-    "created_at": "2024-11-21T04:26:11.139Z",
-    "updated_at": "2024-11-21T04:26:11.139Z"
+    "created_date": "2024-11-21T04:26:11.139Z",
+    "updated_date": "2024-11-21T04:26:11.139Z"
   }
 ]
