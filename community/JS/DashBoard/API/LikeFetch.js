@@ -1,31 +1,49 @@
 const likeButton = document.querySelector('.likeNum-btn');
 
 let currentLikes = 0;
+let isInitialized = false;
 
-const initializeLikes = async () =>{
-    currentLikes = parseInt(likeButton.textContent.split(' ')[1]);   
+const initializeLikes = () =>{
+    if(!isInitialized){
+        currentLikes = parseInt(likeButton.textContent.split(' ')[1]) || 0;
+        isInitialized = true;
+        console.log('초기 좋아요:', currentLikes);
+    }
+    
 }
 
-const likeClick = () => {
+const likeClick = async () => {
 
+    //click시 좋아요 초기화
+    initializeLikes();
+
+    const previousLikes = currentLikes;
     likeButton.classList.toggle('active');
 
     //누르면 클라이언트에서 먼저 바꾸기
     if(likeButton.classList.contains('active')){
         currentLikes +=1;
-        console.log('누름:',currentLikes);
-
     }
     else{
         currentLikes -=1;
-        console.log('해제:',currentLikes);
     }
 
     likeButton.textContent = `좋아요 ${currentLikes}`;
-};
 
+    //Update(24.12.02): 버튼을 누르면 바로 서버에 반영 
+    try{
+        await patchLike();
+
+    }catch(error){
+        // 에러 발생 시 상태 복구
+        currentLikes = previousLikes;
+        likeButton.textContent = `좋아요 ${currentLikes}`;
+
+    }
+}
+
+//서버에 좋아요 수정
 const patchLike = async() => {
-
     // post_id가 정의되어 있는지 확인
     if (typeof post_id === 'undefined') {
         console.error('post_id가 정의되지 않았습니다');
@@ -44,7 +62,10 @@ const patchLike = async() => {
 
         //성공 아닐 경우
         if(!response.ok){
-            alert('좋아요 업데이트 중 문제가 발생했습니다.');
+            currentLikes = previousLikes;
+            likeButton.textContent = `좋아요 ${currentLikes}`;
+            console.error('좋아요 업데이트 중 오류 발생:', error);
+            // alert('좋아요 업데이트 중 문제가 발생했습니다.');
             return;
         }
 
@@ -54,11 +75,8 @@ const patchLike = async() => {
 
 }
 
-//페이지 로드 시 초기 좋아요 수
-document.addEventListener('DOMContentLoaded',initializeLikes);
+//click 이벤트 발생 시 초기 좋아요 수 초기화
+// likeButton.addEventListener('click',initializeLikes);
 
 //좋아요 토글 함수
-likeButton.addEventListener('click',likeClick)
-
-//페이지 언로드 시 서버로 데이터 전송
-window.addEventListener('beforeunload',patchLike);
+likeButton.addEventListener('click',likeClick);
