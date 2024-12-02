@@ -12,39 +12,41 @@
             <h1>회원가입</h1>
         </div>
         
-        <form id="signupForm" action="/api/v1/auth/signup" method="POST" class="input-group button-container">
+        <div id="signupForm" class="input-group button-container">
 
             <label for="profile">프로필 사진</label>
+            <div id="error-message-profile" class="error-message" class="error-message">프로필 사진을 등록해주세요</div>
             <div class="profile-img-container">
-                <!-- <img src="../image/default_profile.png" class="profile-img" id="profile-img" alt="프로필 사진"> -->
-                <img id="profilePreview" class="profile-img" src="../image/default-profile.png" alt="프로필 사진">
+                <img id="profile-img-preview" class="profile-img" src="../image/default-profile.png">
+                <input type="file" id="profile-img" accept="image/png, image/jpeg" style="display: none;">
+                <button class="change-button">추가</button>
             </div>
+            
 
             <label for="email" class="font-default">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
+            <div id="error-message-email" class="error-message" class="error-message">이메일을 입력해주세요</div>
 
             <label for="password" class="font-default">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+            <div id="error-message-pw" class="error-message" class="error-message">비밀번호를 입력해주세요</div>
 
             <label for="passwordCheck" class="font-default">비밀번호 확인</label>
             <input type="password" id="passwordCheck" name="passwordCheck" placeholder="비밀번호를 한번 더 입력하세요" required>
+            <div id="error-message-password-check" class="error-message" class="error-message">비밀번호를 한번 더 입력해주세요</div>
 
             <label for="name" class="font-default">닉네임</label>
             <input type="name" id="name" name="name" placeholder="닉네임을 입력하세요" required>
+            <div id="error-message-name" class="error-message" class="error-message">닉네임을 입력해주세요</div>
 
             <button type="button" id= "signupButton" class="create-button">회원가입</button>
-            <!-- <button type="button" id= "signupButton" class="create-button" onclick="registerUser()">회원가입</button> -->
-             <!-- <button type="submit" class="font-button button">회원가입</button> -->
         
-        </form> 
+        </div> 
         <div class = "button-container">
             <a href="/signIn">로그인하러 가기</a>
         </div>
-
-        
-        <!-- <div class=".font-highlight">
-            <a href="/signUp">회원가입</a> -->
             
     </div>
     <script src="/JS/Login/API/SignUpFetch.js"></script>
+    <script src="/JS/Users/features/ProfileImage.js"></script>
 </body>
