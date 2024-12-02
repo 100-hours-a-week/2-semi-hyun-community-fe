@@ -74,18 +74,17 @@ exports.postLogin = async (req, res) => {
 
 //회원가입 처리
 exports.postSignUp = async (req, res) => {
-    console.log('postSignUp 함수 시작'); // 로그 추가
-    const { name, email, password } = req.body; //입력한 정보 가져옴
+    const { name, email, password} = req.body; //입력한 정보 가져옴
     let userData;
 
     //데이터 유효성 검사
-    if (!name || !email || !password) { 
+    //NOTE : 이미지 파일 -> req.file로 확인
+    if (!name || !email || !password || !req.file) { 
         return res.status(400).json({message:"invalid_format"});
     }
 
     try {
         const users = await SignUp.readUser();
-        console.log('현재 사용자 목록:', users); // 사용자 목록 로그 출력
         
         //중복 이메일 검사
         if (users.find((user) => user.email === email)) {
@@ -99,6 +98,7 @@ exports.postSignUp = async (req, res) => {
             name: name,
             email: email,
             password: password,
+            image: req.file.filename,
             created_date: TimeStamp.getTime(),
             updated_date : TimeStamp.getTime()
         };

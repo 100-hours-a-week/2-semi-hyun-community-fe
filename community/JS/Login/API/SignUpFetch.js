@@ -1,29 +1,37 @@
-
 //회원가입 POST 함수
-async function registerUser(){
-    const name =document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+const registerUser = async() => {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
+    const imageInput = document.getElementById('profile-img');
 
-    const data = {
-        name: name,
-        email: email,
-        password: password,
-    };
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('image', imageInput.files[0]); //필수
 
-    console.log('회원가입 요청 데이터:', data); // 요청 데이터 로그 추가
+    //필드 점검
+    //FIXME : input 작성 시 점검
+    const validations = [
+        { value: name, errorId: 'error-message-name' },
+        { value: email, errorId: 'error-message-email' },
+        { value: password, errorId: 'error-message-pw' },
+        { value: imageInput.files[0], errorId: 'error-message-profile' }
+        ];
     
+        validations.forEach(({ value, errorId }) => {
+        document.getElementById(errorId).style.display = value ? 'none' : 'block';
+    });
+
     const response = await fetch('/api/v1/auth/signup',{
         method: 'POST',
-        headers: {
-            //서버에 json 형식 데이터 전달
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)  //요청 본문
+        body: formData  //요청 본문
     })
 
     const result = await response.json();
 
+    //응답 상태 처리
     if(response.status === 201){
         alert('회원가입 완료. 로그인 화면으로 이동합니다.');
         window.location.href = '/api/v1/auth/login'; // 로그인 페이지로 이동
@@ -39,26 +47,8 @@ async function registerUser(){
     else{
         console.error('회원가입 오류:', result.error);
     }
-
-    // .then(response => response.json()) // 응답을 JSON 형식으로 파싱
-    // .then(data => {
-    //     console.log('Success:', data); // 성공적으로 파싱된 데이터 출력
-    // })
-    // .catch((error) => {
-    //     console.error('Error:', error); // 오류 발생 시 오류 메시지 출력
-    // });
 }
 
-async function loginUser(){
-    const response = await fetch('/login',{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)  //요청 본문
-    })
-
-}
 
 // 폼 제출 이벤트 방지
 document.getElementById('signupForm').addEventListener('submit', function(event) {
@@ -69,4 +59,4 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
 // 버튼 클릭 이벤트 처리
 // button 태그의 type 속성. id가 signupButton인 요소를 찾아 클릭 이벤트를 추가
 // addEventLister() : 특정 이벤트가 발생할때 호출할 함수 지정 -> click 이벤트 발생 시 registerUser() 호출
-document.getElementById('signupButton').addEventListener('click', () => {registerUser();});
+document.getElementById('signupButton').addEventListener('click', registerUser());
