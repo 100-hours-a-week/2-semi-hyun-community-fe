@@ -1,7 +1,7 @@
 const path = require('path'); //디렉토리 경로를 다루는 기본 모듈
 const PostService = require('../community/JS/DashBoard/features/PostService');
 
-
+//댓글추가
 exports.addComment = async (req,res)=> {
     const {post_id, user_id, content} = req.body;
 
@@ -24,6 +24,7 @@ exports.addComment = async (req,res)=> {
     }
 };
 
+//댓글 수정
 exports.editComment = async(req,res)=> {
     const {post_id,comment_id} = req.params;
     const {content} = req.body;
@@ -41,6 +42,7 @@ exports.editComment = async(req,res)=> {
     return res.status(200).json({message: '댓글이 수정되었습니다.'});
 };
 
+//댓글 삭제
 exports.deleteComment = async (req,res)=> {
     const {post_id,comment_id} = req.params;
 

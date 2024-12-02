@@ -66,7 +66,7 @@ const showErrormessage = () => {
 }
 
 //NOTE : 함수를 참조로 전달 -> 새로운 함수를 만들어서 전달
-document.addEventListener('DOMContentLoaded',()=>{showErrormessage();});
+document.addEventListener('DOMContentLoaded',showErrormessage);
 
 //FIX : 함수 직접 전달 -> 함수를 즉시 실행되고 반환값이 eventListener에 전달
 // document.addEventListener('DOMContentLoaded',showErrormessage());

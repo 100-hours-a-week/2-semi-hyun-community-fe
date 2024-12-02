@@ -2,7 +2,7 @@
 //제목, 작성자,날짜,좋아요,댓글,조회수
 const params = new URLSearchParams({
     offset: 0, //시작 위치
-    limit: 3, // 가져올 데이터 개수
+    limit: 5, // 가져올 데이터 개수
 });
 
 document.addEventListener('DOMContentLoaded', async ()=> {

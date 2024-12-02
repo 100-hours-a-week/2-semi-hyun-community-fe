@@ -3,7 +3,7 @@ const editCommentButton = document.getElementById('comment-edit-btn'); //수정 
 const deleteCommentButton = document.getElementById('comment-delete-btn');
 const commentList = document.getElementById('comment-list'); //댓글리스트 부모
 
-let currentCommentId = null;
+let currentCommentId = 0;
 // const pathParts = window.location.pathname.split('/');
 // const post_id = pathParts[pathParts.length -1];
 
@@ -112,6 +112,7 @@ const editComment = async() => {
 
 };
 
+//삭제 버튼 클릭 확인
 const viewDeleteComment = async(event) => {
 
     const target = event.target;  //사용자가 클릭한 실제 html 요소
@@ -136,6 +137,7 @@ const viewDeleteComment = async(event) => {
 
 };
 
+//댓글 삭제 
 const deleteComment = async() => {
     try{
         const response = await fetch(`/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
