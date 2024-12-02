@@ -35,7 +35,7 @@
 .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     /* width: 100%; */
     /*align-items: center;*/ /* 중앙 정렬 */
 }
@@ -52,11 +52,14 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     /*margin-top: 20px;*/ /* 버튼과 입력 필드 사이 간격 */
-    margin-bottom: 10px; /* 버튼과 입력 필드 사이 간격 */
+    margin-bottom: 5px; /* 버튼과 입력 필드 사이 간격 */
 }
 
 /* 프로필 이미지 */
 .profile-img-container {
+    position: relative;
+    display : inline-block;
+    margin: 0 auto;
     width: 100px;
     height: 100px;
     border-radius: 50%; /* 동그라미 모양으로 만들기 */
@@ -72,7 +75,25 @@
     object-fit: cover; /* 이미지가 잘리지 않도록 설정 */
 }
 
-.profile-img-input{
+.change-button {
+    display: none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    /* color: white; */
+    border: 1px solid white;
+    border-radius: 5%;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.profile-img-container:hover{
+    background-color: #d9d9d9;
+}
+.profile-img-container:hover .change-button {
+    display: block;
+    background-color: #d9d9d9;   
 }
 
 /* 버튼 스타일 */
