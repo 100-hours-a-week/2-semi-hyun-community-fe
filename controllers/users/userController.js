@@ -91,4 +91,4 @@ exports.patchPassword = async(req,res) => {
 }
 
 //회원정보 삭제
-// exports.deleteUser = (req,res) => {}
+exports.deleteUser = (req,res) => {}

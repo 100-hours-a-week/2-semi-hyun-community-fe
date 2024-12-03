@@ -28,6 +28,7 @@ LoginButton.addEventListener('click', async ()=>{
 
             //이름 로컬 스토리지에 저장
             localStorage.setItem('name', data.data.name);
+            //FIXME : 로컬스토리지 -> 세션 구현 했으므로 저장x.user_id 필요한 부분 서버에서 사용
             localStorage.setItem('user_id', data.data.user_id);
 
 

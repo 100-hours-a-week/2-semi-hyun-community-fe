@@ -22,5 +22,14 @@
     "password": "d",
     "created_date": "2024-11-21T04:26:11.139Z",
     "updated_date": "2024-11-21T04:26:11.139Z"
+  },
+  {
+    "user_id": "d1661cef-56ba-47f5-a556-656f56d40db0",
+    "name": "b",
+    "email": "b@naver.com",
+    "password": "b",
+    "image": "1733141184088-patch.png",
+    "created_date": "2024-12-02T12:06:24.099Z",
+    "updated_date": "2024-12-02T12:06:24.099Z"
   }
 ]
