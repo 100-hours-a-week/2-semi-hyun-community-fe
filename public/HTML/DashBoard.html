@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang = "ko">
+<head>
+    <meta charset = "UTF-8">
+    <title>게시판</title>
+    <link rel = "stylesheet" href = "/CSS/default_profile.css"> 
+    <link rel = "stylesheet" href = "/CSS/default.css"> 
+    <link rel = "stylesheet" href = "/CSS/dashboard.css"> 
+    <!-- <link rel = "stylesheet" href = "../CSS/default_profile.css"> 
+    <link rel = "stylesheet" href = "../CSS/default.css"> 
+    <link rel = "stylesheet" href = "../CSS/dashboard.css">  -->
+</head>
+    <body>
+        <header class = "header">
+            <h1>아무 말 대잔치</h1>
+            <div class = "profile-icon dropdown">
+                <img class="account-img" src="../image/">
+                <div class="dropdown-content">
+                    <a href="/users/me">회원정보수정</a>
+                    <a href="/users/me/password">비밀번호수정</a>
+                    <a href="/auth/logout">로그아웃</a>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class = "intro">
+                <p>안녕하세요,<br>아무말 대잔치 <span class="highlight">게시판</span> 입니다.</p>
+            </section>
+            <div class="post-header">
+                <button id= "writeButton" class="create-button" >게시글 작성</button>
+            </div>
+
+            <div id="post-container">
+                <div class="post-empty">
+                    <p>게시글이 없습니다.</p>
+                </div>
+                <!-- 게시글 목록 -->
+            </div>
+        </main>
+    <script src = "/JS/DashBoard/features/DashboardFunction.js"></script>
+    <script src = "/JS/DashBoard/API/DashboardDataFetch.js"></script>
+</body>
