@@ -4,9 +4,7 @@ const deleteCommentButton = document.getElementById('comment-delete-btn');
 const commentList = document.getElementById('comment-list'); //댓글리스트 부모
 
 let currentCommentId = 0;
-// const pathParts = window.location.pathname.split('/');
-// const post_id = pathParts[pathParts.length -1];
-
+const post_id = PostIdManager.getPostId();
 
 const addComment = async() => {
 
@@ -14,7 +12,7 @@ const addComment = async() => {
     const content = document.getElementById('comment-text').value;
 
     const data = {
-        post_id : window.post_id,
+        post_id : post_id,
         user_id : user_id,
         content: content
     };
@@ -89,7 +87,7 @@ const editComment = async() => {
     const content = document.getElementById('comment-text').value;
 
     try{
-        const response = await fetch(`/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
             method: 'PATCH',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -140,7 +138,7 @@ const viewDeleteComment = async(event) => {
 //댓글 삭제 
 const deleteComment = async() => {
     try{
-        const response = await fetch(`/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
             method: 'DELETE',
             credentials: 'include'
         });

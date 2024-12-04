@@ -1,9 +1,4 @@
-
-//얘는 언제 가져오는 걸까..
-// const pathParts = window.location.pathname.split('/');
-// const user_id = pathParts[pathParts.length -1];
-// window.user_id = user_id;
-
+const BASE_URL = 'http://localhost:3000'; //이미지 정적파일 로딩 시
 
 const getUserData = async() => {
 
@@ -32,9 +27,9 @@ const getUserData = async() => {
         document.getElementById('name').value = result.data.name;
 
         // 프로필 이미지가 있는 경우
-        // if (data.userInfo.profile_image) {
-        //     document.getElementById('profilePreview').src = data.userInfo.profile_image;
-        // }
+        if (result.data.image != null) {
+            document.getElementById('profilePreview').src = `${BASE_URL}/images/${result.data.image}`;
+        }
 
     }catch(error){
         console.error('Error fetching user data:', error);

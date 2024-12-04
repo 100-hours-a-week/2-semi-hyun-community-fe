@@ -9,7 +9,15 @@ document.addEventListener('DOMContentLoaded', async ()=> {
 
     try{
 
-        const response = await fetch(`http://localhost:3000/api/v1/posts/data?${params.toString()}`);
+        const response = await fetch(`http://localhost:3000/api/v1/posts/data?${params.toString()}`,{
+            credentials : 'include',
+        });
+
+        if(!response.ok){
+            alert('게시글 목록 가져오기를 실패했습니다');
+            return;
+        }
+
         const posts = await response.json();
 
         //게시글 조회목록 렌더링

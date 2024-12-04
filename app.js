@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const port = 8080;
+const port = 8081;
 
 //cors 설정
 app.use(cors({

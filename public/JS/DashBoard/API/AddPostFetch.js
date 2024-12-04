@@ -25,7 +25,12 @@ AddPostButton.addEventListener('click', async ()=>{
             body: formData
         });
 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
         const result = await response.json();
+        console.log(result.post_id);
 
         if(response.status === 201){
             alert('게시물이 등록되었습니다.');

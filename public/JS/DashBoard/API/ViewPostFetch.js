@@ -1,21 +1,25 @@
 //Note: js에서는 node.js의 path 모듈을 사용할 수 없다.
-const imagePath = '/images';
+//NOTE : BASE_URL : getHeaderImage.js에서 이미 선언
+// const BASE_URL = 'http://localhost:3000'; //서버 url 추가 -> 사진 로드 시 사용
 const EditButton = document.getElementById('post-edit-btn');
-
-const pathParts = window.location.pathname.split('/');
-const post_id = pathParts[pathParts.length -1];
-window.post_id = post_id;
 
 // 게시글 데이터 로드
 const postDataLoad = async () => {
     try {
-        console.log(post_id);
+        const post_id = PostIdManager.getPostId();
 
         // 게시글 데이터 가져오기
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`);
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`,{
+            credentials : 'include'
+        });
         const post = await response.json();
 
         if (!response.ok) {
+
+            if (response.status === 401) {
+                alert('로그인이 필요합니다.');
+                return;
+            }
             if (response.status === 404) {
                 // 404 에러 처리
                 document.querySelector('main').innerHTML = `
@@ -38,8 +42,7 @@ const postDataLoad = async () => {
         // 이미지가 있는 경우에만 이미지 표시
         const postImg = document.querySelector('.post-img');
         if (post.image) {
-            console.log(`경로 : ${imagePath}/${post.image}`);
-            postImg.src = `${imagePath}/${post.image}`; // 이미지 경로는 서버 설정에 맞게 조정
+            postImg.src = `${BASE_URL}/images/${post.image}`; // 이미지 경로는 서버 설정에 맞게 조정
             postImg.style.display = 'block';
         } else {
             postImg.style.display = 'none';

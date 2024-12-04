@@ -23,9 +23,12 @@ const showProfileImage = () => {
 
 }
 
+//기존 사진 표시
+// profileInput.addEventListener('DOMContentLoaded',showProfileImage);
+
 //사진 선택
 changeButton.addEventListener('click',()=>{
     document.getElementById('profile-img').click();
 });
-
+//변경 사진 표시
 profileInput.addEventListener('change',showProfileImage);

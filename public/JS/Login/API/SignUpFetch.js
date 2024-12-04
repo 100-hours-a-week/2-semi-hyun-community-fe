@@ -59,4 +59,4 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
 // 버튼 클릭 이벤트 처리
 // button 태그의 type 속성. id가 signupButton인 요소를 찾아 클릭 이벤트를 추가
 // addEventLister() : 특정 이벤트가 발생할때 호출할 함수 지정 -> click 이벤트 발생 시 registerUser() 호출
-document.getElementById('signupButton').addEventListener('click', registerUser());
+document.getElementById('signupButton').addEventListener('click', registerUser);
