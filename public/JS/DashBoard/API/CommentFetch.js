@@ -100,7 +100,7 @@ const editComment = async() => {
             alert(result.message);
             return;
         }
-        if(response.status === 204){ //댓글 수정 성공
+        if(response.status === 200){ //댓글 수정 성공
             alert(result.message);
             window.location.reload();
         }
