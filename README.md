@@ -1,5 +1,8 @@
 # 2-semi-hyun-community-fe
 우당탕탕 커뮤니티
+## 0. 정리
+- [2-semi-hyun-community-fe](https://github.com/100-hours-a-week/2-semi-hyun-community-fe)
+- [2-semi-hyun-community-be](https://github.com/100-hours-a-week/2-semi-hyun-community-be)
 ## 1. 스택
 HTML, CSS, JavaScript
 ## 2. 기능
