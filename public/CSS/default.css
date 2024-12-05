@@ -3,7 +3,9 @@
    3, header (상단바)
    4. a
    5. create-button (보라색)
-   6. 에러 메시지*/
+   6. 에러 메시지
+   7. 뒤로가기
+   */
 * {
     margin: 0;
     padding: 0;
@@ -66,4 +68,12 @@ a {
     font-size: 0.8em;
 }
 
+.back-button button{
+    background-color: transparent;
+    border: none;
+    color: #6C6C6C;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+}
 

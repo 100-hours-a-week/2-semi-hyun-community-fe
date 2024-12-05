@@ -7,14 +7,11 @@
     <link rel = "stylesheet" href = "/CSS/default_profile.css">
     <link rel = "stylesheet" href = "/CSS/default.css">
     <link rel = "stylesheet" href = "/CSS/addpost.css"> 
-    <!-- <link rel = "stylesheet" href = "../CSS/default_profile.css"> -->
-    <!-- <link rel = "stylesheet" href = "../CSS/default.css"> -->
-    <!-- <link rel = "stylesheet" href = "../CSS/addpost.css">  -->
 </head>
 <body>
     <header class = "header">
         <h1>아무 말 대잔치</h1>
-        <div class = "profile-icon dropdown">
+        <div class = "profile-icon-dropdown">
             <img class="account-img" src="../image/">
             <div class="dropdown-content">
                 <a href="/users/me">회원정보수정</a>
@@ -25,7 +22,7 @@
 
     <main class="content">
         <h2>게시글 작성</h2>
-        <form id="post-form">
+        <div id="post-form">
             <article class="post">
                 <section class = "title">
                     <p>제목</p>
@@ -45,23 +42,14 @@
                     <p>이미지</p>
                     <div class="image-input">
                         <input type="file" id="image" accept="image/*">
-                        <!-- <span id="file-name">선택한 이미지 없음</span> -->
                     </div>
                 </section>
 
                 <button id="AddPostButton" class="create-button">완료</button>
             </article>
-        </form>
+        </div>
     </main>
     <script src = "/JS/Users/API/getHeaderImage.js"></script>
     <script src = "/JS/DashBoard/features/AddPostFunction.js"></script>
     <script src = "/JS/DashBoard/API/AddPostFetch.js"></script>
 </body>
-
-
-<!--게시글 작성에 필요한 데이터
-1. 제목 : 최대 26글자
-2. 내용
-3. 이미지
-
-텍스트: 게시글 작성,제목,제목을 입력해주세요,내용,내용을 입력해주세요, 이미지-->
