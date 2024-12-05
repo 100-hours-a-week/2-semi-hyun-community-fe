@@ -23,7 +23,14 @@ document.addEventListener('DOMContentLoaded', async ()=> {
         //게시글 조회목록 렌더링
         const postList = document.querySelector('#post-container');
 
-        posts.forEach(post => {
+        await Promise.all(posts.map(async post => {
+            //FIXME: 추후 수정 필요
+            //사용자 프로필 정보 가져오기
+            const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${post.user_id}/profile`,{
+                credentials : 'include'
+            });
+            const profile = await profileResponse.json();
+
             const postItem = document.createElement('article');
             postItem.className = 'post-list'; //<article class="post-list"></article>
             postItem.innerHTML = `
@@ -41,14 +48,15 @@ document.addEventListener('DOMContentLoaded', async ()=> {
             </div>
             </a>
             <div class="author-info">
-                <img class="account-img" src="../image/" alt="작성자" >
+                <img class="account-img" src=${BASE_URL}/images/profile/${profile.image} alt="작성자" >
                 <span class="author-name">${post.name}</span>
             </div>
             `;
             postList.appendChild(postItem);
-        });
+        }));
 
         //게시글 목록이 있을 경우 list-empty 비활성화
+        //FIX: foreach 내부 비동기 작업을 기다리지 않고 실행된다.
         IsListEmpty();
     }catch(error){
         console.error('Error:', error);

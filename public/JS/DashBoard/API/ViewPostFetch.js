@@ -2,12 +2,11 @@
 //NOTE : BASE_URL : getHeaderImage.js에서 이미 선언
 // const BASE_URL = 'http://localhost:3000'; //서버 url 추가 -> 사진 로드 시 사용
 const EditButton = document.getElementById('post-edit-btn');
+const post_id = PostIdManager.getPostId();
 
 // 게시글 데이터 로드
 const postDataLoad = async () => {
     try {
-        const post_id = PostIdManager.getPostId();
-
         // 게시글 데이터 가져오기
         const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`,{
             credentials : 'include'
@@ -39,7 +38,12 @@ const postDataLoad = async () => {
         document.querySelector('.account-name').textContent = post.name;
         document.querySelector('.post-content').textContent = post.content;
 
-        // 이미지가 있는 경우에만 이미지 표시
+        //프로필 이미지
+        //FIXME : 게시글 데이터를 가져오지만 사용자의 프로필을 가져오진 않는다.
+        // const profileImg = document.querySelector('.account-img');
+        // profileImg.src = `${BASE_URL}/images/profile/${post.profile_image}`;
+
+        // 게시글 이미지가 있는 경우에만 이미지 표시
         const postImg = document.querySelector('.post-img');
         if (post.image) {
             postImg.src = `${BASE_URL}/images/${post.image}`; // 이미지 경로는 서버 설정에 맞게 조정
@@ -57,14 +61,21 @@ const postDataLoad = async () => {
         const commentList = document.querySelector('.comment-list');
         commentList.innerHTML = ''; // 기존 댓글 초기화
 
-        post.comments.forEach(comment => {
+        post.comments.forEach(async comment => {
+            //FIXME: 추후 수정 필요
+            //사용자 프로필 정보 가져오기
+            const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${comment.user_id}/profile`,{
+                credentials : 'include'
+            });
+            const profile = await profileResponse.json();
+
             const commentItem = document.createElement('li');
             commentItem.className = 'comment-item';
             commentItem.setAttribute('data-comment-id', comment.comment_id);
             commentItem.innerHTML = `
                 <div class="account-info">
-                    <img class="account-img" src="../image/" alt="작성자">
-                    <span class="account-name">${localStorage.getItem('name')}</span>
+                    <img class="account-img" src=${BASE_URL}/images/profile/${profile.image} alt="작성자">
+                    <span class="account-name">${comment.name}</span>
                     <span class="comment-date">${comment.created_date}</span>
                 </div>
                 <span id="comment-content" class="comment-content">${comment.content}</span>
@@ -82,41 +93,34 @@ const postDataLoad = async () => {
     }
 };
 
-//게시글 삭제
-const postDelete = async()=> {
-    const DeleteButton = document.getElementById('post-delete-btn');
-    DeleteButton.addEventListener('click', async ()=> {
-        try {
-            const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}`, {
-                method: 'DELETE',
-                credentials: 'include'
-            });
-    
-            if(!response.ok){
-                if(response.status === 404){
-                    throw new Error('Post not found');
-                }
-                throw new Error('Failed to delete post');
-            }
-    
-            if(response.status === 204){
-                alert('게시글이 삭제되었습니다.');
-                window.location.href = '/posts';
-            }
-
-        }catch(error){
-            console.error('Error deleting post:', error); 
-        }
-    }
-);
-};
-
 //수정 페이지로 이동
-const moveEditPage = () =>{
-    window.location.href = `/posts/${post_id}/edit`;
+const moveEditPage = async () =>{
+    try{
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/check`,{
+            credentials : 'include'
+        });
+
+        if(!response.ok){
+            if(response.status === 403){
+                alert('게시글 작성자만 수정할 수 있습니다.');
+                return;
+            }
+            throw new Error('게시글 수정 권한 확인 중 오류가 발생했습니다.');
+        }
+
+        //권한 확인 후 이동
+        if(response.status === 200){
+            window.location.href = `/posts/${post_id}/edit`;
+        }
+    }catch(error){
+        console.error('Error:', error);
+        alert('게시글을 수정하는 중 오류가 발생했습니다.');
+    }
+
+
+    
 };
 
 // DOMContentLoaded 이벤트 리스너 추가
 document.addEventListener('DOMContentLoaded', postDataLoad);
-document.addEventListener('DOMContentLoaded', postDelete);
 EditButton.addEventListener('click', moveEditPage);

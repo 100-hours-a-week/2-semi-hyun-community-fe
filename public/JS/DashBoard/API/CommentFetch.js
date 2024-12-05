@@ -4,8 +4,9 @@ const deleteCommentButton = document.getElementById('comment-delete-btn');
 const commentList = document.getElementById('comment-list'); //댓글리스트 부모
 
 let currentCommentId = 0;
-const post_id = PostIdManager.getPostId();
+// const post_id = PostIdManager.getPostId();
 
+//댓글 등록
 const addComment = async() => {
 
     const user_id = localStorage.getItem('user_id');
@@ -46,6 +47,7 @@ const addComment = async() => {
 
 };
 
+//댓글 수정 창 활성화
 const viewEditComment = async(event) => {
 
     const target = event.target;  //사용자가 클릭한 실제 html 요소
@@ -82,7 +84,7 @@ const viewEditComment = async(event) => {
     }
 };
 
-//수정 후 reload
+//댓글 수정
 const editComment = async() => {
     const content = document.getElementById('comment-text').value;
 
@@ -98,6 +100,10 @@ const editComment = async() => {
 
         if(response.status === 400){ //댓글 입력x
             alert(result.message);
+            return;
+        }
+        if(response.status === 403){
+            alert('게시글 작성자만 수정할 수 있습니다.');
             return;
         }
         if(response.status === 200){ //댓글 수정 성공
@@ -147,9 +153,12 @@ const deleteComment = async() => {
 
         if(response.status === 404){
             alert(result.message);
-            window.location.reload();
+            return;
         }
-
+        if(response.status === 403){
+            alert(result.message);
+            return;
+        }
         if(response.status === 200){
             alert(result.message);
             window.location.reload();
