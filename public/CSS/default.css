@@ -56,7 +56,8 @@ a {
 }
 
 .create-button:hover{
-    background-color: #8E7EDF;
+    /* background-color: #8E7EDF; */
+    background-color:#7F6AEE';
 }
 
 .error-message{
