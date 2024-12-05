@@ -1,7 +1,6 @@
 const { json } = require("body-parser");
 
-const showSubmitButton = document.getElementById('editPwButton');
-const submitButton = document.getElementById('editPwButtonToast');
+
 
 const patchPassword = async() => {
 
@@ -30,7 +29,7 @@ const patchPassword = async() => {
 
 //수정완료 버튼 활성화
 showSubmitButton.addEventListener('click',()=>{
-   submitButton.style.display=block; 
+   submitButton.style.display='block'; 
 });
 //수정 요청
 submitButton.addEventListener('click',patchPassword);

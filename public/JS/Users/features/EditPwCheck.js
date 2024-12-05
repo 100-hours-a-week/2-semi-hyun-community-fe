@@ -1,10 +1,9 @@
-// 비밀번호 체크
-// 8자 이상 20자 이하 대문자, 소문자, 숫자, 특수문자 1개씩 포함
-// 비밀번호 입력x -> 입력해주세요
 
-//확인 input
-// 입력한했을 경우 -> 한번 더 입력해주세요
-// 비밀번호와 다름 -> 비밀번호와 다릅니다.
+const showSubmitButton = document.getElementById('editPwButton');
+const submitButton = document.getElementById('editPwButtonToast');
+
+let isPasswordValid = false;
+let isPasswordMatch = false;
 
 const validatePassword= (password) =>{
 
@@ -43,11 +42,15 @@ const showErrormessage = () => {
         if(validationResult !== true){
             passwordErrorMessage.textContent = validationResult;
             passwordErrorMessage.style.display = 'block';
+            isPasswordValid = false;
         } else{
             passwordErrorMessage.textContent = '';
             passwordErrorMessage.style.display = 'none';
+            isPasswordValid = true;
         }
 
+        //버튼 활성화 업데이트
+        showSubmitButton.disabled = !(isPasswordValid && isPasswordMatch);
     });
 
     //비밀번호 확인 검사
@@ -58,10 +61,14 @@ const showErrormessage = () => {
         if(password !== passwordCheck){
             passwordCheckErrorMessage.textContent = '비밀번호가 일치 하지 않습니다.';
             passwordCheckErrorMessage.style.display = 'block';
+            isPasswordMatch = false;
         } else {
             passwordCheckErrorMessage.style.display = 'none';
+            isPasswordMatch = true;
         }
 
+        //버튼 활성화 업데이트
+        showSubmitButton.disabled = !(isPasswordValid && isPasswordMatch);
     });
 }
 
