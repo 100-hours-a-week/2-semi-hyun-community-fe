@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', async ()=> {
             postList.appendChild(postItem);
         });
 
-
+        //게시글 목록이 있을 경우 list-empty 비활성화
+        IsListEmpty();
     }catch(error){
         console.error('Error:', error);
         console.error('게시글 목록 가져오기 실패', error);

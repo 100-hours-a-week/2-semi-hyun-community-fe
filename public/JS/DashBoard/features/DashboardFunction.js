@@ -2,9 +2,11 @@
 //const posts = require('./Dashboards');
 
 //게시판 목록이 있을 경우 list-empty 비활성화
-function IsListEmpty(){
+//게시글 로드 후 실행
+const IsListEmpty = () => {
     const postEmpty = document.querySelector('.post-empty');
-    postEmpty.style.display = document.querySelector('#post-container article') ? 'none' : 'block'; //post-container로 변경
+    const hasPost = document.querySelectorAll('.post-list').length > 0; //게시글 갯수
+    postEmpty.style.display = hasPost ? 'none' : 'block';
 }
 
 
@@ -12,8 +14,3 @@ function IsListEmpty(){
 document.getElementById('writeButton').addEventListener('click',()=>{
     window.location.href = 'posts/write'; // posts/write -> write
 })
-
-// NOTE: DOM이 로드된 후 실행
-document.addEventListener('DOMContentLoaded', function() {
-    IsListEmpty();
-});
