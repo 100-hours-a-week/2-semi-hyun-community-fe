@@ -34,7 +34,7 @@ const registerUser = async() => {
     //응답 상태 처리
     if(response.status === 201){
         alert('회원가입 완료. 로그인 화면으로 이동합니다.');
-        window.location.href = 'auth/login'; // 로그인 페이지로 이동
+        window.location.href = '/auth/login'; // 로그인 페이지로 이동
         //setTimeout(() => {res.redirect('/login')}, 1000);
         //응답 데이터 저장
     }

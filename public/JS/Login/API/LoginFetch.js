@@ -7,7 +7,7 @@ const LoginButton = document.getElementById('loginButton');
 LoginButton.addEventListener('click', async ()=>{
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-    const emailErrorMessage = document.getElementById('error-message-pw');
+    const ErrorMessage = document.getElementById('error-message-pw');
 
     const data = {
         email: email,
@@ -24,13 +24,14 @@ LoginButton.addEventListener('click', async ()=>{
             //이메일,비밀번호 json형식 전송
             body: JSON.stringify(data)
         });
-        if (response.status === 200){
-            const data = await response.json();
 
+        const result = await response.json();
+
+        if (response.status === 200){
             //이름 로컬 스토리지에 저장
-            localStorage.setItem('name', data.data.name);
+            localStorage.setItem('name', result.data.name);
             //FIXME : 로컬스토리지 -> 세션 구현 했으므로 저장x.user_id 필요한 부분 서버에서 사용
-            localStorage.setItem('user_id', data.data.user_id);
+            localStorage.setItem('user_id', result.data.user_id);
 
 
             alert(localStorage.getItem('name')+"님 안녕하세요");
@@ -39,12 +40,14 @@ LoginButton.addEventListener('click', async ()=>{
             window.location.href = '/posts';
         }
         else if(response.status === 400){
-            emailErrorMessage.textContent = data.message;
-            emailErrorMessage.style.display = 'block';
+            ErrorMessage.textContent = result.message;
+            ErrorMessage.style.display = 'block';
+            return;
         }
         else if(response.status === 401){
-            emailErrorMessage.textContent = data.message;
-            emailErrorMessage.style.display = 'block';
+            ErrorMessage.textContent = result.message;
+            ErrorMessage.style.display = 'block';
+            return;
         }
         else{
             console.error('로그인 오류:', result.error);
