@@ -2,7 +2,7 @@ const showSubmitButton = document.getElementById('editUserButton');
 const submitButton = document.getElementById('editUserButtonToast');
 
 const showBtn = () => {
-    submitButton.style.display = block;
+    submitButton.style.display = 'block';
 }
 
 const patchData = async() => {
@@ -16,10 +16,10 @@ const patchData = async() => {
         formData.append('name',name);
 
         if(profile.files[0]){
-            formData.append('profile',profile.files[0]);
+            formData.append('image',profile.files[0]);
         }
 
-        const response = await fetch('http://localhost:3000/api/v1/user/me/user_info',{
+        const response = await fetch('http://localhost:3000/api/v1/users/me/user_info',{
             method : 'PATCH',
             credentials : 'include',
             body : formData
@@ -27,7 +27,7 @@ const patchData = async() => {
 
         // const result = response.json();
 
-        if(response.status == 204){
+        if(response.status == 200){
             alert('사용자 정보가 수정되었습니다.');
             window.location.href ='/users/me';
         }else{
@@ -39,6 +39,6 @@ const patchData = async() => {
     }
 }
 
-showSubmitButton.addEventListener('click',showBtn());
-submitButton.addEventListener('click',patchData());
+showSubmitButton.addEventListener('click',showBtn);
+submitButton.addEventListener('click',patchData);
 

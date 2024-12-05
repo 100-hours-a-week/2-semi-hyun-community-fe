@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000'; //이미지 정적파일 로딩 시
+// const BASE_URL = 'http://localhost:3000'; //이미지 정적파일 로딩 시
 
 const getUserData = async() => {
 
@@ -28,7 +28,8 @@ const getUserData = async() => {
 
         // 프로필 이미지가 있는 경우
         if (result.data.image != null) {
-            document.getElementById('profilePreview').src = `${BASE_URL}/images/${result.data.image}`;
+            console.log(`${BASE_URL}/images/profile/${result.data.image}`);
+            document.getElementById('profile-img-preview').src = `${BASE_URL}/images/profile/${result.data.image}`;
         }
 
     }catch(error){
