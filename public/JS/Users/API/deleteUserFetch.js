@@ -1,4 +1,4 @@
-const deleteUser = document.getElementById('deleteUser');
+const deleteUserButton = document.getElementById('deleteUserButton');
 
 const showDelete = () => {
     if(confirm('정말 탈퇴하시겠습니까?')){
@@ -27,11 +27,6 @@ const deleteUserFetch = async () => {
         }
 
         if(response.status === 200){
-
-            // 페이지 이동 전에 이벤트 리스너 제거
-            document.removeEventListener('DOMContentLoaded', getUserData);
-            document.removeEventListener('DOMContentLoaded', getHeaderImage);
-
             alert(result.message);
             localStorage.clear();
             sessionStorage.clear();
@@ -39,8 +34,6 @@ const deleteUserFetch = async () => {
             //NOTE: 브라우저 히스토리에서 현제 URL을 제거, 새 URL 삽입
             // 뒤로가기 버튼을 눌러도 이전 페이지로 돌아갈 수 없다.
             window.location.replace('/auth/login');
-
-            return;
         }
 
 
@@ -49,4 +42,4 @@ const deleteUserFetch = async () => {
     }
 }
 
-deleteUser.addEventListener('click', showDelete);
+deleteUserButton.addEventListener('click', showDelete);
