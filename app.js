@@ -54,7 +54,7 @@ app.get('/posts/:post_id', (req, res) => {
 });
 
 //게시글 수정 페이지 로드
-app.get('/:post_id/edit', (req, res) => {
+app.get('/posts/:post_id/edit', (req, res) => {
     res.sendFile(path.join(__dirname, './public/HTML', 'EditPost.html'));
 });
 
