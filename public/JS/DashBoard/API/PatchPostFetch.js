@@ -10,7 +10,9 @@ const loadPatchPost = async() => {
 
     try{    
         // 게시글 데이터 가져오기
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`);
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`,{
+            credentials: 'include'
+        });
         const post = await response.json();
 
         // 게시글 데이터 표시
@@ -60,7 +62,7 @@ const patchPost = async()=> {
         // Note: 서버가 빈응 응답을 보냈을 경우 에러가 날 수 있다.
         // const result = await response.json();
 
-        if(response.status === 204){ //FIX : 200으로 수정
+        if(response.status === 200){ //FIX : 200으로 수정
             alert('게시글이 수정되었습니다.');
             window.location.href = `/posts/${post_id}`; //api/v1/posts/${post_id} 수정
         } else {
