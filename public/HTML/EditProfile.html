@@ -8,10 +8,10 @@
     <link rel = "stylesheet" href = "/CSS/editProfile.css">
 </head>
 <body>
-    <div class="back-button">
-        <button onclick="window.location.href='/posts'">◀</button>
-    </div>
     <header class = "header">
+        <div class="back-button">
+            <button onclick="window.location.href='/posts'">◀</button>
+        </div>
         <h1>아무 말 대잔치</h1>
         <div class = "profile-icon-dropdown">
             <img class="account-img" src="../image/">
@@ -43,14 +43,14 @@
         <button type="button" id= "editUserButton" class="create-button" onclick="">수정하기</button>
 
         <div class = "button-container">
-        <a href="/users/me/delete" id="deleteUser">회원 탈퇴</a>
+        <a href="/users/me" id="deleteUser">회원 탈퇴</a>
         </div>
 
     </div>
 
     <button type="button" id= "editUserButtonToast" class="create-button" onclick="">수정완료</button>
 </main>
-
+<script src = "/JS/Login/API/LogoutFetch.js"></script>
 <script src = "/JS/Users/API/getHeaderImage.js"></script>
 <script src="/JS/Users/API/getUserData.js"></script>
 <script src="/JS/Users/API/patchUserData.js"></script>
