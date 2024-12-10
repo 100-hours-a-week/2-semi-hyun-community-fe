@@ -1,6 +1,5 @@
 # 2-semi-hyun-community-fe
-# 우당탕탕 커뮤니티
-
+우당탕탕 커뮤니티
 ## 1. 스택
 HTML, CSS, JavaScript
 
@@ -69,5 +68,3 @@ HTML, CSS, JavaScript
 ```
 
 ## 4. 실행 방법
-1. express 설치
-2. app.js 에서 실행
