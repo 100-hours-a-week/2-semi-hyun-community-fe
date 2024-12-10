@@ -18,6 +18,15 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname,'/public')));
 
 
+//이용약관 페이지
+app.get('/terms', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/terms', 'termsOfService.html'));
+});
+
+//개인정보 페이지
+app.get('/privacy', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/terms', 'privacyPolicy.html'));
+});
 
 //로그인 페이지
 app.get('/auth/login', (req, res) => {
@@ -61,11 +70,9 @@ app.get('/users/me/password', (req,res) => {
 
 
 
-
-
-
-
-
 //서버 실행
 app.listen(port, function () {
-    console.log(`Server is running on http://localhost:${port}/auth/login`)});
+    console.log(`--Front Server Start-- ${new Date().toISOString()} - Port: ${port}`);
+    console.log(` http://localhost:${port}/auth/login`);
+
+});
