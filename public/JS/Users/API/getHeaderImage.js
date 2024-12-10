@@ -14,9 +14,13 @@ const getHeaderImage = async () => {
         }
 
         const result = await response.json();
-        const headerProfileImg = document.querySelector('.profile-icon-dropdown .account-img');
+
+        //NOTE : .account-img 클래스를 가진 모든 요소를 선택 -> 헤더 + 게시글 상세보기 프로필
+        const headerProfileImgs = document.querySelectorAll('.account-img');
         if(result.image){
-            headerProfileImg.src = `${BASE_URL}/images/profile/${result.image}`;
+            headerProfileImgs.forEach(img => {
+                img.src = `${BASE_URL}/images/profile/${result.image}`;
+            });
         }
         
     } catch (error) {

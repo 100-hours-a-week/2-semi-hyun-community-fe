@@ -38,10 +38,7 @@ const postDataLoad = async () => {
         document.querySelector('.account-name').textContent = post.name;
         document.querySelector('.post-content').textContent = post.content;
 
-        //프로필 이미지
-        //FIXME : 게시글 데이터를 가져오지만 사용자의 프로필을 가져오진 않는다.
-        // const profileImg = document.querySelector('.account-img');
-        // profileImg.src = `${BASE_URL}/images/profile/${post.profile_image}`;
+        //프로필 이미지 : getHeaderImage.js에서 이미 선언
 
         // 게시글 이미지가 있는 경우에만 이미지 표시
         const postImg = document.querySelector('.post-img');
@@ -62,7 +59,7 @@ const postDataLoad = async () => {
         commentList.innerHTML = ''; // 기존 댓글 초기화
 
         post.comments.forEach(async comment => {
-            //FIXME: 추후 수정 필요
+            //FIXME: 추후 수정 필요. 비효율적
             //사용자 프로필 정보 가져오기
             const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${comment.user_id}/profile`,{
                 credentials : 'include'
