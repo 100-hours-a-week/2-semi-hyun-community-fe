@@ -3,12 +3,14 @@ const registerUser = async() => {
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
+    const passwordCheck = document.getElementById('password-check').value;
     const imageInput = document.getElementById('profile-img');
 
     const formData = new FormData();
     formData.append('name', name);
     formData.append('email', email);
     formData.append('password', password);
+    formData.append('passwordCheck', passwordCheck);
     formData.append('image', imageInput.files[0]); //필수
 
     //필드 점검
@@ -16,7 +18,7 @@ const registerUser = async() => {
     const validations = [
         { value: name, errorId: 'error-message-name' },
         { value: email, errorId: 'error-message-email' },
-        { value: password, errorId: 'error-message-pw' },
+        { value: password, errorId: 'error-message-password' },
         { value: imageInput.files[0], errorId: 'error-message-profile' }
         ];
     
@@ -35,11 +37,9 @@ const registerUser = async() => {
     if(response.status === 201){
         alert('회원가입 완료. 로그인 화면으로 이동합니다.');
         window.location.href = '/auth/login'; // 로그인 페이지로 이동
-        //setTimeout(() => {res.redirect('/login')}, 1000);
-        //응답 데이터 저장
     }
     else if(response.status === 400){
-        alert('모든 필드를 입력해야 합니다.');
+        alert(result.message);
     }
     else if(response.status === 409){
         alert('이미 가입된 이메일입니다.');
