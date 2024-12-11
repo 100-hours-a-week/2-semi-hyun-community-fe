@@ -25,6 +25,8 @@ const logoutFetch = async () => {
 
         if(response.status === 200){
             alert(result.message);
+            localStorage.clear();
+            sessionStorage.clear();
             window.location.replace('/auth/login');
             return;
         }
