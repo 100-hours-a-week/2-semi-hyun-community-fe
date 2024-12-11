@@ -38,7 +38,13 @@ const postDataLoad = async () => {
         document.querySelector('.account-name').textContent = post.name;
         document.querySelector('.post-content').textContent = post.content;
 
-        //프로필 이미지 : getHeaderImage.js에서 이미 선언
+        //프로필 이미지 : [24.12.11]getHeaderImage.js에서 이미 선언 -> Prob: 게시글이 아닌 로그인한 사용자의 프로필 이미지를 가져온다.
+        //FIX : 게시글 작성자의 프로필 이미지를 가져오도록 수정
+        const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${post.user_id}/profile`,{
+            credentials : 'include'
+        });
+        const profile = await profileResponse.json();
+        document.getElementById('post-author-img').src = `${BASE_URL}/images/profile/${profile.image}`;
 
         // 게시글 이미지가 있는 경우에만 이미지 표시
         const postImg = document.querySelector('.post-img');
