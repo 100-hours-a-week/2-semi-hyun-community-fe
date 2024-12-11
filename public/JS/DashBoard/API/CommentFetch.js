@@ -8,13 +8,10 @@ let currentCommentId = 0;
 
 //댓글 등록
 const addComment = async() => {
-
-    const user_id = localStorage.getItem('user_id');
     const content = document.getElementById('comment-text').value;
 
     const data = {
         post_id : post_id,
-        user_id : user_id,
         content: content
     };
 
