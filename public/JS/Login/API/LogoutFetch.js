@@ -16,7 +16,7 @@ const logoutFetch = async () => {
         const result = await response.json();
 
         if(!response.ok){
-            if([401,403,404].includes(response.status)){
+            if([401,403,404,500].includes(response.status)){
                 alert(result.message);
                 return;
             }
