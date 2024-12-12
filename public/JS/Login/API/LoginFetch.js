@@ -4,20 +4,21 @@ const LoginButton = document.getElementById('loginButton');
 
 //fetch
 //NOTE: addEventLister를 사용하면 HTML에 onClick을 추가하지 않아도 이벤트를 처리한다.
-LoginButton.addEventListener('click', async ()=>{
+LoginButton.addEventListener('click', async () => {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const ErrorMessage = document.getElementById('error-message-pw');
 
+    // 객체 리터럴 단축 구문 사용
     const data = {
-        email: email,
-        password: password
+        email,
+        password
     };
 
-    try{
-        const response = await fetch('http://localhost:3000/api/v1/auth/login',{
+    try {
+        const response = await fetch('http://localhost:3000/api/v1/auth/login', {
             method: 'POST',
-            credentials : 'include',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -34,25 +35,18 @@ LoginButton.addEventListener('click', async ()=>{
             localStorage.setItem('user_id', result.data.user_id);
 
 
-            alert(localStorage.getItem('name')+"님 안녕하세요");
+            alert(result.data.name+"님 안녕하세요");
             
             //인증처리는? -> 미들웨어로
             window.location.href = '/posts';
-        }
-        else if(response.status === 400){
+        } else if (response.status === 400 || response.status === 401) {
             ErrorMessage.textContent = result.message;
             ErrorMessage.style.display = 'block';
             return;
-        }
-        else if(response.status === 401){
-            ErrorMessage.textContent = result.message;
-            ErrorMessage.style.display = 'block';
-            return;
-        }
-        else{
+        } else {
             console.error('로그인 오류:', result.error);
         }
-    }catch(error){
+    } catch (error) {
         console.error('로그인 요청 중 오류 발생:', error);
     }
 });

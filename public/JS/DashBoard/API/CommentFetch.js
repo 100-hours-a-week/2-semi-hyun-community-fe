@@ -172,7 +172,6 @@ const deleteComment = async() => {
 addCommentButton.addEventListener('click', addComment);
 commentList.addEventListener('click', viewEditComment); //부모요소에 이벤트 추가. 클릭한 요소 확인
 commentList.addEventListener('click',viewDeleteComment); //클릭한 요소 확인
-// deleteCommentButton.addEventListener('click', deleteComment);
 
 
 

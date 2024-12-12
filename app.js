@@ -1,19 +1,22 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import {fileURLToPath} from 'url';
+import {PORT, CORS_OPTIONS} from './public/config/config.js';
 
 const app = express();
-const port = 8081;
+const port = PORT;
+
+//__dirname 대신 __filename 사용
+//★ 이유묻기
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //cors 설정
-app.use(cors({
-    origin : 'http://localhost:3000',
-    credentials : true  
-}));
+app.use(cors(CORS_OPTIONS));
 
 //json 파싱 미들웨어
 app.use(express.json());
-
 //정적 파일 제공
 app.use(express.static(path.join(__dirname,'/public')));
 

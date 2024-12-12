@@ -8,13 +8,12 @@ const post_id = PostIdManager.getPostId();
 const postDataLoad = async () => {
     try {
         // 게시글 데이터 가져오기
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`,{
-            credentials : 'include'
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`, {
+            credentials: 'include'
         });
         const post = await response.json();
 
         if (!response.ok) {
-
             if (response.status === 401) {
                 alert('로그인이 필요합니다.');
                 return;
@@ -33,51 +32,59 @@ const postDataLoad = async () => {
             throw new Error('게시글을 불러오는데 실패했습니다.');
         }
 
+        // DOM 요소들을 한번에 가져오기
+        const elements = {
+            title: document.querySelector('h2'),
+            authorName: document.querySelector('.account-name'),
+            content: document.querySelector('.post-content'),
+            authorImg: document.getElementById('post-author-img'),
+            postImg: document.querySelector('.post-img'),
+            likeBtn: document.querySelector('.likeNum-btn'),
+            commentBtn: document.querySelector('.commentNum-btn'),
+            viewBtn: document.querySelector('.view-btn'),
+            commentList: document.querySelector('.comment-list')
+        };
+
         // HTML 요소 업데이트
-        document.querySelector('h2').textContent = post.title;
-        document.querySelector('.account-name').textContent = post.name;
-        document.querySelector('.post-content').textContent = post.content;
+        elements.title.textContent = post.title;
+        elements.authorName.textContent = post.name;
+        elements.content.textContent = post.content;
 
-        //프로필 이미지 : [24.12.11]getHeaderImage.js에서 이미 선언 -> Prob: 게시글이 아닌 로그인한 사용자의 프로필 이미지를 가져온다.
-        //FIX : 게시글 작성자의 프로필 이미지를 가져오도록 수정
-        const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${post.user_id}/profile`,{
-            credentials : 'include'
-        });
-        const profile = await profileResponse.json();
-        document.getElementById('post-author-img').src = `${BASE_URL}/images/profile/${profile.image}`;
+        // 프로필 이미지 가져오기
+        const { image: profileImage } = await fetch(`http://localhost:3000/api/v1/users/${post.user_id}/profile`, {
+            credentials: 'include'
+        }).then(res => res.json());
+        
+        elements.authorImg.src = `${BASE_URL}/images/profile/${profileImage}`;
 
-        // 게시글 이미지가 있는 경우에만 이미지 표시
-        const postImg = document.querySelector('.post-img');
+        // 게시글 이미지 처리
         if (post.image) {
-            postImg.src = `${BASE_URL}/images/${post.image}`; // 이미지 경로는 서버 설정에 맞게 조정
-            postImg.style.display = 'block';
+            elements.postImg.src = `${BASE_URL}/images/${post.image}`;
+            elements.postImg.style.display = 'block';
         } else {
-            postImg.style.display = 'none';
+            elements.postImg.style.display = 'none';
         }
 
         // 메타 정보 업데이트
-        document.querySelector('.likeNum-btn').textContent = `좋아요 ${post.likes}`;
-        document.querySelector('.commentNum-btn').textContent = `댓글 ${post.comments_count}`;
-        document.querySelector('.view-btn').textContent = `조회수 ${post.views}`;
+        elements.likeBtn.textContent = `좋아요 ${post.likes}`;
+        elements.commentBtn.textContent = `댓글 ${post.comments_count}`;
+        elements.viewBtn.textContent = `조회수 ${post.views}`;
 
         // 댓글 목록 렌더링
-        const commentList = document.querySelector('.comment-list');
-        commentList.innerHTML = ''; // 기존 댓글 초기화
+        elements.commentList.innerHTML = ''; //기존 댓글 초기화
 
-        post.comments.forEach(async comment => {
-            //FIXME: 추후 수정 필요. 비효율적
-            //사용자 프로필 정보 가져오기
-            const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${comment.user_id}/profile`,{
-                credentials : 'include'
-            });
-            const profile = await profileResponse.json();
+        // Promise.all을 사용하여 병렬로 프로필 정보 가져오기
+        await Promise.all(post.comments.map(async comment => {
+            const { image: commentProfileImage } = await fetch(`http://localhost:3000/api/v1/users/${comment.user_id}/profile`, {
+                credentials: 'include'
+            }).then(res => res.json());
 
             const commentItem = document.createElement('li');
             commentItem.className = 'comment-item';
-            commentItem.setAttribute('data-comment-id', comment.comment_id);
+            commentItem.dataset.commentId = comment.comment_id;
             commentItem.innerHTML = `
                 <div class="account-info">
-                    <img class="account-img" src=${BASE_URL}/images/profile/${profile.image} alt="작성자">
+                    <img class="account-img" src=${BASE_URL}/images/profile/${commentProfileImage} alt="작성자">
                     <span class="account-name">${comment.name}</span>
                     <span class="comment-date">${comment.created_date}</span>
                 </div>
@@ -87,8 +94,8 @@ const postDataLoad = async () => {
                     <button id="comment-delete-btn" class="delete-btn">삭제</button>
                 </div>
             `;
-            commentList.appendChild(commentItem); //ul 태그 안에 넣기
-        });
+            elements.commentList.appendChild(commentItem);
+        }));
 
     } catch (error) {
         console.error('Error:', error);
@@ -96,34 +103,30 @@ const postDataLoad = async () => {
     }
 };
 
-//수정 페이지로 이동
-const moveEditPage = async () =>{
-    try{
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/check`,{
-            credentials : 'include'
+// 수정 페이지로 이동
+const moveEditPage = async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/check`, {
+            credentials: 'include'
         });
 
-        if(!response.ok){
-            if(response.status === 403){
+        if (!response.ok) {
+            if (response.status === 403) {
                 alert('게시글 작성자만 수정할 수 있습니다.');
                 return;
             }
             throw new Error('게시글 수정 권한 확인 중 오류가 발생했습니다.');
         }
 
-        //권한 확인 후 이동
-        if(response.status === 200){
+        if (response.status === 200) {
             window.location.href = `/posts/${post_id}/edit`;
         }
-    }catch(error){
+    } catch (error) {
         console.error('Error:', error);
         alert('게시글을 수정하는 중 오류가 발생했습니다.');
     }
-
-
-    
 };
 
-// DOMContentLoaded 이벤트 리스너 추가
+// 이벤트 리스너
 document.addEventListener('DOMContentLoaded', postDataLoad);
 EditButton.addEventListener('click', moveEditPage);

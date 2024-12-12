@@ -1,11 +1,7 @@
 const deleteUserButton = document.getElementById('deleteUserButton');
 
-const showDelete = () => {
-    if(confirm('정말 탈퇴하시겠습니까?')){
-
-        deleteUserFetch();
-    }
-}
+// 화살표 함수로 변경하고 불필요한 중괄호 제거
+const showDelete = () => confirm('정말 탈퇴하시겠습니까?') && deleteUserFetch();
 
 const deleteUserFetch = async () => {
     
@@ -17,29 +13,25 @@ const deleteUserFetch = async () => {
 
         const result = await response.json();
 
-        if(!response.ok){
-            if ([404, 401, 403].includes(response.status)) {
-                alert(result.message);
-                return;
-            }
+        // 에러 처리 로직 단순화
+        if (!response.ok) {
             alert(result.message);
             return;
         }
 
-        if(response.status === 200){
-            alert(result.message);
-            localStorage.clear();
-            sessionStorage.clear();
+        // status 체크 제거 (response.ok로 충분)
+        alert(result.message);
+        localStorage.clear();
+        sessionStorage.clear();
 
-            //NOTE: 브라우저 히스토리에서 현제 URL을 제거, 새 URL 삽입
-            // 뒤로가기 버튼을 눌러도 이전 페이지로 돌아갈 수 없다.
-            window.location.replace('/auth/login');
-        }
+        //NOTE: 브라우저 히스토리에서 현제 URL을 제거, 새 URL 삽입
+        // 뒤로가기 버튼을 눌러도 이전 페이지로 돌아갈 수 없다.
+        window.location.replace('/auth/login');
 
-
-    }catch(error){
-        console.error('회원 탈퇴 실패', error);
+    } catch (error) {
+        // 템플릿 리터럴 사용
+        console.error(`회원 탈퇴 실패: ${error}`);
     }
-}
+};
 
 deleteUserButton.addEventListener('click', showDelete);
