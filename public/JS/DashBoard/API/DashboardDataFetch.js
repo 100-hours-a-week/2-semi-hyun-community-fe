@@ -5,12 +5,10 @@ const params = new URLSearchParams({
     limit: 5, // 가져올 데이터 개수
 });
 
-document.addEventListener('DOMContentLoaded', async ()=> {
-
-    try{
-
-        const response = await fetch(`http://localhost:3000/api/v1/posts/data?${params.toString()}`,{
-            credentials : 'include',
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/v1/posts/data?${params}`, {
+            credentials: 'include',
         });
 
         if(!response.ok){
@@ -58,9 +56,9 @@ document.addEventListener('DOMContentLoaded', async ()=> {
         //게시글 목록이 있을 경우 list-empty 비활성화
         //FIX: foreach 내부 비동기 작업을 기다리지 않고 실행된다.
         IsListEmpty();
-    }catch(error){
+
+    } catch(error) {
         console.error('Error:', error);
         console.error('게시글 목록 가져오기 실패', error);
     }
-
 });

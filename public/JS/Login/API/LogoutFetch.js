@@ -4,11 +4,11 @@ const showLogout = () => {
     if(confirm('정말 로그아웃하시겠습니까?')){
         logoutFetch();
     }
-}
+};
 
 const logoutFetch = async () => {
-    try{
-        const response = await fetch('http://localhost:3000/api/v1/auth/logout',{
+    try {
+        const response = await fetch('http://localhost:3000/api/v1/auth/logout', {
             method: 'POST',
             credentials: 'include'
         });
@@ -16,7 +16,7 @@ const logoutFetch = async () => {
         const result = await response.json();
 
         if(!response.ok){
-            if([401,403,404].includes(response.status)){
+            if([401,403,404,500].includes(response.status)){
                 alert(result.message);
                 return;
             }
@@ -30,9 +30,9 @@ const logoutFetch = async () => {
             window.location.replace('/auth/login');
             return;
         }
-    }catch(error){
+    } catch(error) {
         console.error('Logout failed:', error);
     }
-}
+};
 
 logoutButton.addEventListener('click', showLogout);

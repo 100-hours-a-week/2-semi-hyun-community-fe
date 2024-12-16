@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:3000';
+import { BASE_URL } from '../../config/constants';
+// const BASE_URL = 'http://localhost:3000';
 
 const getHeaderImage = async () => {
     try{
@@ -9,7 +10,7 @@ const getHeaderImage = async () => {
             }
         });
 
-        if(!response.ok){
+        if(!response.ok) {
             throw new Error('Failed to fetch header image');
         }
 
@@ -22,11 +23,10 @@ const getHeaderImage = async () => {
         }
         
     } catch (error) {
-        console.error('Error fetching header image:', error);
+        // 템플릿 리터럴 사용
+        console.error(`Error fetching header image: ${error}`);
     }
-
-
 };
 
-
-document.addEventListener('DOMContentLoaded',getHeaderImage);
+// 화살표 함수 사용
+document.addEventListener('DOMContentLoaded', getHeaderImage);
