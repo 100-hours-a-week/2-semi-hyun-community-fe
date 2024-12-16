@@ -25,19 +25,19 @@
 
             <label for="email" class="font-default">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
-            <div id="error-message-email" class="error-message" class="error-message">이메일을 입력해주세요</div>
+            <div id="error-message-email" class="error-message">이메일을 입력해주세요</div>
 
             <label for="password" class="font-default">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
-            <div id="error-message-password" class="error-message" class="error-message">비밀번호를 입력해주세요</div>
+            <div id="error-message-password" class="error-message">비밀번호를 입력해주세요</div>
 
             <label for="passwordCheck" class="font-default">비밀번호 확인</label>
             <input type="password" id="password-check" name="passwordCheck" placeholder="비밀번호를 한번 더 입력하세요" required>
-            <div id="error-message-password-check" class="error-message" class="error-message">비밀번호를 한번 더 입력해주세요</div>
+            <div id="error-message-password-check" class="error-message">비밀번호를 한번 더 입력해주세요</div>
 
             <label for="name" class="font-default">닉네임</label>
             <input type="name" id="name" name="name" placeholder="닉네임을 입력하세요" required>
-            <div id="error-message-name" class="error-message" class="error-message">닉네임을 입력해주세요</div>
+            <div id="error-message-name" class="error-message">닉네임을 입력해주세요</div>
 
             <button type="button" id= "signupButton" class="create-button">회원가입</button>
         
@@ -47,7 +47,12 @@
         </div>
             
     </div>
-    <script src="/JS/Login/API/SignUpFetch.js"></script>
+    <script src="/JS/Login/features/EmailCheck.js"></script>
+    <script src="/JS/Login/API/checkEmailDuplicate.js"></script>
+    <script src="/JS/Login/features/NameCheck.js"></script>
+    <script src="/JS/Login/API/checkNameDuplicate.js"></script>
     <script src="/JS/Login/features/SignupPwCheck.js"></script>
     <script src="/JS/Users/features/ProfileImage.js"></script>
+    
+    <script src="/JS/Login/API/SignUpFetch.js"></script>
 </body>
