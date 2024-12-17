@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ValidationState.setState('name', 'isValid', isNameValid);
     }
 
-    nameInput.addEventListener('blur', () => {
-        validationName(nameInput.value.trim());
+    nameInput.addEventListener('input', () => {
+        validationName(nameInput.value);
     });
 });
