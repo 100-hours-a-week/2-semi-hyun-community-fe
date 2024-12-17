@@ -1,9 +1,11 @@
+import { API_URL, urlUtils } from '/config/constants.js';
+
 const DeleteButton = document.getElementById('post-delete-btn');
+const post_id = urlUtils.getPostId();
 
 const deletePost = async () => {
     try {
-        const post_id = PostIdManager.getPostId();
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}`, {
             method: 'DELETE',
             credentials: 'include'
         });

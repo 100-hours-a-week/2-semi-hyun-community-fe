@@ -1,7 +1,10 @@
+import { API_URL,urlUtils } from '/config/constants.js';
 const likeButton = document.querySelector('.likeNum-btn');
 
 let currentLikes = 0;
 let isInitialized = false;
+
+const post_id = urlUtils.getPostId();
 
 const initializeLikes = () => {
     if(!isInitialized) {
@@ -41,7 +44,7 @@ const patchLike = async () => {
     }
 
     try{
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/like`,{
+        const response = await fetch(`${API_URL}/posts/${post_id}/like`,{
             method : 'PATCH',
             credentials : 'include',
             headers :{'Content-Type': 'application/json'},

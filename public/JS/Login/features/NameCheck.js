@@ -1,4 +1,4 @@
-const ValidationState = require('./ValidationState.js');   
+import ValidationState from './ValidationState.js';  
 
 document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('name');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ValidationState.setState('name', 'isValid', isNameValid);
     }
 
-    nameInput.addEventListener('input', () => {
+    nameInput.addEventListener('blur', () => {
         validationName(nameInput.value.trim());
     });
 });

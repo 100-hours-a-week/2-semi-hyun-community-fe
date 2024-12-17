@@ -1,14 +1,13 @@
-//Note: js에서는 node.js의 path 모듈을 사용할 수 없다.
-//NOTE : BASE_URL : getHeaderImage.js에서 이미 선언
-// const BASE_URL = 'http://localhost:3000'; //서버 url 추가 -> 사진 로드 시 사용
+import { BASE_URL, API_URL, urlUtils} from '/config/constants.js';
+
 const EditButton = document.getElementById('post-edit-btn');
-const post_id = PostIdManager.getPostId();
+const post_id = urlUtils.getPostId();
 
 // 게시글 데이터 로드
 const postDataLoad = async () => {
     try {
         // 게시글 데이터 가져오기
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}/data`, {
             credentials: 'include'
         });
         const post = await response.json();
@@ -51,7 +50,7 @@ const postDataLoad = async () => {
         elements.content.textContent = post.content;
 
         // 프로필 이미지 가져오기
-        const { image: profileImage } = await fetch(`http://localhost:3000/api/v1/users/${post.user_id}/profile`, {
+        const { image: profileImage } = await fetch(`${API_URL}/users/${post.user_id}/profile`, {
             credentials: 'include'
         }).then(res => res.json());
         
@@ -75,7 +74,7 @@ const postDataLoad = async () => {
 
         // Promise.all을 사용하여 병렬로 프로필 정보 가져오기
         await Promise.all(post.comments.map(async comment => {
-            const { image: commentProfileImage } = await fetch(`http://localhost:3000/api/v1/users/${comment.user_id}/profile`, {
+            const { image: commentProfileImage } = await fetch(`${API_URL}/users/${comment.user_id}/profile`, {
                 credentials: 'include'
             }).then(res => res.json());
 
@@ -106,7 +105,7 @@ const postDataLoad = async () => {
 // 수정 페이지로 이동
 const moveEditPage = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/check`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}/check`, {
             credentials: 'include'
         });
 

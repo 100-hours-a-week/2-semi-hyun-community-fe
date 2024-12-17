@@ -1,3 +1,5 @@
+import { API_URL } from '/config/constants.js';
+
 // 회원가입 POST 함수
 const registerUser = async () => {
     const name = document.getElementById('name').value.trim();
@@ -26,7 +28,7 @@ const registerUser = async () => {
     });
 
     try {
-        const response = await fetch('http://localhost:3000/api/v1/auth/signup', {
+        const response = await fetch(`${API_URL}/auth/signup`, {
             method: 'POST',
             body: formData  //요청 본문
         });

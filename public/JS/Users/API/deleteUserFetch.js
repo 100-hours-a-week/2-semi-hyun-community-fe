@@ -1,12 +1,13 @@
-const deleteUserButton = document.getElementById('deleteUserButton');
+import { API_URL } from '/config/constants.js';
 
+const deleteUserButton = document.getElementById('deleteUserButton');
 // 화살표 함수로 변경하고 불필요한 중괄호 제거
 const showDelete = () => confirm('정말 탈퇴하시겠습니까?') && deleteUserFetch();
 
 const deleteUserFetch = async () => {
     
     try{
-        const response = await fetch('http://localhost:3000/api/v1/users/me', {
+        const response = await fetch(`${API_URL}/users/me`, {
             method: 'DELETE',
             credentials : 'include'
         });

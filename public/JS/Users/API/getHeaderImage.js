@@ -1,9 +1,9 @@
-import { BASE_URL } from '../../config/constants';
+import { BASE_URL, API_URL } from '/config/constants.js';
 // const BASE_URL = 'http://localhost:3000';
 
 const getHeaderImage = async () => {
     try{
-        const response = await fetch(`http://localhost:3000/api/v1/users/me/header_image`,{
+        const response = await fetch(`${API_URL}/users/me/header_image`,{
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,11 +1,11 @@
-let isEmailDuplicate = false;
+import ValidationState from '../features/ValidationState.js';
+import { API_URL } from '/config/constants.js';
 
-const emailInput = document.getElementById('email');
-const emailErrorMessage = document.getElementById('error-message-email');
+let isNotEmailDuplicate = false;
 
 const checkEmailDuplicate = async(email) => {
     try{
-        const response = await fetch(`http://localhost:8080/api/v1/auth/check-email`,{
+        const response = await fetch(`${API_URL}/auth/check-email`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -14,7 +14,8 @@ const checkEmailDuplicate = async(email) => {
         });
 
         const result = await response.json();
-        return result.isDuplicate;
+        console.log(result.isDuplicate);
+        return result.isDuplicate; //true: 중복, false: 중복x
 
     }catch(error){
         console.error('이메일 중복 확인 중 오류 발생:', error);
@@ -22,22 +23,28 @@ const checkEmailDuplicate = async(email) => {
     }
 }
 
-const EmailCheck = (isDuplicate) => {
-    if(!isDuplicate){
-        isEmailDuplicate = false;
+const EmailCheck = (isDuplicate,emailErrorMessage) => {
+    if(!isDuplicate){//false
+        isNotEmailDuplicate = true;
+        emailErrorMessage.style.display = 'none';
+    }
+    else{//true
+        isNotEmailDuplicate = false;
         emailErrorMessage.textContent = '이미 사용중인 이메일입니다.';
         emailErrorMessage.style.display = 'block';
     }
-    else{
-        isEmailDuplicate = true;
-        emailErrorMessage.style.display = 'none';
-    }
 
+    ValidationState.setState('email','isNotDuplicate',isNotEmailDuplicate);
 }
 
-// 사용 예시
-emailInput.addEventListener('blur', async () => {
-    const email = emailInput.value;
-    const isDuplicate = await checkEmailDuplicate(email);
-    EmailCheck(isDuplicate);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const emailInput = document.getElementById('email');
+    const emailErrorMessage = document.getElementById('error-message-email');
+
+    emailInput.addEventListener('blur', async () => {
+        const email = emailInput.value;
+        const isDuplicate = await checkEmailDuplicate(email);
+        EmailCheck(isDuplicate,emailErrorMessage);
+    });
 });

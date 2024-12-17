@@ -1,3 +1,5 @@
+import { API_URL } from '/config/constants.js';
+
 document.getElementById('AddPostButton').addEventListener('click', async () => {
     const user_id = localStorage.getItem('user_id');
     const name = localStorage.getItem('name');
@@ -12,7 +14,7 @@ document.getElementById('AddPostButton').addEventListener('click', async () => {
     formData.append('content', content);
     if (imageInput.files[0]) formData.append('image', imageInput.files[0]);
     try {
-        const response = await fetch('http://localhost:3000/api/v1/posts', { // 절대 경로로 수정
+        const response = await fetch(`${API_URL}/posts`, { // 절대 경로로 수정
             method: 'POST',
             credentials: 'include', // 쿠키 포함
             //NOTE: formData는 Content-type이 자동으로 설정됨. 직접 설정 안함

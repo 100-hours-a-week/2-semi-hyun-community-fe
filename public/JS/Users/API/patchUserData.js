@@ -1,3 +1,5 @@
+import { API_URL } from '/config/constants.js';
+
 const showSubmitButton = document.getElementById('editUserButton');
 const submitButton = document.getElementById('editUserButtonToast');
 
@@ -17,7 +19,7 @@ const patchData = async () => {
             formData.append('image', profile.files[0]);
         }
 
-        const response = await fetch('http://localhost:3000/api/v1/users/me/user_info', {
+        const response = await fetch(`${API_URL}/users/me/user_info`, {
             method: 'PATCH',
             credentials: 'include',
             body: formData

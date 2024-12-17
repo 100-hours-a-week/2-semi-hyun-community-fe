@@ -1,6 +1,9 @@
+import { API_URL } from '/config/constants.js';
 const logoutButton = document.querySelector('a[href="/auth/logout"]');
 
-const showLogout = () => {
+const showLogout = (event) => {
+    //기본 링크 동작 방지
+    event.preventDefault();
     if(confirm('정말 로그아웃하시겠습니까?')){
         logoutFetch();
     }
@@ -8,7 +11,7 @@ const showLogout = () => {
 
 const logoutFetch = async () => {
     try {
-        const response = await fetch('http://localhost:3000/api/v1/auth/logout', {
+        const response = await fetch(`${API_URL}/auth/logout`, {
             method: 'POST',
             credentials: 'include'
         });

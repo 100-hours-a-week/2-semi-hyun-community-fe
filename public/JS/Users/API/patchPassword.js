@@ -1,10 +1,10 @@
-// body-parser import는 클라이언트 사이드에서 불필요
+import { API_URL } from '/config/constants.js';
 
 const patchPassword = async () => {
     try {
         const password = document.getElementById('password').value; // value 추가
 
-        const response = await fetch(`http://localhost:3000/api/v1/user/me/password`, {
+        const response = await fetch(`${API_URL}/users/me/password`, {
             method: 'PATCH',
             credentials: 'include',
             headers: {

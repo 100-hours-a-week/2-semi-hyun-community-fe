@@ -1,4 +1,4 @@
-const ValidationState = require('./ValidationState.js');  
+import ValidationState from './ValidationState.js';
 
 let isPasswordValid = false;
 let isPasswordMatch = false;

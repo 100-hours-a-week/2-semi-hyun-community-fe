@@ -43,4 +43,4 @@ const ValidationState = (()=>{
     return { setState, getState, subscribe};
 })();
 
-module.exports = ValidationState;
+export default ValidationState;

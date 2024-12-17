@@ -1,5 +1,5 @@
-//게시글 목록 가져오기
-//제목, 작성자,날짜,좋아요,댓글,조회수
+import { BASE_URL,API_URL } from '/config/constants.js';
+
 const params = new URLSearchParams({
     offset: 0, //시작 위치
     limit: 5, // 가져올 데이터 개수
@@ -7,13 +7,13 @@ const params = new URLSearchParams({
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/v1/posts/data?${params}`, {
+        const response = await fetch(`${API_URL}/posts/data?${params}`, {
             credentials: 'include',
         });
 
         if(!response.ok){
             alert('게시글 목록 가져오기를 실패했습니다');
-            return;
+            window.location.replace('/auth/login');
         }
 
         const posts = await response.json();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await Promise.all(posts.map(async post => {
             //FIXME: 추후 수정 필요
             //사용자 프로필 정보 가져오기
-            const profileResponse = await fetch(`http://localhost:3000/api/v1/users/${post.user_id}/profile`,{
+            const profileResponse = await fetch(`${API_URL}/users/${post.user_id}/profile`,{
                 credentials : 'include'
             });
             const profile = await profileResponse.json();
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         //게시글 목록이 있을 경우 list-empty 비활성화
         //FIX: foreach 내부 비동기 작업을 기다리지 않고 실행된다.
-        IsListEmpty();
+        isListEmpty();
 
     } catch(error) {
         console.error('Error:', error);

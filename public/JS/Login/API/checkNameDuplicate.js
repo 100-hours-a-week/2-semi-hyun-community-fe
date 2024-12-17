@@ -1,11 +1,11 @@
-let isNameDuplicate = false;
+import ValidationState from '../features/ValidationState.js';
+import { API_URL } from '/config/constants.js';
 
-const nameInput = document.getElementById('name');
-const nameErrorMessage = document.getElementById('error-message-name');
+let isNotNameDuplicate = false;
 
 const checkNameDuplicate = async(name) => {
     try{
-        const response = await fetch(`http://localhost:8080/api/v1/auth/check-name`,{
+        const response = await fetch(`${API_URL}/auth/check-name`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ const checkNameDuplicate = async(name) => {
         });
 
         const result = await response.json();
-        return result.isDuplicate;
+        return result.isDuplicate;//true: 중복, false: 중복x
 
     }catch(error){
         console.error('이메일 중복 확인 중 오류 발생:', error);
@@ -22,22 +22,29 @@ const checkNameDuplicate = async(name) => {
     }
 }
 
-const NameCheck = (isDuplicate) => {
-    if(!isDuplicate){
-        isNameDuplicate = false;
+const NameCheck = (isDuplicate,nameErrorMessage) => {
+    if(!isDuplicate){//false
+        isNotNameDuplicate = true;
+        nameErrorMessage.style.display = 'none';
+    }
+    else{//true
+        isNotNameDuplicate = false;
         nameErrorMessage.textContent = '이미 사용중인 이메일입니다.';
         nameErrorMessage.style.display = 'block';
     }
-    else{
-        isNameDuplicate = true;
-        nameErrorMessage.style.display = 'none';
-    }
 
+    ValidationState.setState('name','isNotDuplicate',isNotNameDuplicate);
 }
 
-// 사용 예시
-nameInput.addEventListener('blur', async () => {
-    const name = nameInput.value;
-    const isDuplicate = await checkNameDuplicate(name);
-    NameCheck(isDuplicate);
+document.addEventListener('DOMContentLoaded', () => {
+    const nameInput = document.getElementById('name');
+    const nameErrorMessage = document.getElementById('error-message-name');
+
+    //닉네임 중복확인
+    nameInput.addEventListener('blur', async () => {
+        const name = nameInput.value;
+        const isDuplicate = await checkNameDuplicate(name);
+        NameCheck(isDuplicate,nameErrorMessage);
+    });
 });
+

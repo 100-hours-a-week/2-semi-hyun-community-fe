@@ -1,8 +1,8 @@
-// const BASE_URL = 'http://localhost:3000'; //이미지 정적파일 로딩 시
+import { BASE_URL, API_URL } from '/config/constants.js';
 
 const getUserData = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/v1/users/me/data`, {
+        const response = await fetch(`${API_URL}/users/me/data`, {
             method: 'GET',
             credentials: 'include',
             headers: {

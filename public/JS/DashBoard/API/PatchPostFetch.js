@@ -1,3 +1,4 @@
+import { API_URL } from '/config/constants.js';
 const PatchButton = document.getElementById('patch-button');
 
 // 경로에서 post_id 추출 - 구조분해할당 활용
@@ -7,7 +8,7 @@ const [, , post_id] = window.location.pathname.split('/').slice(0, -1);
 const loadPatchPost = async () => {
     try {    
         // 게시글 데이터 가져오기
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/data`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}/data`, {
             credentials: 'include'
         });
         const post = await response.json();
@@ -54,7 +55,7 @@ const patchPost = async () => {
             formData.append('image', elements.image.files[0]); //실제객체
         }
 
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}`, {
             method: 'PATCH',
             credentials: 'include',
             body: formData

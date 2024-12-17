@@ -1,3 +1,4 @@
+import { API_URL } from '/config/constants.js';
 const LoginButton = document.getElementById('loginButton');
 
 //비밀번호 유효성 검사
@@ -16,7 +17,7 @@ LoginButton.addEventListener('click', async () => {
     };
 
     try {
-        const response = await fetch('http://localhost:3000/api/v1/auth/login', {
+        const response = await fetch(`${API_URL}/auth/login`, {
             method: 'POST',
             credentials: 'include',
             headers: {
