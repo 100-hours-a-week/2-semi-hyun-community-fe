@@ -1,12 +1,8 @@
-// const BASE_URL = 'http://localhost:3000'; //이미지 정적파일 로딩 시
+import { BASE_URL, API_URL } from '/config/constants.js';
 
-const getUserData = async() => {
-
-    //보안문제
-    // const user_id = localStorage.getItem('user_id'); 
-
-    try{
-        const response = await fetch(`http://localhost:3000/api/v1/users/me/data`,{
+const getUserData = async () => {
+    try {
+        const response = await fetch(`${API_URL}/users/me/data`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -14,28 +10,32 @@ const getUserData = async() => {
             }
         });
 
-        if(!response.ok){
+        if(!response.ok) {
             alert('사용자 정보를 불러오는 데 실패했습니다.');
             window.location.href = '/posts';
+            return; // 일찍 반환하여 불필요한 코드 실행 방지
         }
 
-        const result = await response.json();
-        console.log(result);
+        const result = await response.json(); // 구조 분해 할당 사용
+        
+        // DOM 요소 한 번만 선택
+        const emailElement = document.getElementById('email');
+        const nameElement = document.getElementById('name');
+        const profileImgElement = document.getElementById('profile-img-preview');
 
-        //NOTE : 데이터에 접근할때 data객체를 통해 접근
-        document.getElementById('email').textContent = result.data.email;
-        document.getElementById('name').value = result.data.name;
+        emailElement.textContent = result.data.email;
+        nameElement.value = result.data.name;
 
-        // 프로필 이미지가 있는 경우
-        if (result.data.image != null) {
-            console.log(`${BASE_URL}/images/profile/${result.data.image}`);
-            document.getElementById('profile-img-preview').src = `${BASE_URL}/images/profile/${result.data.image}`;
+        // NOTE: ?. : 옵셔널 체이닝 연산자
+        // NOTE: result.data null인 경우 undefined 반환
+        if (result.data?.image) {
+            const profileImageUrl = `${BASE_URL}/images/profile/${result.data.image}`;
+            profileImgElement.src = profileImageUrl;
         }
 
-    }catch(error){
-        console.error('Error fetching user data:', error);
+    } catch(error) {
+        console.error(`Error fetching user data: ${error}`); // 템플릿 리터럴 사용
     }
-
-}
+};
 
 document.addEventListener('DOMContentLoaded', getUserData);

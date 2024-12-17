@@ -1,10 +1,11 @@
+import { API_URL, urlUtils } from '/config/constants.js';
 const addCommentButton = document.getElementById('comment-create-btn');
 const editCommentButton = document.getElementById('comment-edit-btn'); //수정 누르면 그 자리에서 form을 받을 수 있도록
 const deleteCommentButton = document.getElementById('comment-delete-btn');
 const commentList = document.getElementById('comment-list'); //댓글리스트 부모
 
 let currentCommentId = 0;
-// const post_id = PostIdManager.getPostId();
+const post_id = urlUtils.getPostId();
 
 //댓글 등록
 const addComment = async() => {
@@ -17,7 +18,7 @@ const addComment = async() => {
 
     try{
 
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/comments`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}/comments`, {
             method: 'POST',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -86,7 +87,7 @@ const editComment = async() => {
     const content = document.getElementById('comment-text').value;
 
     try{
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
+        const response = await fetch(`${API_URL}/posts/${post_id}/comments/${currentCommentId}`,{
             method: 'PATCH',
             credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
@@ -101,7 +102,7 @@ const editComment = async() => {
         }
         if(response.status === 403){
             alert('게시글 작성자만 수정할 수 있습니다.');
-            return;
+            window.location.reload();
         }
         if(response.status === 200){ //댓글 수정 성공
             alert(result.message);
@@ -141,7 +142,7 @@ const viewDeleteComment = async(event) => {
 //댓글 삭제 
 const deleteComment = async() => {
     try{
-        const response = await fetch(`http://localhost:3000/api/v1/posts/${post_id}/comments/${currentCommentId}`,{
+        const response = await fetch(`${API_URL}/posts/${post_id}/comments/${currentCommentId}`,{
             method: 'DELETE',
             credentials: 'include'
         });
@@ -172,7 +173,6 @@ const deleteComment = async() => {
 addCommentButton.addEventListener('click', addComment);
 commentList.addEventListener('click', viewEditComment); //부모요소에 이벤트 추가. 클릭한 요소 확인
 commentList.addEventListener('click',viewDeleteComment); //클릭한 요소 확인
-// deleteCommentButton.addEventListener('click', deleteComment);
 
 
 

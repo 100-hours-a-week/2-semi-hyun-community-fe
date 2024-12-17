@@ -1,4 +1,5 @@
-const submitButton = document.getElementById('signupButton');
+import ValidationState from './ValidationState.js';
+
 let isPasswordValid = false;
 let isPasswordMatch = false;
 
@@ -47,8 +48,7 @@ const showErrormessage = () => {
             isPasswordValid = true;
         }
 
-        //버튼 활성화 업데이트
-        // submitButton.disabled = !(isPasswordValid && isPasswordMatch);
+        ValidationState.setState('password', 'isValid', isPasswordValid);
     });
 
     //비밀번호 확인 검사
@@ -70,8 +70,8 @@ const showErrormessage = () => {
             isPasswordMatch = true;
         }
 
-        //버튼 활성화 업데이트
-        // submitButton.disabled = !(isPasswordValid && isPasswordMatch);
+        ValidationState.setState('password', 'isMatch', isPasswordMatch);
+
     });
 }
 
