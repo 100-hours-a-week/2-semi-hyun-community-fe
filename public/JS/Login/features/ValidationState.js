@@ -29,7 +29,6 @@ const ValidationState = (()=>{
     //전달된 callback 함수를 subscribers 배열에 추가
     //상태가 변경될 때마다 해당 함수가 호출되도록 한다.
     const subscribe = (callback) => {
-        console.log(callback);
         subscribers.push(callback);
     };
 
