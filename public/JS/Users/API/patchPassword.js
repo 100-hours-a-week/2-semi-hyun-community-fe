@@ -26,8 +26,8 @@ const patchPassword = async () => {
 };
 
 // DOM 요소 한 번만 선택
-const showSubmitButton = document.getElementById('showSubmitButton');
-const submitButton = document.getElementById('submitButton');
+const showSubmitButton = document.getElementById('editPwButton');
+const submitButton = document.getElementById('editPwButtonToast');
 
 // 화살표 함수 사용
 showSubmitButton.addEventListener('click', () => {
