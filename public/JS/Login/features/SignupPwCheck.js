@@ -1,5 +1,10 @@
 import ValidationState from './ValidationState.js';
 
+const passwordInput = document.getElementById('password');
+const passwordCheckInput = document.getElementById('password-check');
+const passwordErrorMessage = document.getElementById('error-message-password');
+const passwordCheckErrorMessage = document.getElementById('error-message-password-check');
+
 let isPasswordValid = false;
 let isPasswordMatch = false;
 
@@ -24,56 +29,43 @@ const validatePassword= (password) =>{
     return true;
 }
 
+function checkPasswordFields(){
+    const password = passwordInput.value.trim();
+    const passwordCheck = passwordCheckInput.value.trim();
 
-const showErrormessage = () => {
+    //유효성 검사
+    const validationResult = validatePassword(password);
+
+    if(validationResult !== true){
+        passwordErrorMessage.textContent = validationResult;
+        passwordErrorMessage.style.display = 'block';
+        isPasswordValid = false;
+    } else{
+        passwordErrorMessage.textContent = '';
+        passwordErrorMessage.style.display = 'none';
+        isPasswordValid = true;
+    }
+
+    //비밀번호 일치 검사
+    if(password && passwordCheck&& password !== passwordCheck){
+        passwordCheckErrorMessage.textContent = '비밀번호가 일치 하지 않습니다.';
+        passwordCheckErrorMessage.style.display = 'block';
+        isPasswordMatch = false;
+    }else if(passwordCheck.length === 0){
+        passwordCheckErrorMessage.textContent = '비밀번호를 한번 더 입력해주세요';
+        passwordCheckErrorMessage.style.display = 'block';
+        isPasswordMatch = false;
+    } 
+    else {
+        passwordCheckErrorMessage.style.display = 'none';
+        isPasswordMatch = true;
+    }
+
+    ValidationState.setState('password', 'isValid', isPasswordValid);
+    ValidationState.setState('password', 'isMatch', isPasswordMatch);
     
-    const passwordInput = document.getElementById('password');
-    const passwordCheckInput = document.getElementById('password-check');
-    const passwordErrorMessage = document.getElementById('error-message-password');
-    const passwordCheckErrorMessage = document.getElementById('error-message-password-check');
-
-
-    // 비밀번호 유효성 검사
-    passwordInput.addEventListener('input',() => {
-        const password = passwordInput.value.trim();
-        const validationResult = validatePassword(password);
-        
-        if(validationResult !== true){
-            passwordErrorMessage.textContent = validationResult;
-            passwordErrorMessage.style.display = 'block';
-            isPasswordValid = false;
-        } else{
-            passwordErrorMessage.textContent = '';
-            passwordErrorMessage.style.display = 'none';
-            isPasswordValid = true;
-        }
-
-        ValidationState.setState('password', 'isValid', isPasswordValid);
-    });
-
-    //비밀번호 확인 검사
-    passwordCheckInput.addEventListener('input',() => {
-        const password = passwordInput.value.trim();
-        const passwordCheck = passwordCheckInput.value.trim();
-
-        if(password !== passwordCheck){
-            passwordCheckErrorMessage.textContent = '비밀번호가 다릅니다.';
-            passwordCheckErrorMessage.style.display = 'block';
-            isPasswordMatch = false;
-        }else if(passwordCheck.length === 0){
-            passwordCheckErrorMessage.textContent = '비밀번호를 한번 더 입력해주세요';
-            passwordCheckErrorMessage.style.display = 'block';
-            isPasswordMatch = false;
-        }
-        else {
-            passwordCheckErrorMessage.style.display = 'none';
-            isPasswordMatch = true;
-        }
-
-        ValidationState.setState('password', 'isMatch', isPasswordMatch);
-
-    });
 }
 
-//NOTE : 함수를 참조로 전달 -> 새로운 함수를 만들어서 전달
-document.addEventListener('DOMContentLoaded',showErrormessage);
+// 두 input 각각에 동일하게 등록
+passwordInput.addEventListener('input', checkPasswordFields);
+passwordCheckInput.addEventListener('input', checkPasswordFields);
