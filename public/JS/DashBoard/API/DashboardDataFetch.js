@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="comments">댓글 ${post.comments_count}</span>
                         <span class="views">조회수 ${post.views}</span>
                     </span>
-                    <time class="date">${post.created_date}</time>
+                    <time class="date">${post.created_at}</time>
                 </div>
             </div>
             </a>
