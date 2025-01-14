@@ -1,15 +1,11 @@
 import { API_URL } from '/config/constants.js';
 
 document.getElementById('AddPostButton').addEventListener('click', async () => {
-    const user_id = localStorage.getItem('user_id');
-    const name = localStorage.getItem('name');
     const title = document.getElementById('title').value;
     const content = document.getElementById('content').value;
     const imageInput = document.getElementById('image'); // value가 아닌 element 자체를 가져옴
 
     const formData = new FormData();
-    formData.append('user_id', user_id);
-    formData.append('name', name);
     formData.append('title', title);
     formData.append('content', content);
     if (imageInput.files[0]) formData.append('image', imageInput.files[0]);

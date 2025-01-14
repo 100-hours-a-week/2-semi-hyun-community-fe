@@ -30,13 +30,9 @@ LoginButton.addEventListener('click', async () => {
         const result = await response.json();
 
         if (response.status === 200){
-            //이름 로컬 스토리지에 저장
-            localStorage.setItem('name', result.data.name);
-            //FIXME : 로컬스토리지 -> 세션 구현 했으므로 저장x.user_id 필요한 부분 서버에서 사용
-            localStorage.setItem('user_id', result.data.user_id);
 
-
-            alert(result.data.name+"님 안녕하세요");
+            alert(result.name+"님 안녕하세요");
+            // alert("안녕하세요");
             
             //인증처리는? -> 미들웨어로
             window.location.href = '/posts';
