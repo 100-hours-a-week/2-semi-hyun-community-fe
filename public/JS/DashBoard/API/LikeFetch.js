@@ -2,6 +2,9 @@ import { API_URL,urlUtils } from '/config/constants.js';
 const likeButton = document.querySelector('.likeNum-btn');
 
 let currentLikes = 0;
+
+//(+) 좋아요를 눌렀는지 취소했는지 확인
+let isLike = false;
 let isInitialized = false;
 
 const post_id = urlUtils.getPostId();
@@ -11,27 +14,6 @@ const initializeLikes = () => {
         currentLikes = parseInt(likeButton.textContent.split(' ')[1]) || 0;
         isInitialized = true;
         console.log('초기 좋아요:', currentLikes);
-    }
-}
-
-const likeClick = async () => {
-    // click시 좋아요 초기화
-    initializeLikes();
-
-    const previousLikes = currentLikes;
-    likeButton.classList.toggle('active');
-
-    // 누르면 클라이언트에서 먼저 바꾸기
-    currentLikes += likeButton.classList.contains('active') ? 1 : -1;
-    likeButton.textContent = `좋아요 ${currentLikes}`;
-
-    // Update(24.12.02): 버튼을 누르면 바로 서버에 반영 
-    try {
-        await patchLike();
-    } catch(error) {
-        // 에러 발생 시 상태 복구
-        currentLikes = previousLikes;
-        likeButton.textContent = `좋아요 ${currentLikes}`;
     }
 }
 
@@ -50,7 +32,7 @@ const patchLike = async () => {
             headers :{'Content-Type': 'application/json'},
             //NOTE : JSON.stringify를 보낼때 {}객체형태로 보낸다.
             //NOTE : 클라이언트 - 서버 간 데이터 key 이름을 일치시켜야한다.
-            body : JSON.stringify({likes : currentLikes})
+            body : JSON.stringify({likes : isLike})
         });
 
         // 성공 아닐 경우
@@ -63,6 +45,36 @@ const patchLike = async () => {
         throw error; //에러 상위로 전파
     }
 }
+
+const likeClick = async () => {
+
+    // click시 좋아요 초기화
+    initializeLikes();
+    
+    const previousLikes = currentLikes;
+    const previousState = isLike;
+
+    // 누르면 클라이언트에서 먼저 바꾸기
+    // 좋아요 상태 전환
+    likeButton.classList.toggle('active');
+    isLike = likeButton.classList.contains('active');
+    currentLikes += isLike ? 1 : -1;
+    likeButton.textContent = `좋아요 ${currentLikes}`;
+
+
+    // Update(24.12.02): 버튼을 누르면 바로 서버에 반영 (좋아요를 가져오지는 않는다?)
+    try {
+        await patchLike();
+    } catch(error) {
+        // 에러 발생 시 상태 복구
+        likeButton.classList.toggle('active', previousState);
+        isLike = previousState;
+        currentLikes = previousLikes;
+        likeButton.textContent = `좋아요 ${currentLikes}`;
+        alert('좋아요 업데이트에 실패했습니다. 다시 시도해주세요.');
+    }
+}
+
 
 // 좋아요 토글 함수
 likeButton.addEventListener('click', likeClick);
