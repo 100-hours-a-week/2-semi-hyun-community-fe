@@ -10,7 +10,7 @@ const postDataLoad = async () => {
         const response = await fetch(`${API_URL}/posts/${post_id}/data`, {
             credentials: 'include'
         });
-        const post = await response.json();
+        const result = await response.json();
 
         if (!response.ok) {
             if (response.status === 401) {
@@ -45,35 +45,43 @@ const postDataLoad = async () => {
         };
 
         // HTML 요소 업데이트
-        elements.title.textContent = post.title;
-        elements.authorName.textContent = post.name;
-        elements.content.textContent = post.content;
+        elements.title.textContent = result.post.title;
+        elements.authorName.textContent = result.post.name;
+        elements.content.textContent = result.post.content;
 
         // 프로필 이미지 가져오기
-        const { image: profileImage } = await fetch(`${API_URL}/users/${post.user_id}/profile`, {
+        const { image: profileImage } = await fetch(`${API_URL}/users/${result.post.user_id}/profile`, {
             credentials: 'include'
         }).then(res => res.json());
         
         elements.authorImg.src = `${BASE_URL}/images/profile/${profileImage}`;
 
         // 게시글 이미지 처리
-        if (post.image) {
-            elements.postImg.src = `${BASE_URL}/images/${post.image}`;
+        if (result.post.image) {
+            elements.postImg.src = `${BASE_URL}/images/${result.post.post_image}`;
             elements.postImg.style.display = 'block';
         } else {
             elements.postImg.style.display = 'none';
         }
 
+        console.log('눌려있음',result.is_liked);
+        // 좋아요 누름 여부 표시
+        if(result.is_liked){
+            elements.likeBtn.classList.toggle('active');
+            
+        }
         // 메타 정보 업데이트
-        elements.likeBtn.textContent = `좋아요 ${post.likes}`;
-        elements.commentBtn.textContent = `댓글 ${post.comments_count}`;
-        elements.viewBtn.textContent = `조회수 ${post.views}`;
+        elements.likeBtn.textContent = `좋아요 ${result.post.likes}`;
+        elements.commentBtn.textContent = `댓글 ${result.post.comments_count}`;
+        elements.viewBtn.textContent = `조회수 ${result.post.views}`;
+
+        //NOTE: comment 테이블에서 가져옴
 
         // 댓글 목록 렌더링
         elements.commentList.innerHTML = ''; //기존 댓글 초기화
 
         // Promise.all을 사용하여 병렬로 프로필 정보 가져오기
-        await Promise.all(post.comments.map(async comment => {
+        await Promise.all(result.comment.map(async comment => {
             const { image: commentProfileImage } = await fetch(`${API_URL}/users/${comment.user_id}/profile`, {
                 credentials: 'include'
             }).then(res => res.json());
@@ -85,7 +93,7 @@ const postDataLoad = async () => {
                 <div class="account-info">
                     <img class="account-img" src=${BASE_URL}/images/profile/${commentProfileImage} alt="작성자">
                     <span class="account-name">${comment.name}</span>
-                    <span class="comment-date">${comment.created_date}</span>
+                    <span class="comment-date">${comment.created_at}</span>
                 </div>
                 <span id="comment-content" class="comment-content">${comment.content}</span>
                 <div class="comment-btn">
