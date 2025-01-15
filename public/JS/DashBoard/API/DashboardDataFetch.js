@@ -21,37 +21,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         //게시글 조회목록 렌더링
         const postList = document.querySelector('#post-container');
 
-        await Promise.all(posts.map(async post => {
-            //FIXME: 추후 수정 필요
-            //사용자 프로필 정보 가져오기
-            const profileResponse = await fetch(`${API_URL}/users/${post.user_id}/profile`,{
-                credentials : 'include'
-            });
-            const profile = await profileResponse.json();
-
+        posts.forEach(post => {
             const postItem = document.createElement('article');
-            postItem.className = 'post-list'; //<article class="post-list"></article>
+            postItem.className = 'post-list';
             postItem.innerHTML = `
-            <a href="/posts/${post.post_id}">
-            <div class="post-title">
-                <h2>${post.title}</h2>
-                <div class="post-meta">
+              <a href="/posts/${post.post_id}">
+                <div class="post-title">
+                  <h2>${post.title}</h2>
+                  <div class="post-meta">
                     <span class="stats">
-                        <span class="likes">좋아요 ${post.likes}</span>
-                        <span class="comments">댓글 ${post.comments_count}</span>
-                        <span class="views">조회수 ${post.views}</span>
+                      <span class="likes">좋아요 ${post.likes}</span>
+                      <span class="comments">댓글 ${post.comments_count}</span>
+                      <span class="views">조회수 ${post.views}</span>
                     </span>
                     <time class="date">${post.created_at}</time>
+                  </div>
                 </div>
-            </div>
-            </a>
-            <div class="author-info">
-                <img class="account-img" src=${BASE_URL}/images/profile/${profile.image} alt="작성자" >
+              </a>
+              <div class="author-info">
+                <img class="account-img" src="${BASE_URL}/images/profile/${post.profile_image}" alt="작성자">
                 <span class="author-name">${post.name}</span>
-            </div>
+              </div>
             `;
             postList.appendChild(postItem);
-        }));
+          });
+          
 
         //게시글 목록이 있을 경우 list-empty 비활성화
         //FIX: foreach 내부 비동기 작업을 기다리지 않고 실행된다.

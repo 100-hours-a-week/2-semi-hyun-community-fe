@@ -36,7 +36,7 @@ const postDataLoad = async () => {
             title: document.querySelector('h2'),
             authorName: document.querySelector('.account-name'),
             content: document.querySelector('.post-content'),
-            authorImg: document.getElementById('post-author-img'),
+            profileImg: document.getElementById('post-author-img'),
             postImg: document.querySelector('.post-img'),
             likeBtn: document.querySelector('.likeNum-btn'),
             commentBtn: document.querySelector('.commentNum-btn'),
@@ -48,23 +48,16 @@ const postDataLoad = async () => {
         elements.title.textContent = result.post.title;
         elements.authorName.textContent = result.post.name;
         elements.content.textContent = result.post.content;
-
-        // 프로필 이미지 가져오기
-        const { image: profileImage } = await fetch(`${API_URL}/users/${result.post.user_id}/profile`, {
-            credentials: 'include'
-        }).then(res => res.json());
-        
-        elements.authorImg.src = `${BASE_URL}/images/profile/${profileImage}`;
+        elements.profileImg.src = `${BASE_URL}/images/profile/${result.post.profile_image}`;
 
         // 게시글 이미지 처리
-        if (result.post.image) {
+        if (result.post.post_image) {
             elements.postImg.src = `${BASE_URL}/images/${result.post.post_image}`;
             elements.postImg.style.display = 'block';
         } else {
             elements.postImg.style.display = 'none';
         }
 
-        console.log('눌려있음',result.is_liked);
         // 좋아요 누름 여부 표시
         if(result.is_liked){
             elements.likeBtn.classList.toggle('active');
@@ -80,18 +73,14 @@ const postDataLoad = async () => {
         // 댓글 목록 렌더링
         elements.commentList.innerHTML = ''; //기존 댓글 초기화
 
-        // Promise.all을 사용하여 병렬로 프로필 정보 가져오기
-        await Promise.all(result.comment.map(async comment => {
-            const { image: commentProfileImage } = await fetch(`${API_URL}/users/${comment.user_id}/profile`, {
-                credentials: 'include'
-            }).then(res => res.json());
+        result.comment.forEach(comment =>{
 
             const commentItem = document.createElement('li');
             commentItem.className = 'comment-item';
             commentItem.dataset.commentId = comment.comment_id;
             commentItem.innerHTML = `
                 <div class="account-info">
-                    <img class="account-img" src=${BASE_URL}/images/profile/${commentProfileImage} alt="작성자">
+                    <img class="account-img" src=${BASE_URL}/images/profile/${comment.profile_image} alt="작성자">
                     <span class="account-name">${comment.name}</span>
                     <span class="comment-date">${comment.created_at}</span>
                 </div>
@@ -101,8 +90,9 @@ const postDataLoad = async () => {
                     <button id="comment-delete-btn" class="delete-btn">삭제</button>
                 </div>
             `;
+
             elements.commentList.appendChild(commentItem);
-        }));
+        });
 
     } catch (error) {
         console.error('Error:', error);
