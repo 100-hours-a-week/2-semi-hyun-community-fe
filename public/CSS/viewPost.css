@@ -39,6 +39,9 @@
     max-width: 360px;
     background-color: #F4F5F7;
     /* text-align: center; */
+    /* 줄바꿈과 공백을 보존 + 자동 줄바꿈 적용 */
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 /* 좋아요,댓글,조회수 */
