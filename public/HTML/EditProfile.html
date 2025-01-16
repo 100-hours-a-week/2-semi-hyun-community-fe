@@ -10,7 +10,7 @@
 <body>
     <header class = "header">
         <div class="back-button">
-            <button onclick="window.location.href='/posts'">◀</button>
+            <button id="back-button">◀</button>
         </div>
         <h1>아무 말 대잔치</h1>
         <div class = "profile-icon-dropdown">
@@ -53,15 +53,15 @@
 
     <button type="button" id= "editUserButtonToast" class="create-button" onclick="">수정완료</button>
 </main>
-<script type = "module" src = "/JS/Login/API/LogoutFetch.js"></script>
-<script type = "module" src = "/JS/Users/API/deleteUserFetch.js"></script>
 <script type = "module" src = "/JS/Users/API/getHeaderImage.js"></script>
+<script type = "module" src = "/JS/DashBoard/features/BackButton.js"></script>
 <script type = "module" src = "/JS/Users/API/getUserData.js"></script>
 <script type = "module" src = "/JS/Users/API/patchUserData.js"></script>
+<script type = "module" src = "/JS/Users/API/deleteUserFetch.js"></script>
+<script src="/JS/Users/features/ProfileImage.js"></script>
 <script type="module" src="/JS/Login/features/ValidationState.js"></script>
+<script type="module" src="/JS/Users/features/EnableEditButton.js"></script>
 <script type="module" src="/JS/Login/features/NameCheck.js"></script>
 <script type="module" src="/JS/Login/API/checkNameDuplicate.js"></script>
-<script type="module" src="/JS/Users/features/EnableEditButton.js"></script>
-<script src="/JS/Users/features/ProfileImage.js"></script>
-
+<script type = "module" src = "/JS/Login/API/LogoutFetch.js"></script>
 </body>

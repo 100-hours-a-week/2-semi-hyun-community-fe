@@ -10,7 +10,7 @@
 <body>
     <header class = "header">
         <div class="back-button">
-            <button onclick="window.location.href='/posts'">◀</button>
+            <button id="back-button">◀</button>
         </div>
         <h1>아무 말 대잔치</h1>
         <div class = "profile-icon-dropdown">
@@ -89,6 +89,7 @@
         </section>
     </main>
     <script type = "module" src = "/JS/Users/API/getHeaderImage.js"></script>
+    <script type = "module" src = "/JS/DashBoard/features/BackButton.js"></script>
     <script type = "module" src = "/JS/DashBoard/API/ViewPostFetch.js"></script>
     <script type = "module" src = "/JS/DashBoard/API/DeletePostFetch.js"></script>
     <script type = "module" src = "/JS/DashBoard/API/CommentFetch.js"></script>
