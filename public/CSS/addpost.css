@@ -32,7 +32,7 @@
 
 .title p,
 .context p,
-.image p {
+.post-image p {
     margin: 0 0 5px 0;
     text-align: left;
     font-weight: bold;
@@ -75,6 +75,51 @@
     background-color : #ACA0EB;
     /* background-color: #7F6AEE; */
 }
+
+/* 이미지  프리뷰 컨테이너 */
+.post-image-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;    /* 컨테이너 자체를 가운데 정렬 */
+    padding: 5px;
+
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    width: fit-content;
+}
+
+/* 삭제 버튼 */
+#delete-button {
+    display: block;
+    margin-left: auto;      /* 버튼을 오른쪽으로 정렬 */
+    margin-bottom: 5px;     /* 이미지와의 간격 */
+    cursor: pointer;
+    padding: 0;
+}
+
+#delete-button:hover {
+    background-color: #aaaaaa;
+    transform: scale(1.1);
+}
+
+/* 이미지 영역 */
+#current-img {
+    max-width: 300px;
+    max-height: 300px;
+    display: block;
+    margin: 0 auto;         /* 이미지 가운데 정렬 */
+    object-fit: contain;
+}
+
+
 
 /* .title{
     display:flex;

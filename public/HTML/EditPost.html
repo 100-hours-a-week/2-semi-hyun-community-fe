@@ -41,10 +41,14 @@
                     </div>
                 </section>
             
-                <section class = "image">
-                    <p>이미지</p>
+                <section class = "post-image">
+                    <p>게시글 이미지</p>
+                    <div class="post-image-container" id="image-preview-container" style="display: none;">
+                        <button type="button" id="delete-button">❌</button>
+                        <img id="current-img" alt="현재 이미지">
+                    </div>
                     <div class="image-input">
-                        <input type="file" id="image" accept="image/*">
+                        <input type="file" id="image" accept="image/jpeg,image/png,image/gif">
                         <span id="file-name">선택한 이미지 없음</span>
                     </div>
                 </section>
@@ -56,7 +60,7 @@
     <script type = "module" src = "/JS/Users/API/getHeaderImage.js"></script>
     <script type = "module" src = "/JS/DashBoard/features/BackButton.js"></script>
     <script type = "module" src = "/JS/DashBoard/API/PatchPostFetch.js"></script>
-    <script src="/JS/DashBoard/features/AddPostFunction.js"></script>
+    <script src = "/JS/DashBoard/features/PostFunction.js"></script>
     <script type = "module" src = "/JS/Login/API/LogoutFetch.js"></script>
 </body>
 

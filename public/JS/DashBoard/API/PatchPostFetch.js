@@ -1,35 +1,47 @@
-import { API_URL } from '/config/constants.js';
-const PatchButton = document.getElementById('patch-button');
+import { BASE_URL, API_URL } from '/config/constants.js';
 
 // 경로에서 post_id 추출 - 구조분해할당 활용
 const [, , post_id] = window.location.pathname.split('/').slice(0, -1);
+
+//기존 이미지 삭제 여부
+let isImageDeleted = false;
+
+const elements = {
+    title: document.getElementById('title'),
+    content: document.getElementById('content'),
+    imageInput: document.getElementById('image'),
+    fileName: document.getElementById('file-name'),
+    currentImg : document.getElementById('current-img'),
+    currentImgContainer: document.getElementById('image-preview-container'),
+    deleteButton: document.getElementById('delete-button'),
+    patchButton: document.getElementById('patch-button')
+};
 
 // 수정 페이지에 데이터 표시
 const loadPatchPost = async () => {
     try {    
         // 게시글 데이터 가져오기
-        const response = await fetch(`${API_URL}/posts/${post_id}/data`, {
+        const response = await fetch(`${API_URL}/posts/${post_id}/edit-data`, {
             credentials: 'include'
         });
         const post = await response.json();
 
-        // 객체 구조분해할당으로 필요한 데이터 추출
-        const { title, content, image } = post;
+        if(!response.ok){
+            alert('게시글 목록 가져오기를 실패했습니다');
+        }
 
-        // DOM 요소 한번에 가져오기
-        const elements = {
-            title: document.getElementById('title'),
-            content: document.getElementById('content'),
-            fileName: document.getElementById('file-name')
-        };
+        // 객체 구조분해할당으로 필요한 데이터 추출
+        const { title, content, post_image } = post;
 
         // 데이터 표시
         elements.title.value = title;
         elements.content.value = content;
         
-        if(image) {
-            const imageName = image.split('/').pop();// 파일 경로에서 파일명만 추출
-            elements.fileName.textContent = `현재 이미지: ${imageName}`;
+        if(post_image) {
+            elements.fileName.textContent = `현재 이미지: ${post_image}`;
+            elements.currentImgContainer.style.display = 'block';
+            elements.currentImg.src = `${BASE_URL}/images/${post_image}`;
+            
         }
 
     } catch(error) {
@@ -37,22 +49,53 @@ const loadPatchPost = async () => {
     }
 };
 
+// 이미지 삭제
+const DeleteImage = () => {
+
+    elements.currentImgContainer.style.display = 'none';
+    elements.fileName.textContent = '선택한 이미지 없음';
+    elements.imageInput.value = '';
+    isImageDeleted = true;
+
+};
+
+// 이미지 표시
+const ShowImage = () => {
+
+    const file = elements.imageInput.files[0];
+    elements.currentImgContainer.style.display = 'block';
+
+    if(file){
+        if (!file.type.match('image.*')) {
+            alert('이미지 파일만 업로드 가능합니다.');
+            elements.imageInput.value = '';
+            elements.fileName.textContent = '선택한 이미지 없음';
+
+            return;
+        }
+        const reader = new FileReader();
+        elements.fileName.textContent = `현재 이미지: ${file.name}`;
+
+        reader.onload = (e) => {
+            elements.currentImg.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+
+}
+
 // 수정 요청 -> 수정 완료 후 게시글 표시로 이동
 const patchPost = async () => {
     try {
-        // DOM 요소 한번에 가져오기
-        const elements = {
-            title: document.getElementById('title'),
-            content: document.getElementById('content'),
-            image: document.getElementById('image') // value가 아닌 element 자체를 가져옴
-        };
-
         const formData = new FormData();
         formData.append('title', elements.title.value);
         formData.append('content', elements.content.value);
+
+        // 이미지 삭제 여부 전송
+        formData.append('isImageDeleted', isImageDeleted);
         
-        if(elements.image.files[0]) {
-            formData.append('image', elements.image.files[0]); //실제객체
+        if(elements.imageInput.files[0]) {
+            formData.append('image', elements.imageInput.files[0]); //실제객체
         }
 
         const response = await fetch(`${API_URL}/posts/${post_id}`, {
@@ -77,4 +120,6 @@ const patchPost = async () => {
 
 // 이벤트 리스너
 document.addEventListener('DOMContentLoaded', loadPatchPost);
-PatchButton.addEventListener('click', patchPost);
+elements.deleteButton.addEventListener('click', DeleteImage);
+elements.imageInput.addEventListener('change', ShowImage);
+elements.patchButton.addEventListener('click', patchPost);
