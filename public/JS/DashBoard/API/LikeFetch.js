@@ -1,4 +1,6 @@
 import { API_URL,urlUtils } from '/config/constants.js';
+import { playLikeAnimation } from '/JS/DashBoard/features/AnimationLottie.js';
+
 const likeButton = document.querySelector('.likeNum-btn');
 
 let currentLikes = 0;
@@ -55,10 +57,13 @@ const likeClick = async () => {
     const previousState = isLike;
 
     // 누르면 클라이언트에서 먼저 바꾸기
-    // 좋아요 상태 전환
+    // 좋아요 상태 전환 + 애니메이션 실행
     likeButton.classList.toggle('active');
     isLike = likeButton.classList.contains('active');
     currentLikes += isLike ? 1 : -1;
+    if(isLike) {
+        playLikeAnimation();
+    }
     likeButton.textContent = `좋아요 ${currentLikes}`;
 
 

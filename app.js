@@ -19,7 +19,7 @@ app.use(helmet({
     contentSecurityPolicy :{
       directives: {
         "default-src" :["'self'"],
-        "script-src" :["'self'", "'unsafe-inline'"], //js를 불러올 때
+        "script-src" :["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"], //js를 불러올 때 + 도메인 레벨로 설정
         "style-src" :["'self'", "'unsafe-inline'"], //css 파일을 불러올 떄
         "img-src" :["'self'", "data:", "http://localhost:3000"], //이미지를 불러올때
         "connect-src":["'self'", "http://localhost:3000"] //API 요청
