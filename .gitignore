@@ -3,6 +3,7 @@
 ## search keyword: javascript vscode .gitignore file example
 
 #(+)24.11.18  test 폴더는 제외
+
 test/
 # User-specific files
 *.suo
@@ -200,3 +201,7 @@ FakesAssemblies/
 
 community/data/login.json
 community/data/posts.json
+
+.env
+
+arc
