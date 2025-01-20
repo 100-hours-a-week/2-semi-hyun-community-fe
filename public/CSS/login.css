@@ -116,27 +116,13 @@
     cursor: pointer;
 }
 
-/* 기본 폰트 스타일 */
-.font-default{
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 48px;
-    color: #000000;
-}
 
 .font-button{
-    font-family: 'Inter', sans-serif;
+    font-family: 'HeaderFont','Inter', sans-serif;
     font-weight: 300;
     font-size: 24px;
     line-height: 48px;
     color: #FFFFFF;
-}
-
-.font-highlight {
-    font-family: 'Courier New', monospace;
-    font-size: 18px;
-    color: #6C6C6C;
 }
 
 /* 기본 박스 스타일 */

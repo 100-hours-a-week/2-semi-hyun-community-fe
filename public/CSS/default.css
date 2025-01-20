@@ -1,4 +1,6 @@
-/* 1. root
+/* 
+   0. font 설정
+   1. root
    2. body
    3, header (상단바)
    4. a
@@ -6,6 +8,29 @@
    6. 에러 메시지
    7. 뒤로가기
    */
+
+/* 0. font 설정 */
+@font-face {
+    font-family: 'HeaderFont';
+    src: url('../Font/Moneygraphy-Pixel.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* 기본 폰트 스타일 */
+.font-default{
+    font-family: 'HeaderFont', sans-serif;
+    font-size: 18px;
+    line-height: 48px;
+    color: #000000;
+}
+
+.font-highlight {
+    font-family: 'HeaderFont', monospace;
+    font-size: 18px;
+    color: #6C6C6C;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,8 +39,20 @@
 }
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "HeaderFont", sans-serif;
     background-color: #F4F5F7;
+}
+
+/* 폼 요소들의 폰트 상속 설정 */
+button{
+    font-family: inherit;
+}
+
+input,
+select,
+textarea{
+    font-family: inherit;
+    font-weight: 100;
 }
 
 .header{
@@ -33,6 +70,7 @@ body {
 
 /* 절대 위치에 고정 */
 .header h1 {
+    font-family: 'HeaderFont'; /* 헤더 폰트 설정 */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
