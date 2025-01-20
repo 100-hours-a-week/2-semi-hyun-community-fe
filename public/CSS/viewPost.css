@@ -38,7 +38,8 @@
     width : 100%;
     max-width: 360px;
     background-color: #F4F5F7;
-    /* text-align: center; */
+    
+
     /* 줄바꿈과 공백을 보존 + 자동 줄바꿈 적용 */
     white-space: pre-wrap;
     word-break: break-word;
@@ -116,6 +117,16 @@ fieldset{
 .write-area{
     height: 80px;
 }
+
+.comment-content{
+    margin-top: 15px;
+    margin-left: 5px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    
+}
+
+/* 댓글 작성란 */
 .comment-text{
     position: relative;
     border: none;

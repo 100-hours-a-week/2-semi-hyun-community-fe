@@ -77,6 +77,7 @@ const postDataLoad = async () => {
 
             const commentItem = document.createElement('li');
             commentItem.className = 'comment-item';
+            // 댓글 아이디 저장
             commentItem.dataset.commentId = comment.comment_id;
             commentItem.innerHTML = `
                 <div class="account-info">
@@ -84,7 +85,7 @@ const postDataLoad = async () => {
                     <span class="account-name">${comment.name}</span>
                     <span class="comment-date">${comment.created_at}</span>
                 </div>
-                <span id="comment-content" class="comment-content">${comment.content}</span>
+                <div id="comment-content" class="comment-content">${comment.content}</div>
                 <div class="comment-btn">
                     <button id="comment-edit-btn" class="edit-btn">수정</button>
                     <button id="comment-delete-btn" class="delete-btn">삭제</button>
