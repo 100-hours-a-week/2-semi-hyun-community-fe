@@ -65,7 +65,7 @@ const postDataLoad = async () => {
         }
         // 메타 정보 업데이트
         elements.likeBtn.textContent = `좋아요 ${result.post.likes}`;
-        elements.commentBtn.textContent = `댓글 ${result.post.comments_count}`;
+        elements.commentBtn.textContent = `댓글 ${result.post.comments}`;
         elements.viewBtn.textContent = `조회수 ${result.post.views}`;
 
         //NOTE: comment 테이블에서 가져옴
