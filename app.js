@@ -15,19 +15,19 @@ const __dirname = path.dirname(__filename);
 
 
 //FIXME: .env파일에 넣기
-app.use(helmet({
-    contentSecurityPolicy: {
-      directives: {
-        "default-src" :["'self'","http:"],
-        "script-src" :["'self'", "'unsafe-inline'", "http:", "https://cdnjs.cloudflare.com"], //js를 불러올 때 + 도메인 레벨로 설정
-        "style-src" :["'self'", "http:", "'unsafe-inline'"], //css 파일을 불러올 떄
-        "img-src" :["'self'", "data:", "http://localhost:3000"], //이미지를 불러올때
-        "connect-src":["'self'", "http://localhost:3000"] //API 요청
-    }
-    },
-    hsts: false, // HTTPS 강제를 비활성화
-    crossOriginOpenerPolicy: false, // COOP 비활성화
-}));
+// app.use(helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         "default-src" :["'self'","http:"],
+//         "script-src" :["'self'", "'unsafe-inline'", "http:", "https://cdnjs.cloudflare.com"], //js를 불러올 때 + 도메인 레벨로 설정
+//         "style-src" :["'self'", "http:", "'unsafe-inline'"], //css 파일을 불러올 떄
+//         "img-src" :["'self'", "data:", "http://localhost:3000"], //이미지를 불러올때
+//         "connect-src":["'self'", "http://localhost:3000"] //API 요청
+//     }
+//     },
+//     hsts: false, // HTTPS 강제를 비활성화
+//     crossOriginOpenerPolicy: false, // COOP 비활성화
+// }));
 
 //cors 설정
 app.use(cors(CORS_OPTIONS));
