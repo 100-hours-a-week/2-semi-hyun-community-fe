@@ -119,3 +119,18 @@ body {
 
 }
 
+#loading-animation-container{
+    width: 100px;
+    height: 100px;
+    display: none;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* text-align: center; */
+}
+
+#loading-animation-container.active{
+    display: block;
+}
