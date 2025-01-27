@@ -1,5 +1,5 @@
 import express from 'express';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import cors from 'cors';
 import path from 'path';
 import {fileURLToPath} from 'url';
@@ -14,18 +14,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
-//FIXME: .env파일에 넣기
-app.use(helmet({
-    contentSecurityPolicy :{
-      directives: {
-        "default-src" :["'self'"],
-        "script-src" :["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"], //js를 불러올 때 + 도메인 레벨로 설정
-        "style-src" :["'self'", "'unsafe-inline'"], //css 파일을 불러올 떄
-        "img-src" :["'self'", "data:", "http://localhost:3000"], //이미지를 불러올때
-        "connect-src":["'self'", "http://localhost:3000"] //API 요청
-    }
-    }
-}));
+// Commented out to debug the function behaviors
+// app.use(helmet({
+//     contentSecurityPolicy :{
+//       directives: {
+//         "default-src" :["'self'"],
+//         "script-src" :["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"], //js를 불러올 때 + 도메인 레벨로 설정
+//         "style-src" :["'self'", "'unsafe-inline'"], //css 파일을 불러올 떄
+//         "img-src" :["'self'", "data:", "http://localhost:3000"], //이미지를 불러올때
+//         "connect-src":["'self'", "http://localhost:3000"] //API 요청
+//     }
+//     }
+// }));
 
 //cors 설정
 app.use(cors(CORS_OPTIONS));
