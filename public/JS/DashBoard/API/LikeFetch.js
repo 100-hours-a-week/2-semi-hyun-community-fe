@@ -1,5 +1,5 @@
 import { API_URL,urlUtils } from '/config/constants.js';
-import { playLikeAnimation } from '/JS/DashBoard/features/AnimationLottie.js';
+import { playLikeAnimation } from '/JS/DashBoard/features/AnimationLike.js';
 
 const likeButton = document.querySelector('.likeNum-btn');
 
