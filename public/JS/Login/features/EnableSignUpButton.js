@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         if(emailValid && nameValid && passwordValid){
             signupButton.disabled = false;
-            signupButton.style.backgroundColor = '#1a3370';
+            signupButton.style.backgroundColor = '#22428C';
             signupButton.classList.add('active'); // 활성화 스타일 추가
         } else{
             signupButton.disabled = true;
-            signupButton.style.backgroundColor = '#22428C';
+            signupButton.style.backgroundColor = '#5B73AC';
             signupButton.classList.remove('active'); // 활성화 스타일 제거
         }
 
