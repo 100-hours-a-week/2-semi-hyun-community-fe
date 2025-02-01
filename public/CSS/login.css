@@ -68,11 +68,11 @@
 }
 
 .profile-img-container:hover{
-    background-color: var(--btn-background-color);;
+    background-color: var(--gray-hover);;
 }
 .profile-img-container:hover .change-button {
     display: block;
-    background-color: var(--btn-background-color);;   
+    background-color: var(--bg-white);
 }
 
 /* 버튼 스타일 */
