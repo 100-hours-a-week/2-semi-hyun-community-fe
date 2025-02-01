@@ -43,7 +43,7 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: var(--btn-background-color);
+    background-color: var(--bg-pink);
     min-width: 85px;
     top: 100%;             /* 프로필 이미지 바로 아래에 위치 */
     right: 0;              /* 오른쪽 정렬 */    
@@ -63,5 +63,5 @@
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd; /* 마우스를 올렸을 때 배경색을 변경합니다 */
+    background-color: var(--gray-hover); /* 마우스를 올렸을 때 배경색을 변경합니다 */
 }

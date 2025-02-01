@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         if(nameValid){
             editButton.disabled = false;
-            editButton.style.backgroundColor = '#7F6AEE';
+            editButton.style.backgroundColor = '#1a3370';
             editButton.classList.add('active'); // 활성화 스타일 추가
         } else{
             editButton.disabled = true;
-            editButton.style.backgroundColor = '#ACA0EB';
+            editButton.style.backgroundColor = '#22428C';
             editButton.classList.remove('active'); // 활성화 스타일 제거
         }
 

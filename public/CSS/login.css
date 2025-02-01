@@ -30,7 +30,7 @@
     width: 100%;
     height: 33px;
     padding: 0 10px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px var(--gray-light);  /* 중간 톤 핑크 */
     border-radius: 5px;
     margin-bottom: var(--spacing-xs);
 }
@@ -80,8 +80,8 @@
     display : flex;
     justify-content: center;
     width: 50%;
-    background-color: var(--primary-color);
-    color : #FFFFFF;
+    background-color: var(--btn-background);
+    color : var(--white);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -93,6 +93,6 @@
     font-weight: 300;
     font-size: 24px;
     line-height: 48px;
-    color: #FFFFFF;
+    color: var(--white);
     margin: var(--spacing-sm) 0;
 }
