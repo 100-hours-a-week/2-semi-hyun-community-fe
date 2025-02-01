@@ -1,3 +1,7 @@
+.content {
+    min-height: auto;
+}
+
 /* 인트로 section */
 .intro{
     display:flex;

@@ -9,6 +9,7 @@
     --gray-light: #d090a0;        /* 중간 톤 핑크 - 부드러운 강조 */
     --font-color: #22428C;        /* 진한 네이비 블루 - 주요 텍스트 */
     --font-grey : #505050;
+    --font-black : #000000;
     
     /* Additional UI Colors */
     --white: #FFFFFF;             /* 순수 흰색 */
@@ -22,12 +23,13 @@
     /* Border Colors */
     --border-light: #d090a0;     /* 중간 톤 핑크 - 연한 테두리 */
     --border-color: #4A64A1;     /* 중간 톤 블루 - 진한 테두리 */
+    --border-line: #A13D5C;
     
     /* Button Colors */
-    --btn-background: #22428C;
+    --btn-background: #5B73AC;
     --btn-disabled: #B8C2D9;     /* 연한 블루그레이 - 비활성화 버튼 */
-    --btn-hover: #4A64A1;        /* 중간 톤 블루 - 호버 버튼 */
-    --btn-active: #1a3370;       /* 진한 네이비 - 활성화 버튼 */
+    --btn-hover: #7188C4;        /* 중간 톤 블루 - 호버 버튼 */
+    --btn-active: #22428C;       /* 진한 네이비 - 활성화 버튼 */
     
     /* Highlight Colors */
     --highlight-hover: #e3c4d2;  /* 연한 핑크로 대체 - 하이라이트 */
