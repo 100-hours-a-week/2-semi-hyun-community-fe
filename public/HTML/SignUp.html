@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang = "ko">
+<html lang="ko">
 <head>
-    <meta charset = "UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <link rel = "stylesheet" href = "/CSS/default.css"> 
-    <link rel = "stylesheet" href = "/CSS/login.css">
+    <link rel="stylesheet" href="/CSS/variables.css">
+    <link rel="stylesheet" href="/CSS/default.css">
+    <link rel="stylesheet" href="/CSS/login.css">
 </head>
 <body>
-    <div class="container">
-        <div class = "header">
-            <h1>회원가입</h1>
-        </div>
-        
+    <header class="header">
+        <h1>회원가입</h1>
+    </header>
+    <main class="content">
         <div id="signupForm" class="input-group button-container">
-
             <label for="profile">프로필 사진</label>
             <div id="error-message-profile" class="error-message" class="error-message">프로필 사진을 등록해주세요</div>
             <div class="profile-img-container">
@@ -21,7 +21,6 @@
                 <input type="file" id="profile-img" accept="image/png, image/jpeg" style="display: none;">
                 <button class="change-button">추가</button>
             </div>
-            
 
             <label for="email" class="font-default">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required>
@@ -39,14 +38,12 @@
             <input type="name" id="name" name="name" placeholder="닉네임을 입력하세요" required>
             <div id="error-message-name" class="error-message">닉네임을 입력해주세요</div>
 
-            <button type="button" id= "signupButton" class="create-button">회원가입</button>
-        
-        </div> 
-        <div class = "button-container">
+            <button type="button" id="signupButton" class="create-button">회원가입</button>
+        </div>
+        <div class="button-container">
             <a href="/auth/login">로그인하러 가기</a>
         </div>
-            
-    </div>
+    </main>
     <script type="module" src="/JS/Login/features/ValidationState.js"></script>
     <script type="module" src="/JS/Login/features/NameCheck.js"></script>
     <script type="module" src="/JS/Login/features/EmailCheck.js"></script>
@@ -55,7 +52,6 @@
     <script type="module" src="/JS/Login/API/checkEmailDuplicate.js"></script>
     <script type="module" src="/JS/Login/API/checkNameDuplicate.js"></script>
     <script type="module" src="../JS/Login/features/EnableSignUpButton.js"></script>
-
     <script src="/JS/Users/features/ProfileImage.js"></script>
     <script type="module" src="/JS/Login/API/SignUpFetch.js"></script>
 </body>

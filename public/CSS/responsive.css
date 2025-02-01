@@ -1,0 +1,27 @@
+/* 반응형 디자인 */
+
+@media screen and (max-width: var(--mobile)) {
+    .header {
+        padding: var(--spacing-sm);
+    }
+
+     /* Post 컨테이너 관련 */
+    #post-container {
+        width: 95%;
+        max-width: 500px;
+    }
+    
+    /* 기타 모바일 스타일 */
+    .content {
+        padding: var(--spacing-sm);
+    }
+}
+
+@media screen and (max-width: var(--tablet)) {
+    .header {
+        padding: var(--spacing-sm);
+    }
+    .container {
+        padding-top: 5vh;
+    }
+}

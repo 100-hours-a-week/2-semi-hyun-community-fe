@@ -1,44 +1,11 @@
-/* 기본 스타일 초기화 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* background-color: #F4F5F7; */
-}
-
-body {
-    /* font-family: "Inter", sans-serif; */
-    background-color: #F4F5F7;
-}
-
-/* 헤더 스타일 */
-.header{
-    display:flex;
-    /* justify-content: space-between;  */
-    align-items: center;
-    justify-content: center;
-    padding:20px;
-    background-color: #F4F5F7;
-    border-bottom: 1px solid #696969;
-
-    /* text-align: center; */
-}
-
-/* 컨텐츠 영역 */
-.content {
-    text-align: center;
-    margin: 20px;
-}
-
 /* 인트로 section */
 .intro{
     display:flex;
     flex-direction: column;
     align-items: center; /*중양 정렬*/
+    text-align: center;
     margin-bottom: 20px;
-    /* width: 100%; */
 }
-
 
 .highlight{
     font-weight : bold;
@@ -48,8 +15,8 @@ body {
 .post-header {
     display: flex;
     justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 500px;
     margin: 0 auto;
 }
 
@@ -64,11 +31,16 @@ body {
     font-weight: bold;
 }
 
+#post-container{
+    width : 500px;
+    margin: 0 auto; /* 중앙 정렬을 위해 추가 */
+}
+
 /* 게시글 리스트 */
 .post-list {
     display: flex;
-    width: 80%;
-    max-width: 600px; /* 최대 너비를 800px로 설정 */
+    width: 100%;
+    /* max-width: 500px; 최대 너비를 800px로 설정 */
     justify-content: center;
     flex-direction: column;
     background-color: white;

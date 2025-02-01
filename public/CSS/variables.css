@@ -1,0 +1,26 @@
+:root{
+    /* colors */
+    --primary-color: #ACA0EB;
+    --secondary-color: #7F6AEE;
+    --background-color: #F4F5F7;
+    --gray-light: #ddd;
+    --btn-background-color: #D9D9D9;
+    --font-color: #000000;
+
+    /* 8point gird system 기반 설계 => 8px 단위로 설정 */
+    /* Spacing */
+    --spacing-xs: 0.25rem;  /* 4px */
+    --spacing-sm: 0.5rem;   /* 8px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 1.5rem;   /* 24px */
+    --spacing-xl: 2rem;     /* 32px */
+
+    /* Breakpoints */
+    --mobile : 576px;
+    --tablet : 768px;
+    --desktop : 1024px;
+
+    /* Container */
+    --container-max-width: 1200px;
+    --container-padding: var(--spacing-md);
+}

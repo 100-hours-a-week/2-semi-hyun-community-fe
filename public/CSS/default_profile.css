@@ -1,3 +1,10 @@
+/* 상단 프로필 사진 위치*/
+.profile-icon-dropdown{
+    position: relative;
+    display: flex;           /* flex로 변경 */
+    align-items: center;     /* 세로 중앙 정렬 */    
+}
+
 /* 프로필 사진 + 닉네임*/
 .account-info{
     display: flex;
@@ -28,32 +35,18 @@
     text-align: center;
 }
 
-/* 상단 프로필 사진 위치*/
-.profile-icon-dropdown{
-    position: relative;
-    display: inline-block;
-    margin-top : 10px;
-    /*그냥 margin을 사용하면 제목이 왼쪽으로 밀려난다. 
-    => 제목을 고정한다.*/
-    /* margin-left: 50px; */
-    margin-left: 300px;
-}
-
 
 /* 상단 드롭다운 */
 /* realative: top,right,bottom 속성을 이용해 요소를 이동시킬 수 있다. */
 /* inline-block: 블록 요소처럼 동작하지만 다른 인라인 요소와 함게 한줄 배치 될 수 있게*/
-/* .dropdown {
-
-} */
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #D9D9D9;
+    background-color: var(--btn-background-color);
     min-width: 85px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
-    /*속성의 쌓임 순서 -> 제일 앞에 오도록 */
+    top: 100%;             /* 프로필 이미지 바로 아래에 위치 */
+    right: 0;              /* 오른쪽 정렬 */    
     z-index: 1;
 }
 
