@@ -1,0 +1,53 @@
+:root {
+
+    /* Background Colors */
+    --bg-light: #F2E6EB;         /* 매우 연한 핑크 - 밝은 배경 */
+    --bg-lighter: #F8F0F3;       /* 더 연한 핑크 - 더 밝은 배경 */
+    --bg-white: #FFFFFF;         /* 순수 흰색 - 가장 밝은 배경 */
+    --bg-pink:#e3c4d2;
+    /* UI Colors */
+    --gray-light: #d090a0;        /* 중간 톤 핑크 - 부드러운 강조 */
+    --font-color: #22428C;        /* 진한 네이비 블루 - 주요 텍스트 */
+    --font-grey : #505050;
+    --font-black : #000000;
+    
+    /* Additional UI Colors */
+    --white: #FFFFFF;             /* 순수 흰색 */
+    --black: #22428C;             /* 네이비 블루로 대체 - 부드러운 검정 효과 */
+    --gray: #8896B9;              /* 네이비+그레이 - 중간 톤 텍스트 */
+    --gray-dark: #4A64A1;         /* 중간 톤 블루 - 어두운 텍스트 */
+    --gray-darker: #22428C;       /* 진한 네이비 - 가장 어두운 텍스트 */
+    --gray-hover: #d090a0;        /* 중간 톤 핑크 - 호버 배경 */
+    --error-color: #A13D5C;       /* 어두운 핑크 - 에러 표시 */
+    
+    /* Border Colors */
+    --border-light: #d090a0;     /* 중간 톤 핑크 - 연한 테두리 */
+    --border-color: #4A64A1;     /* 중간 톤 블루 - 진한 테두리 */
+    --border-line: #A13D5C;
+    
+    /* Button Colors */
+    --btn-background: #5B73AC;
+    --btn-disabled: #B8C2D9;     /* 연한 블루그레이 - 비활성화 버튼 */
+    --btn-hover: #7188C4;        /* 중간 톤 블루 - 호버 버튼 */
+    --btn-active: #22428C;       /* 진한 네이비 - 활성화 버튼 */
+    
+    /* Highlight Colors */
+    --highlight-hover: #e3c4d2;  /* 연한 핑크로 대체 - 하이라이트 */
+
+    /* 8point gird system 기반 설계 => 8px 단위로 설정 */
+    /* Spacing */
+    --spacing-xs: 0.25rem;  /* 4px */
+    --spacing-sm: 0.5rem;   /* 8px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 1.5rem;   /* 24px */
+    --spacing-xl: 2rem;     /* 32px */
+
+    /* Breakpoints */
+    --mobile : 576px;
+    --tablet : 768px;
+    --desktop : 1024px;
+
+    /* Container */
+    --container-max-width: 1200px;
+    --container-padding: var(--spacing-md);
+}

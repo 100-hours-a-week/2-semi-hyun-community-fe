@@ -2,7 +2,8 @@ const ValidationState = (()=>{
     const state = {
         email: { isValid: false, isNotDuplicate: false },
         name: { isValid: false, isNotDuplicate: false },
-        password: { isValid: false, isMatch: false }
+        password: { isValid: false, isMatch: false },
+        profile: { isChanged: false }
     };
 
     //상태가 변경될 때 호출할 콜백 함수 저장

@@ -2,19 +2,28 @@
 <html lang = "ko">
 <head>
     <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community</title>
+    <link rel = "stylesheet" href = "/CSS/variables.css"> 
     <link rel = "stylesheet" href = "/CSS/default.css"> 
     <link rel = "stylesheet" href = "/CSS/login.css">
     
 </head>
 <body>
-    <div class="container">
-        <div class = "header">
-            <h1>아무말 대잔치</h1>
-        </div>
-        <!-- <form action="/api/v1/auth/login" method="POST"> -->
-        <div class="form-group">
+    <header class = "header">
+        <h1>아무 말 대잔치</h1>
+    </header>
+    <main class="content">
 
+        <div id="welcome-modal" class="modal">
+            <div class="modal-content">
+                <h4>안녕하세요:></h4>   
+                <p id="welcome-message">방방님</p>
+                <button id="modal-close" class="modal-close">확인</button>
+            </div>
+        </div>
+
+        <div class="form-group">
         <div class="input-group">
             <label for="email" class="font-default">이메일</label>
             <input type="email" id="email" name="email" placeholder="이메일을 입력하세요">
@@ -32,7 +41,7 @@
 
         <a href="/auth/signup">회원가입</a>
             
-    </div>
+    </main>
 
     <script type="module" src="/JS/Login/API/LoginFetch.js"></script>
     <script type="module" src="/JS/Login/features/EmailCheck.js"></script>

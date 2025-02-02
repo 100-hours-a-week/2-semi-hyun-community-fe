@@ -25,6 +25,16 @@
 
 ### 🔒 보안
 - **세션/쿠키 기반 인증** 서버에 사용자 정보를 저장하고, 쿠키를 통해 인증 정보를 전달합니다.
+
+## 📖 실행방법
+``` bash
+# 의존성 설치
+npm install
+
+# app.js 실행
+node app.js
+
+```
   
 ##  📁 폴더구조
 ```
@@ -34,81 +44,16 @@
 ├─ package.json
 ├─ public
 │  ├─ Animation
-│  │  ├─ like.json
-│  │  └─ loading.json
 │  ├─ config
-│  │  ├─ config.js
-│  │  └─ constants.js
 │  ├─ CSS
-│  │  ├─ addpost.css
-│  │  ├─ dashboard.css
-│  │  ├─ default.css
-│  │  ├─ default_profile.css
-│  │  ├─ editPassword.css
-│  │  ├─ editProfile.css
-│  │  ├─ login.css
-│  │  └─ viewPost.css
 │  ├─ Font
-│  │  ├─ Moneygraphy-Pixel.woff2
-│  │  └─ Moneygraphy-Rounded.woff2
 │  ├─ HTML
-│  │  ├─ AddPost.html
-│  │  ├─ DashBoard.html
-│  │  ├─ EditPassword.html
-│  │  ├─ EditPost.html
-│  │  ├─ EditProfile.html
-│  │  ├─ Login.html
-│  │  ├─ SignUp.html
-│  │  └─ ViewPost.html
 │  ├─ JS
 │  │  ├─ DashBoard
-│  │  │  ├─ API
-│  │  │  │  ├─ AddPostFetch.js
-│  │  │  │  ├─ CommentFetch.js
-│  │  │  │  ├─ DashboardDataFetch.js
-│  │  │  │  ├─ DeletePostFetch.js
-│  │  │  │  ├─ LikeFetch.js
-│  │  │  │  ├─ PatchPostFetch.js
-│  │  │  │  └─ ViewPostFetch.js
-│  │  │  └─ features
-│  │  │     ├─ AnimationLike.js
-│  │  │     ├─ AnimationLoading.js
-│  │  │     ├─ BackButton.js
-│  │  │     ├─ DashboardFunction.js
-│  │  │     ├─ PostFunction.js
-│  │  │     ├─ PostIdManager.js
-│  │  │     └─ urlUtils.js
 │  │  ├─ Login
-│  │  │  ├─ API
-│  │  │  │  ├─ checkEmailDuplicate.js
-│  │  │  │  ├─ checkNameDuplicate.js
-│  │  │  │  ├─ LoginFetch.js
-│  │  │  │  ├─ LogoutFetch.js
-│  │  │  │  └─ SignUpFetch.js
-│  │  │  └─ features
-│  │  │     ├─ EmailCheck.js
-│  │  │     ├─ EmailCheckLogin.js
-│  │  │     ├─ EmailCheckSignUp.js
-│  │  │     ├─ EnableSignUpButton.js
-│  │  │     ├─ NameCheck.js
-│  │  │     ├─ SignupPwCheck.js
-│  │  │     └─ ValidationState.js
 │  │  └─ Users
-│  │     ├─ API
-│  │     │  ├─ deleteUserFetch.js
-│  │     │  ├─ getHeaderImage.js
-│  │     │  ├─ getUserData.js
-│  │     │  ├─ patchPassword.js
-│  │     │  └─ patchUserData.js
-│  │     └─ features
-│  │        ├─ EditPwCheck.js
-│  │        ├─ EnableEditButton.js
-│  │        └─ ProfileImage.js
 │  └─ terms
-│     ├─ privacyPolicy.html
-│     └─ termsOfService.html
 ├─ .gitignore
-│  
 └─ README.md
 
 ```

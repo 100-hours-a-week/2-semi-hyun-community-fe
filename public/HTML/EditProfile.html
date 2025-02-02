@@ -1,67 +1,69 @@
 <!DOCTYPE html>
-<html lang = "ko">
+<html lang="ko">
 <head>
-    <meta charset = "UTF-8">
+    <meta charset="UTF-8">
     <title>회원정보 수정</title>
-    <link rel = "stylesheet" href = "/CSS/default.css"> 
-    <link rel = "stylesheet" href = "/CSS/default_profile.css"> 
-    <link rel = "stylesheet" href = "/CSS/editProfile.css">
+    <link rel="stylesheet" href="/CSS/variables.css">
+    <link rel="stylesheet" href="/CSS/default.css">
+    <link rel="stylesheet" href="/CSS/default_profile.css">
+    <link rel="stylesheet" href="/CSS/editProfile.css">
 </head>
 <body>
-    <header class = "header">
+    <header class="header">
         <div class="back-button">
             <button id="back-button">◀</button>
         </div>
         <h1>아무 말 대잔치</h1>
-        <div class = "profile-icon-dropdown">
+        <div class="profile-icon-dropdown">
             <img class="account-img" src="../image/">
             <div class="dropdown-content">
                 <a href="/users/me">회원정보수정</a>
                 <a href="/users/me/password">비밀번호수정</a>
                 <a href="/auth/logout">로그아웃</a>
+            </div>
         </div>
     </header>
-<main class="content">
-    <div id="editProfile">
-        <label for="profile">프로필 사진</label>
-        <div class="profile-img-container">
-            <img id="profile-img-preview" class="profile-img">
-            <input type="file" id="profile-img" accept="image/png, image/jpeg" style="display: none;">
-            <button class="change-button">변경</button>
+    <main class="content">
+        <div id="editProfile">
+            <label for="profile">프로필 사진</label>
+            <div class="profile-img-container">
+                <img id="profile-img-preview" class="profile-img">
+                <input type="file" id="profile-img" accept="image/png, image/jpeg" style="display: none;">
+                <button class="change-button">변경</button>
+            </div>
+
+            <div class="form-row">
+                <label for="email">이메일</label>
+                <span id="email">이메일</span>
+            </div>
+
+            <div class="form-row">
+                <label for="name">닉네임</label>
+                <input type="text" id="name" placeholder="닉네임을 입력하세요">
+                <div id="error-message-name" class="error-message">닉네임을 입력해주세요</div>
+            </div>
+
+            <button type="button" id="editUserButton" class="create-button" onclick="">수정하기</button>
+            
+
+            <div class="button-container">
+                <button type="button" id="editUserButtonToast" class="create-button" onclick="">수정완료</button>
+                <button type="button" id="deleteUserButton" class="create-button">회원 탈퇴</button>
+            </div>
         </div>
 
-        <div class="form-row">
-            <label for="email" class="font-default">이메일</label>
-            <span id="email">이메일</span>
-        </div>
-
-        <div class="form-row">
-            <label for="name" class="font-default">닉네임</label>
-            <input type="text" id="name" placeholder="닉네임을 입력하세요">
-            <div id="error-message-name" class="error-message">닉네임을 입력해주세요</div>
-        </div>
-
-        <button type="button" id= "editUserButton" class="create-button" onclick="">수정하기</button>
-
-        <div class = "button-container">
-        <!--a 태그 사용 시 다시 /user/me로 이동 -> api 요청 일어남  -->
-        <!-- <a href="/users/me" id="deleteUser">회원 탈퇴</a> -->
-        <button type="button" id= "deleteUserButton" class="create-button">회원 탈퇴</button>
-        </div>
-
-    </div>
-
-    <button type="button" id= "editUserButtonToast" class="create-button" onclick="">수정완료</button>
-</main>
-<script type = "module" src = "/JS/Users/API/getHeaderImage.js"></script>
-<script type = "module" src = "/JS/DashBoard/features/BackButton.js"></script>
-<script type = "module" src = "/JS/Users/API/getUserData.js"></script>
-<script type = "module" src = "/JS/Users/API/patchUserData.js"></script>
-<script type = "module" src = "/JS/Users/API/deleteUserFetch.js"></script>
-<script src="/JS/Users/features/ProfileImage.js"></script>
-<script type="module" src="/JS/Login/features/ValidationState.js"></script>
-<script type="module" src="/JS/Users/features/EnableEditButton.js"></script>
-<script type="module" src="/JS/Login/features/NameCheck.js"></script>
-<script type="module" src="/JS/Login/API/checkNameDuplicate.js"></script>
-<script type = "module" src = "/JS/Login/API/LogoutFetch.js"></script>
+        
+    </main>
+    <script type="module" src="/JS/Users/API/getHeaderImage.js"></script>
+    <script type="module" src="/JS/DashBoard/features/BackButton.js"></script>
+    <script type="module" src="/JS/Users/API/getUserData.js"></script>
+    <script type="module" src="/JS/Users/API/patchUserData.js"></script>
+    <script type="module" src="/JS/Users/API/deleteUserFetch.js"></script>
+    <script src="/JS/Users/features/ProfileImage.js"></script>
+    <script type="module" src="/JS/Login/features/ValidationState.js"></script>
+    <script type="module" src="/JS/Users/features/EnableEditButton.js"></script>
+    <script type="module" src="/JS/Login/features/NameCheck.js"></script>
+    <script type="module" src="/JS/Login/API/checkNameDuplicate.js"></script>
+    <script type="module" src="/JS/Users/features/ProfileCheck.js"></script>
+    <script type="module" src="/JS/Login/API/LogoutFetch.js"></script>
 </body>

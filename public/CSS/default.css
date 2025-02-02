@@ -8,8 +8,96 @@
    6. 에러 메시지
    7. 뒤로가기
    */
+@import url('./variables.css');
 
-/* 0. font 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "HeaderFont", sans-serif;
+    background-color: var(--bg-light);
+}
+
+
+.header{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.header h1 {
+    position: static; /* absolute 제거 */
+    /* flex: 0 1 auto; flex-grow: 0, flex-shrink: 1, flex-basis: auto로 변경 */
+    /* flex: 1; */
+    width: 500px;
+    text-align: center; /* 텍스트 중앙 정렬 */
+    margin: 0;
+}
+
+/* 뒤로가기 버튼 */
+.back-button button{
+    background-color: transparent;
+    border: none;
+    color: var(--gray);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.back-button {
+    width: 40px;
+}
+
+/* 버튼 스타일 */
+.create-button{
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--btn-background);
+    color: var(--white);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.create-button:hover{
+    background-color: var(--btn-hover);
+}
+
+
+
+/* 에러 메시지 */
+.error-message{
+    display: none;
+    color: var(--error-color);
+    font-size: 0.8em;
+}
+
+/* 링크 스타일 */
+a {
+    text-decoration: none;
+    color: var(--gray);
+    font-size: 0.8em;
+}
+
+/* 공통 컨텐츠 레이아웃 */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 수직 중앙 정렬 추가 */
+    width: 100%;
+    padding: var(--spacing-md);
+    min-height: calc(100vh - 60px); /* header 높이를 제외한 전체 높이 */
+}
+
+/* font 설정 */
 @font-face {
     font-family: 'HeaderFont';
     src: url('../Font/Moneygraphy-Pixel.woff2') format('woff2');
@@ -22,25 +110,7 @@
     font-family: 'HeaderFont', sans-serif;
     font-size: 18px;
     line-height: 48px;
-    color: #000000;
-}
-
-.font-highlight {
-    font-family: 'HeaderFont', monospace;
-    font-size: 18px;
-    color: #6C6C6C;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* background-color: #F4F5F7; */
-}
-
-body {
-    font-family: "HeaderFont", sans-serif;
-    background-color: #F4F5F7;
+    color: var(--font-color);
 }
 
 /* 폼 요소들의 폰트 상속 설정 */
@@ -54,64 +124,3 @@ textarea{
     font-family: inherit;
     font-weight: 100;
 }
-
-.header{
-    position: relative;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    /* justify-content: space-between;  */
-    padding:20px;
-    background-color: #F4F5F7;
-    border-bottom: 1px solid #ddd;
-
-    /* text-align: center; */
-}
-
-/* 절대 위치에 고정 */
-.header h1 {
-    font-family: 'HeaderFont'; /* 헤더 폰트 설정 */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-a {
-    text-decoration: none;
-    color: #6C6C6C;
-    font-size: 0.8em;
-}
-
-.create-button{
-    padding: 10px 20px;
-    background-color: #ACA0EB;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    /* float :right; */
-    /* align-self: flex-end; */
-}
-
-.create-button:hover{
-    /* background-color: #8E7EDF; */
-    background-color:#7F6AEE';
-}
-
-.error-message{
-    display: none;
-    color: red;
-    font-size: 0.8em;
-}
-
-.back-button button{
-    background-color: transparent;
-    border: none;
-    color: #6C6C6C;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-}
-

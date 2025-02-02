@@ -1,7 +1,10 @@
 import { API_URL } from '/config/constants.js';
 const LoginButton = document.getElementById('loginButton');
 
-//비밀번호 유효성 검사
+//modal
+const modal = document.getElementById('welcome-modal');
+const welcomeMessage = document.getElementById('welcome-message');
+const closeBtn = document.getElementById('modal-close');
 
 //fetch
 //NOTE: addEventLister를 사용하면 HTML에 onClick을 추가하지 않아도 이벤트를 처리한다.
@@ -31,11 +34,14 @@ LoginButton.addEventListener('click', async () => {
 
         if (response.status === 200){
 
-            alert(result.name+"님 안녕하세요");
-            // alert("안녕하세요");
+            welcomeMessage.textContent = `${result.name}님`;
+            modal.classList.add('show');
             
-            //인증처리는? -> 미들웨어로
-            window.location.href = '/posts';
+            closeBtn.onclick = () => {
+                modal.classList.remove('show');
+                window.location.href = '/posts';
+            };
+            
         } else if (response.status === 400 || response.status === 401) {
             ErrorMessage.textContent = result.message;
             ErrorMessage.style.display = 'block';

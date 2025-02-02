@@ -1,8 +1,5 @@
 .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    min-height: auto;
 }
 
 .content h2{
@@ -34,6 +31,7 @@
 .context p,
 .post-image p {
     margin: 0 0 5px 0;
+    border-bottom: 1px solid var(--border-light);
     text-align: left;
     font-weight: bold;
 }
@@ -45,11 +43,10 @@
 .image-input input {
     width: 100%;
     padding: 10px;
-    /* border-top: #ddd; */
     border : none;
     border-radius: 4px;
     font-size: 14px;
-    background-color: #F4F5F7;
+    background-color: var(--bg-light);
     
 }
 
@@ -61,19 +58,12 @@
     width : 100%;
     height: 100px;
     resize: none;
-
-    /* font-family : "Inter", sans-serif;; */
 }
 
 #file-name {
     margin-left: 10px;
     font-size: 14px;
-    color: #6C6C6C;
-}
-
-.create-button{
-    background-color : #ACA0EB;
-    /* background-color: #7F6AEE; */
+    color: var(--font-grey);
 }
 
 /* 이미지  프리뷰 컨테이너 */
@@ -85,10 +75,10 @@
     margin: 10px auto;    /* 컨테이너 자체를 가운데 정렬 */
     padding: 5px;
 
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--border-light);
     border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-light);
+    box-shadow: 0 2px 4px var(--gray-light);
 
     margin-top: 10px;
     margin-bottom: 10px;
@@ -106,7 +96,7 @@
 }
 
 #delete-button:hover {
-    background-color: #aaaaaa;
+    background-color: var(--gray-hover);
     transform: scale(1.1);
 }
 
@@ -118,14 +108,3 @@
     margin: 0 auto;         /* 이미지 가운데 정렬 */
     object-fit: contain;
 }
-
-
-
-/* .title{
-    display:flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center; 중양 정렬 
-    margin-bottom: 20px;
-    width: 100%;
-} */
