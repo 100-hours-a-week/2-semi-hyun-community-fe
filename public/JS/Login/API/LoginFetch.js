@@ -34,7 +34,7 @@ LoginButton.addEventListener('click', async () => {
 
         if (response.status === 200){
 
-            welcomeMessage.textContent = `${result.name}님 안녕하세요`;
+            welcomeMessage.textContent = `${result.name}님`;
             modal.classList.add('show');
             
             closeBtn.onclick = () => {
