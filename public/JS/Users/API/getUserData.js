@@ -1,4 +1,4 @@
-import { API_URL } from '/config/constants.js';
+import { API_URL,CLOUDFRONT_URL } from '/config/constants.js';
 
 const getUserData = async () => {
     try {
@@ -29,9 +29,10 @@ const getUserData = async () => {
         // NOTE: ?. : 옵셔널 체이닝 연산자
         // NOTE: result.data null인 경우 undefined 반환
         if (result.data?.image) {
-            const profileImageUrl = `${process.env.CLOUDFRONT_URL}/images/profiles/${result.data.image}`;
+            const profileImageUrl = `${CLOUDFRONT_URL}/${result.data.image}`;
             profileImgElement.src = profileImageUrl;
         }
+
 
 
 

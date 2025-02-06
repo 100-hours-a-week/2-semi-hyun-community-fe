@@ -1,4 +1,4 @@
-import { API_URL } from '/config/constants.js';
+import { API_URL,CLOUDFRONT_URL } from '/config/constants.js';
 
 
 const getHeaderImage = async () => {
@@ -19,9 +19,10 @@ const getHeaderImage = async () => {
         //NOTE : .account-img 클래스를 가진 모든 요소를 선택 -> 헤더 + 게시글 상세보기 프로필
         const headerProfileImg = document.querySelector('.account-img');
         if(result.image){
-            headerProfileImg.src = `${process.env.CLOUDFRONT_URL}/images/profiles/${result.image}`;
+            headerProfileImg.src = `${CLOUDFRONT_URL}/${result.image}`;
         }
         
+
     } catch (error) {
         // 템플릿 리터럴 사용
         console.error(`Error fetching header image: ${error}`);

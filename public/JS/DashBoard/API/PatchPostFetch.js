@@ -1,4 +1,4 @@
-import { API_URL } from '/config/constants.js';
+import { API_URL,CLOUDFRONT_URL } from '/config/constants.js';
 
 // 경로에서 post_id 추출 - 구조분해할당 활용
 const [, , post_id] = window.location.pathname.split('/').slice(0, -1);
@@ -40,8 +40,9 @@ const loadPatchPost = async () => {
         if(post_image) {
             elements.fileName.textContent = `현재 이미지: ${post_image}`;
             elements.currentImgContainer.style.display = 'block';
-            elements.currentImg.src = `${process.env.CLOUDFRONT_URL}/images/posts/${post_image}`;
+            elements.currentImg.src = `${CLOUDFRONT_URL}/${post_image}`;
             
+
 
         }
 

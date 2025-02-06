@@ -1,6 +1,8 @@
 //공통으로 사용하는 상수 관리
-export const BASE_URL = "http://localhost";
+export const BASE_URL = "http://localhost:3000";
 export const API_URL = `${BASE_URL}/api/v1`;
+export const CLOUDFRONT_URL = "https://d2cls781nwyk3q.cloudfront.net";
+
 
 export const urlUtils = {
     getPostId : ()=>{
