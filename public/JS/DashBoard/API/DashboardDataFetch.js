@@ -1,4 +1,4 @@
-import { BASE_URL,API_URL } from '/config/constants.js';
+import { API_URL } from '/config/constants.js';
 import { initLoadingAnimation,playLoadingAnimation,stopLoadingAnimation } from '/JS/DashBoard/features/AnimationLoading.js';
 
 let isLoading = false; //로딩 중인지 여부
@@ -58,7 +58,7 @@ const loadPosts = async () => {
             </div>
           </a>
           <div class="author-info">
-            <img class="account-img" src="${BASE_URL}/images/profile/${post.profile_image}" alt="작성자">
+            <img class="account-img" src="${process.env.CLOUDFRONT_URL}/images/profiles/${post.profile_image}" alt="작성자">
             <span class="author-name">${post.name}</span>
           </div>
         `;

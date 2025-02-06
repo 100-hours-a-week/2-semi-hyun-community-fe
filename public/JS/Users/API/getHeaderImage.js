@@ -1,5 +1,5 @@
-import { BASE_URL, API_URL } from '/config/constants.js';
-// const BASE_URL = 'http://localhost:3000';
+import { API_URL } from '/config/constants.js';
+
 
 const getHeaderImage = async () => {
     try{
@@ -19,7 +19,7 @@ const getHeaderImage = async () => {
         //NOTE : .account-img 클래스를 가진 모든 요소를 선택 -> 헤더 + 게시글 상세보기 프로필
         const headerProfileImg = document.querySelector('.account-img');
         if(result.image){
-            headerProfileImg.src = `${BASE_URL}/images/profile/${result.image}`;
+            headerProfileImg.src = `${process.env.CLOUDFRONT_URL}/images/profiles/${result.image}`;
         }
         
     } catch (error) {

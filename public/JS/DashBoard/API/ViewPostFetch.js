@@ -1,4 +1,4 @@
-import { BASE_URL, API_URL, urlUtils} from '/config/constants.js';
+import { API_URL, urlUtils} from '/config/constants.js';
 
 const EditButton = document.getElementById('post-edit-btn');
 const post_id = urlUtils.getPostId();
@@ -48,11 +48,11 @@ const postDataLoad = async () => {
         elements.title.textContent = result.post.title;
         elements.authorName.textContent = result.post.name;
         elements.content.textContent = result.post.content;
-        elements.profileImg.src = `${BASE_URL}/images/profile/${result.post.profile_image}`;
+        elements.profileImg.src = `${process.env.CLOUDFRONT_URL}/images/profiles/${result.post.profile_image}`;
 
         // 게시글 이미지 처리
         if (result.post.post_image) {
-            elements.postImg.src = `${BASE_URL}/images/${result.post.post_image}`;
+            elements.postImg.src = `${process.env.CLOUDFRONT_URL}/images/posts/${result.post.post_image}`;
             elements.postImg.style.display = 'block';
         } else {
             elements.postImg.style.display = 'none';
@@ -81,7 +81,7 @@ const postDataLoad = async () => {
             commentItem.dataset.commentId = comment.comment_id;
             commentItem.innerHTML = `
                 <div class="account-info">
-                    <img class="account-img" src=${BASE_URL}/images/profile/${comment.profile_image} alt="작성자">
+                    <img class="account-img" src=${process.env.CLOUDFRONT_URL}/images/profiles/${comment.profile_image} alt="작성자">
                     <span class="account-name">${comment.name}</span>
                     <span class="comment-date">${comment.created_at}</span>
                 </div>
