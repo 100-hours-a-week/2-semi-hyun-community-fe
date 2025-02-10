@@ -203,5 +203,7 @@ community/data/login.json
 community/data/posts.json
 
 .env
+.env.development
+.env.production
 
 arc
